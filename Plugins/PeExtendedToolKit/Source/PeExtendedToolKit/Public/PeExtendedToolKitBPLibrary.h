@@ -3,7 +3,7 @@
 #include "Engine.h"
 
 #include "HAL/FileManagerGeneric.h"
-#include "CoreMisc.h"
+#include "Misc/CoreMisc.h"
 #include "Engine.h"
 
 #include "Components/AudioComponent.h"
@@ -14,13 +14,13 @@
 #include "Developer/TargetPlatform/Public/Interfaces/IAudioFormat.h"
 #include "VorbisAudioInfo.h"
 
-#include "SColorPicker.h"
+#include "Widgets/Colors/SColorPicker.h"
 
 #include "ImageUtils.h"
 //#include "ImageWrapper.h"
 #include "IImageWrapper.h"
 
-#include "UserWidget.h"
+#include "Blueprint/UserWidget.h"
 
 #include "ProceduralMeshComponent.h"
 #include "PeExtendedToolKitBPLibrary.generated.h"

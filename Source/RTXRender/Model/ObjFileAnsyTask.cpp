@@ -5,7 +5,6 @@
 #include "ModelFile.h"
 #include <fstream>
 #include <iosfwd>
-#include "AJHttpUploader.h"
 
 ObjFileAnsyTask::ObjFileAnsyTask()
 	:ResMgr(NULL)
@@ -114,11 +113,6 @@ void ObjFileAnsyTask::OneCreateObjFile(UModelFile *modelFile)
 	}
 
 }
-
-//void ObjFileAnsyTask::OneUploadObjFile()
-//{
-//	UAJHttpUploader* OneTaskUpload=UAJHttpUploader::UploadFile(OneObjFileNameToUpload, TaskUrl, 0);
-//}
 
 void ObjFileAnsyTask::SaveObjFile(TArray<FVector>&& vertexArr, TArray<int32>&&FaceIndex, FString outFileName)
 {

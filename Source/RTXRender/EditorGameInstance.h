@@ -10,8 +10,6 @@
 #include "Building/DRStruct.h"
 #include "Building/DRModelFactory.h"
 #include "Building/BuildingSystem.h"
-#include "TimeStatisticsActor.h"
-#include "ULogManager.h"
 #include "../Data/DRStruct/DRBuildingStruct.h"
 #include "EditorGameInstance.generated.h"
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Widgets/SCanvas.h"
 #include "../ComponentBasePrimitive.h"
 #include "ComponentBaseWidget.generated.h"
 

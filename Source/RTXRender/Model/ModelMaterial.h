@@ -100,18 +100,18 @@ public:
 	virtual void Serialize(bool bEmbedModel, FArchive &Ar, uint32 Ver);
 	virtual UMaterialInterface *GetUE4Material() { return NULL; }
 	static FModelMaterial *CreateMaterial(EMaterialType type);
-	int32 FindTextureIndex(const FName &Name);
-	int32 FindFloatIndex(const FName &Name);
-	int32 FindVectorIndex(const FName &Name);
-	int32 GetTextureValue(const FName &Name);
-	float GetFloatValue(const FName &Name);
-	FLinearColor GetVectorValue(const FName &Name);
-	int32 SetTextureValue(const FName &Name, int32 Value);
-	int32 SetFloatValue(const FName &Name, float Value);
-	int32 SetVectorValue(const FName &Name, const FLinearColor &Value);
+	int32 FindTextureIndex(const FName &InName);
+	int32 FindFloatIndex(const FName &InName);
+	int32 FindVectorIndex(const FName &InName);
+	int32 GetTextureValue(const FName &InName);
+	float GetFloatValue(const FName &InName);
+	FLinearColor GetVectorValue(const FName &InName);
+	int32 SetTextureValue(const FName &InName, int32 Value);
+	int32 SetFloatValue(const FName &InName, float Value);
+	int32 SetVectorValue(const FName &InName, const FLinearColor &Value);
 	virtual void UpdateParameters(UMaterialInstanceDynamic *Mtrl, TArray<FModelTexture *> &Textures);
 	virtual void CopyOverrideParametersTo(FModelMaterial *Material);
-	bool IsValidMaterialParameter(FGuid &GUID, FName &Name);
+	bool IsValidMaterialParameter(FGuid &GUID, FName &InName);
 public:
 	FString Name;
 	TArray<FSurfaceParameterFloat>		OverrideFloatParameters;

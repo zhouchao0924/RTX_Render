@@ -5,12 +5,12 @@
 #include <string>
 using namespace std;
 
-#include "AllowWindowsPlatformTypes.h"
+#include "Windows/AllowWindowsPlatformTypes.h"
 #include<windows.h>
 #include "shellapi.h"
 #include "CommDlg.h"
 #include "Shlobj.h"
-#include "HideWindowsPlatformTypes.h"
+#include "Windows/HideWindowsPlatformTypes.h"
 
 #include "Runtime/ImageWrapper/Public/IImageWrapper.h"
 #include "Runtime/ImageWrapper/Public/IImageWrapperModule.h"
@@ -18,15 +18,15 @@ using namespace std;
 #include "PlatformFeatures.h"
 #include "GameFramework/SaveGame.h"
 
-#include "CoreMisc.h"
+#include "Misc/CoreMisc.h"
 
 #include "SlateBasics.h"
 #include "SlateExtras.h"
 
 #include "Kismet/KismetTextLibrary.h"
-#include "TextFormatter.h"
+#include "Internationalization/TextFormatter.h"
 
-#include "ReflectionMetadata.h"
+#include "Types/ReflectionMetadata.h"
 
 #include "Runtime/UMG/Public/UMG.h"
 #include "Runtime/UMG/Public/UMGStyle.h"

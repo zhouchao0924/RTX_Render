@@ -698,8 +698,8 @@ public:
 		, modelID(22314)
 		, RoomClassID(16)
 		, CraftID(301)
-		, Scale(100, 100, 0)
 		, Offset(0, 0, 0)
+		, Scale(100, 100, 0)
 		, Angle(0.0f)
 	{
 	}

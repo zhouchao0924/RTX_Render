@@ -44,7 +44,7 @@ class UComponentBasePrimitive:public UObject
 public:
 	UComponentBasePrimitive();
 	virtual void Draw(FPaintContext& InContext) const {};
-	virtual void PrimitiveVertexDataGenerate(UWorld* MyWorld, const FVector2D& mousePos) {};
+	virtual void PrimitiveVertexDataGenerate(UWorld* InMyWorld, const FVector2D& mousePos) {};
 	void DrawBox(FPaintContext& InContext, const FPrimitive2D& inPrimitive,
 	     const FLinearColor& FrameColor, const FLinearColor& Tint, float Angle = 0.0f)const;
 	void DrawAuxLine(FPaintContext& InContext)const;

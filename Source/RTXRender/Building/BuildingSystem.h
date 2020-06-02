@@ -329,7 +329,7 @@ protected:
 	void OnDeleteObject(IObject *RawObj);
 	void OnUpdateObject(IObject *RawObj, unsigned int ChannelMask);
 	int  GetExternalChunkID() override { return 0x8fffffff; }
-	void OnSwitchLayer(ISuite *Suite, int LayerIndex) override { }
+	void OnSwitchLayer(ISuite *InSuite, int LayerIndex) override { }
 	void Serialize(ISerialize &Ar) override { }
 	void ClearObjInfo(FObjectInfo *ObjInfo);
 	FObjectInfo *NewSuiteData(IObject *RawObj);

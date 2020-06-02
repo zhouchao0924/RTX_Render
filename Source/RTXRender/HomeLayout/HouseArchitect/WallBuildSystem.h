@@ -9,7 +9,7 @@
 #include "../SceneEntity/Wall_Boolean_Base.h"
 #include "../SceneEntity/RoomActor.h"
 #include "Components/ActorComponent.h"
-#include "UserWidget.h"
+#include "Blueprint/UserWidget.h"
 #include "../Linkage/WallLinkage.h"
 #include <vector>
 #include "IBuildingSDK.h"

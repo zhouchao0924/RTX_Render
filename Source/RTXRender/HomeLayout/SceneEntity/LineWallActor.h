@@ -6,7 +6,7 @@
 #include "ProceduralMeshComponent.h"
 #include "../DataNodes/WallNode.h"
 #include "../DataNodes/SavedDataNode.h"
-#include "UserWidget.h"
+#include "Blueprint/UserWidget.h"
 #include "../../Struct/Struct.h"
 #include "Building/BuildingComponent.h"
 #include "Building/DRActor.h"

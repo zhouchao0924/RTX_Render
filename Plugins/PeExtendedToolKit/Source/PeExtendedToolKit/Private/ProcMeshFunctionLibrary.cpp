@@ -3,7 +3,7 @@
 #include "ProcMeshFunctionLibrary.h"
 #include "PeExtendedToolKitPrivatePCH.h"
 #include "PeExtendedToolKit.h"
-#include "FileHelper.h"
+#include "Misc/FileHelper.h"
 
 FProcMeshConfig UProcMeshFunctionLibrary::GetProcMeshSection(UProceduralMeshComponent* ProcMeshComponent, int32 SectionIndex)
 {

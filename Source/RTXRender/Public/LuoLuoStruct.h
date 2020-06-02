@@ -2,13 +2,13 @@
 
 #pragma once
 #include "Struct.h"
-#include "FileManager.h"
-#include "Paths.h"
-#include "FileHelper.h"
-#include "GenericPlatformMisc.h"
+#include "HAL/FileManager.h"
+#include "Misc/Paths.h"
+#include "Misc/FileHelper.h"
+#include "GenericPlatform/GenericPlatformMisc.h"
 #include "Components/SkyLightComponent.h"
-#include "Regex.h"
-#include "ModuleManager.h"
+#include "Internationalization/Regex.h"
+#include "Modules/ModuleManager.h"
 #include "LuoLuoStruct.generated.h"
 
 UENUM(BlueprintType)

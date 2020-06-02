@@ -60,8 +60,8 @@ struct FDownloadingRes
 	FDownloadingRes() { Resource = NULL; HttpFile = NULL; }
 
 	FDownloadingRes(EResType InType, const FString &InURL, const FString &InFilename)
-		:URL(InURL)
-		, ResType(InType)
+		: ResType(InType)
+		, URL(InURL)
 		, Filename(InFilename)
 		, Resource(NULL)
 		, HttpFile(NULL)

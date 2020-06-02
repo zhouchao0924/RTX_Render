@@ -8,17 +8,17 @@
 #include "VaRestJsonObject.h"
 #include "VaRestJsonValue.h"
 #include "Json.h"
-#include "../ajdr/HomeLayout/HouseArchitect/WallBuildSystem.h"
+#include "HomeLayout/HouseArchitect/WallBuildSystem.h"
 #include "EditorGameInStance.h"
-#include "../ajdr/Building/DRFunLibrary.h"
+#include "Building/DRFunLibrary.h"
 
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/Polygon_2.h>
 #include "../Source/Runtime/Engine/Classes/Components/ActorComponent.h"
 #include "../Source/Runtime/Engine/Classes/Components/PointLightComponent.h"
 #include "../Source/Runtime/Engine/Classes/Engine/SpotLight.h"
-#include "../ajdr/HomeLayout/SceneEntity/FurnitureModelActor.h"
-#include "FileHelper.h"
+#include "HomeLayout/SceneEntity/FurnitureModelActor.h"
+#include "Misc/FileHelper.h"
 #include "Data/DRProjData.h"
 #include "Data/Adapter/DRSolidWallAdapter.h"
 #include "HouseCustomActor.h"

@@ -10,7 +10,7 @@
 #include "Building/DRActor.h"
 #include "Building/BuildingComponent.h"
 #include "Building/DRStruct.h"
-#include "UserWidget.h"
+#include "Blueprint/UserWidget.h"
 #include "DataType.h"
 #include "RoomActor.generated.h"
 

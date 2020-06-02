@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "ProceduralMeshComponent.h"
-#include "UserWidget.h"
+#include "Blueprint/UserWidget.h"
 #include "../HomeLayout/UserInterface/RulerLabelWidget.h"
 #include "../HomeLayout/UserInterface/UserInputRulerWidget.h"
 #include "../HomeLayout/DataNodes/SavedDataNode.h"

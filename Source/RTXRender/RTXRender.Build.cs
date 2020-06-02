@@ -33,7 +33,10 @@ public class RTXRender : ModuleRules
             "Networking",
             "OpenSSL",
             "TextureFormatDXT",
-            "nvTextureTools"
+            "nvTextureTools",
+            "UMG",
+            "Slate",
+            "RenderCore"
         });
 
 		PublicDependencyModuleNames.AddRange(new string[] {

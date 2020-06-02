@@ -175,14 +175,14 @@ FModelMaterial *FModelMaterial::CreateMaterial(EMaterialType type)
 	return newMaterial;
 }
 
-int32 FModelMaterial::FindTextureIndex(const FName &Name)
+int32 FModelMaterial::FindTextureIndex(const FName &InName)
 {
 	int32 FoundIndex = INDEX_NONE;
 
 	for (int32 i = 0; i < OverrideTextureParameters.Num(); ++i)
 	{
 		FSurfaceParameterTexture &Param = OverrideTextureParameters[i];
-		if (Param.ParamName == Name)
+		if (Param.ParamName == InName)
 		{
 			FoundIndex = i;
 		}
@@ -191,14 +191,14 @@ int32 FModelMaterial::FindTextureIndex(const FName &Name)
 	return FoundIndex;
 }
 
-int32 FModelMaterial::FindFloatIndex(const FName &Name)
+int32 FModelMaterial::FindFloatIndex(const FName &InName)
 {
 	int32 FoundIndex = INDEX_NONE;
 
 	for (int32 i = 0; i < OverrideFloatParameters.Num(); ++i)
 	{
 		FSurfaceParameterFloat &Param = OverrideFloatParameters[i];
-		if (Param.ParamName == Name)
+		if (Param.ParamName == InName)
 		{
 			FoundIndex = i;
 		}
@@ -207,14 +207,14 @@ int32 FModelMaterial::FindFloatIndex(const FName &Name)
 	return FoundIndex;
 }
 
-int32 FModelMaterial::FindVectorIndex(const FName &Name)
+int32 FModelMaterial::FindVectorIndex(const FName &InName)
 {
 	int32 FoundIndex = INDEX_NONE;
 
 	for (int32 i = 0; i < OverrideVectorParameters.Num(); ++i)
 	{
 		FSurfaceParameterVector &Param = OverrideVectorParameters[i];
-		if (Param.ParamName == Name)
+		if (Param.ParamName == InName)
 		{
 			FoundIndex = i;
 		}
@@ -223,9 +223,9 @@ int32 FModelMaterial::FindVectorIndex(const FName &Name)
 	return FoundIndex;
 }
 
-int32 FModelMaterial::GetTextureValue(const FName &Name)
+int32 FModelMaterial::GetTextureValue(const FName &InName)
 {
-	int32 FoundIndex = FindTextureIndex(Name);
+	int32 FoundIndex = FindTextureIndex(InName);
 	if (FoundIndex != INDEX_NONE)
 	{
 		return OverrideTextureParameters[FoundIndex].Value;
@@ -233,9 +233,9 @@ int32 FModelMaterial::GetTextureValue(const FName &Name)
 	return INDEX_NONE;
 }
 
-float FModelMaterial::GetFloatValue(const FName &Name)
+float FModelMaterial::GetFloatValue(const FName &InName)
 {
-	int32 FoundIndex = FindFloatIndex(Name);
+	int32 FoundIndex = FindFloatIndex(InName);
 	if (FoundIndex != INDEX_NONE)
 	{
 		return OverrideFloatParameters[FoundIndex].Value;
@@ -243,9 +243,9 @@ float FModelMaterial::GetFloatValue(const FName &Name)
 	return 0;
 }
 
-FLinearColor FModelMaterial::GetVectorValue(const FName &Name)
+FLinearColor FModelMaterial::GetVectorValue(const FName &InName)
 {
-	int32 FoundIndex = FindVectorIndex(Name);
+	int32 FoundIndex = FindVectorIndex(InName);
 	if (FoundIndex != INDEX_NONE)
 	{
 		return OverrideVectorParameters[FoundIndex].Value;
@@ -253,55 +253,55 @@ FLinearColor FModelMaterial::GetVectorValue(const FName &Name)
 	return FLinearColor::Black;
 }
 
-int32 FModelMaterial::SetTextureValue(const FName &Name, int32 Value)
+int32 FModelMaterial::SetTextureValue(const FName &InName, int32 Value)
 {
-	int32 FoundIndex = FindTextureIndex(Name);
+	int32 FoundIndex = FindTextureIndex(InName);
 	if (FoundIndex != INDEX_NONE)
 	{
-		OverrideTextureParameters[FoundIndex].ParamName = Name;
+		OverrideTextureParameters[FoundIndex].ParamName = InName;
 		OverrideTextureParameters[FoundIndex].Value = Value;
 	}
 	else
 	{
 		FoundIndex = OverrideTextureParameters.Num();
 		FSurfaceParameterTexture *TexParam = new (OverrideTextureParameters)FSurfaceParameterTexture();
-		TexParam->ParamName = Name;
+		TexParam->ParamName = InName;
 		TexParam->Value = Value;
 	}
 	return FoundIndex;
 }
 
-int32 FModelMaterial::SetFloatValue(const FName &Name, float Value)
+int32 FModelMaterial::SetFloatValue(const FName &InName, float Value)
 {
-	int32 FoundIndex = FindFloatIndex(Name);
+	int32 FoundIndex = FindFloatIndex(InName);
 	if (FoundIndex != INDEX_NONE)
 	{
-		OverrideFloatParameters[FoundIndex].ParamName = Name;
+		OverrideFloatParameters[FoundIndex].ParamName = InName;
 		OverrideFloatParameters[FoundIndex].Value = Value;
 	}
 	else
 	{
 		FoundIndex = OverrideFloatParameters.Num();
 		FSurfaceParameterFloat *FloatParam = new (OverrideFloatParameters) FSurfaceParameterFloat();
-		FloatParam->ParamName = Name;
+		FloatParam->ParamName = InName;
 		FloatParam->Value = Value;
 	}
 	return FoundIndex;
 }
 
-int32 FModelMaterial::SetVectorValue(const FName &Name, const FLinearColor &Value)
+int32 FModelMaterial::SetVectorValue(const FName &InName, const FLinearColor &Value)
 {
-	int32 FoundIndex = FindVectorIndex(Name);
+	int32 FoundIndex = FindVectorIndex(InName);
 	if (FoundIndex != INDEX_NONE)
 	{
-		OverrideVectorParameters[FoundIndex].ParamName = Name;
+		OverrideVectorParameters[FoundIndex].ParamName = InName;
 		OverrideVectorParameters[FoundIndex].Value = Value;
 	}
 	else
 	{
 		FoundIndex = OverrideVectorParameters.Num();
 		FSurfaceParameterVector *VecParam = new (OverrideVectorParameters) FSurfaceParameterVector;
-		VecParam->ParamName = Name;
+		VecParam->ParamName = InName;
 		VecParam->Value = Value;
 	}
 	return FoundIndex;
@@ -317,9 +317,9 @@ void FModelMaterial::RemapTexture(const TArray<int32> &Remap)
 	}
 }
 
-FName GetDeprecatedName(const FName &Name)
+FName GetDeprecatedName(const FName &InName)
 {
-	FString DeprecatedName = FString::Printf(TEXT("Deprecated_%s"), *(Name.GetPlainNameString()));
+	FString DeprecatedName = FString::Printf(TEXT("Deprecated_%s"), *(InName.GetPlainNameString()));
 	return FName(*DeprecatedName);
 }
 
@@ -388,9 +388,9 @@ void FModelMaterial::CopyOverrideParametersTo(FModelMaterial *Material)
 	}
 }
 
-bool FModelMaterial::IsValidMaterialParameter(FGuid &GUID, FName &Name)
+bool FModelMaterial::IsValidMaterialParameter(FGuid &GUID, FName &InName)
 {
-	FString TexName = Name.GetPlainNameString();
+	FString TexName = InName.GetPlainNameString();
 	return GUID.IsValid() && TexName.Find(TEXT("Deprecated"))==INDEX_NONE;
 }
 

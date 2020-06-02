@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include "Engine/DataTable.h"
 #include "VaRestJsonObject.h"
 #include "Resource.generated.h"
 

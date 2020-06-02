@@ -122,7 +122,7 @@ UTexture2D *FModelTexture::GetTexture()
 			FirstMip.SizeY = CompressedImage.SizeY;
 			Texture->NeverStream = 0;
 			Texture->SRGB = 1;
-			Texture->PlatformData->NumSlices = 1;
+			Texture->PlatformData->PackedData = 1;
 			Texture->PlatformData->PixelFormat = PixelFormat;
 			check(CompressedImage.RawData.GetTypeSize() == 1);
 
@@ -140,7 +140,8 @@ UTexture2D *FModelTexture::GetTexture()
 			for (int32 i = 1; i < Source.CompressedImages.Num(); ++i)
 			{
 				FCompressedImage2D &Image = Source.CompressedImages[i];
-				FTexture2DMipMap &SubMip = *(new (Texture->PlatformData->Mips) FTexture2DMipMap());
+				FTexture2DMipMap SubMip;
+				
 				SubMip.SizeX = Image.SizeX;
 				SubMip.SizeY = Image.SizeY;
 
@@ -148,6 +149,8 @@ UTexture2D *FModelTexture::GetTexture()
 				NewMipData = SubMip.BulkData.Realloc(Image.RawData.Num());
 				FMemory::Memcpy(NewMipData, Image.RawData.GetData(), Image.RawData.Num());
 				SubMip.BulkData.Unlock();
+
+				Texture->PlatformData->Mips.Add(&SubMip);
 			}
 
 			Texture->UpdateResource();

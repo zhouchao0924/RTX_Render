@@ -384,10 +384,10 @@ bool DecompressImage(const TArray< uint8 >& InCompressedData, const int32 InWidt
 		{
 			check(ImageWrapper->GetWidth() == InWidth);
 			check(ImageWrapper->GetHeight() == InHeight);
-			const TArray<uint8>* RawData = NULL;
+			TArray<uint8> RawData;
 			if (ImageWrapper->GetRaw(ERGBFormat::RGBA, 8, RawData))
 			{
-				OutUncompressedData = *RawData;
+				OutUncompressedData = RawData;
 				bSucceeded = true;
 			}
 		}
@@ -642,41 +642,41 @@ void UHouseFunctionLibrary::CustomPlayGroup(UObject* WorldContextObject, TArray<
 			//转角处理
 			if (specialTemplates.Find(HousecustomActor[i]->TemplateCategoryId) > -1)
 			{
-				FVector orige, extent,center, size;
-				HousecustomActor[i]->GetActorBounds(true, orige, extent);
+				FVector torige, textent,tcenter, tsize;
+				HousecustomActor[i]->GetActorBounds(true, torige, textent);
 				TArray<UhouseCustomTemplete*> Outconpoment;
 				HousecustomActor[i]->FindComponent(TEXT("柜身"), Outconpoment);
-				HousecustomActor[i]->compoundElementInterface->GetMeshcCenter(Outconpoment[0]->ElementID, center, "mesh_color1");
-				center = LayoutMath::GetInstance()->GetPosToRotator(HousecustomActor[i]->GetActorRotation(), center);
-				center = (orige + center);
-				center.Z = orige.Z;
+				HousecustomActor[i]->compoundElementInterface->GetMeshcCenter(Outconpoment[0]->ElementID, tcenter, "mesh_color1");
+				tcenter = LayoutMath::GetInstance()->GetPosToRotator(HousecustomActor[i]->GetActorRotation(), tcenter);
+				tcenter = (torige + tcenter);
+				tcenter.Z = torige.Z;
 
 				if (Outconpoment[0]->associatedAnchor.MeshSize.Find("mesh_color1"))
-					size = (*Outconpoment[0]->associatedAnchor.MeshSize.Find("mesh_color1")) / 20.f;
+					tsize = (*Outconpoment[0]->associatedAnchor.MeshSize.Find("mesh_color1")) / 20.f;
 				else
 				{
-					HousecustomActor[i]->compoundElementInterface->GetMeshSize(Outconpoment[0]->ElementID, size, "mesh_color1");
-					size /= 2.f;
+					HousecustomActor[i]->compoundElementInterface->GetMeshSize(Outconpoment[0]->ElementID, tsize, "mesh_color1");
+					tsize /= 2.f;
 				}
-				size = size + 5.f;
-				UKismetSystemLibrary::BoxTraceMultiForObjects(WorldContextObject, center, center, size, HousecustomActor[i]->GetActorRotation(), Typelist, false, actorlist, drawtype, OutHits, true, FLinearColor::Red, FLinearColor::Green, 100.f);
+				tsize = tsize + 5.f;
+				UKismetSystemLibrary::BoxTraceMultiForObjects(WorldContextObject, tcenter, tcenter, tsize, HousecustomActor[i]->GetActorRotation(), Typelist, false, actorlist, drawtype, OutHits, true, FLinearColor::Red, FLinearColor::Green, 100.f);
 				auto temphits = OutHits;
 
-				HousecustomActor[i]->compoundElementInterface->GetMeshcCenter(Outconpoment[0]->ElementID, center, "mesh_color2");
-				center = LayoutMath::GetInstance()->GetPosToRotator(HousecustomActor[i]->GetActorRotation(), center);
-				center = (orige + center);
-				center.Z = orige.Z;
+				HousecustomActor[i]->compoundElementInterface->GetMeshcCenter(Outconpoment[0]->ElementID, tcenter, "mesh_color2");
+				tcenter = LayoutMath::GetInstance()->GetPosToRotator(HousecustomActor[i]->GetActorRotation(), tcenter);
+				tcenter = (torige + tcenter);
+				tcenter.Z = torige.Z;
 
 			
 				if (Outconpoment[0]->associatedAnchor.MeshSize.Find("mesh_color2"))
-					size = (*Outconpoment[0]->associatedAnchor.MeshSize.Find("mesh_color2")) / 20.f;
+					tsize = (*Outconpoment[0]->associatedAnchor.MeshSize.Find("mesh_color2")) / 20.f;
 				else
 				{
-					HousecustomActor[i]->compoundElementInterface->GetMeshSize(Outconpoment[0]->ElementID, size, "mesh_color2");
-					size /= 2.f;
+					HousecustomActor[i]->compoundElementInterface->GetMeshSize(Outconpoment[0]->ElementID, tsize, "mesh_color2");
+					tsize /= 2.f;
 				}
-				size = size + 5.f;
-				UKismetSystemLibrary::BoxTraceMultiForObjects(WorldContextObject, center, center, size, HousecustomActor[i]->GetActorRotation(), Typelist, false, actorlist, drawtype, OutHits, true, FLinearColor::Red, FLinearColor::Green, 100.f);
+				tsize = tsize + 5.f;
+				UKismetSystemLibrary::BoxTraceMultiForObjects(WorldContextObject, tcenter, tcenter, tsize, HousecustomActor[i]->GetActorRotation(), Typelist, false, actorlist, drawtype, OutHits, true, FLinearColor::Red, FLinearColor::Green, 100.f);
 				OutHits += temphits;
 
 				bIsTrace = OutHits.Num() > 0 ? true : false;
@@ -717,15 +717,15 @@ void UHouseFunctionLibrary::PlayGroupTraceBox(UObject* WorldContextObject, AHous
 	//转角处理
 	if (specialTemplates.Find(HousecustomActor->TemplateCategoryId) > -1)
 	{
-		FVector orige, extent, center, size;
-		HousecustomActor->GetActorBounds(true, orige, extent);
+		FVector torige, textent, center, size;
+		HousecustomActor->GetActorBounds(true, torige, textent);
 		TArray<UhouseCustomTemplete*> Outconpoment;
 		HousecustomActor->FindComponent(TEXT("柜身"), Outconpoment);
 		HousecustomActor->compoundElementInterface->GetMeshcCenter(Outconpoment[0]->ElementID, center, "mesh_color1");
 		center = LayoutMath::GetInstance()->GetPosToRotator(HousecustomActor->GetActorRotation(), center);
 		
-		center = (orige + center);
-		center.Z = orige.Z;
+		center = (torige + center);
+		center.Z = torige.Z;
 
 		if (Outconpoment[0]->associatedAnchor.MeshSize.Find("mesh_color1"))
 			size = (*Outconpoment[0]->associatedAnchor.MeshSize.Find("mesh_color1")) / 20.f;
@@ -740,8 +740,8 @@ void UHouseFunctionLibrary::PlayGroupTraceBox(UObject* WorldContextObject, AHous
 
 		HousecustomActor->compoundElementInterface->GetMeshcCenter(Outconpoment[0]->ElementID, center, "mesh_color2");
 		center = LayoutMath::GetInstance()->GetPosToRotator(HousecustomActor->GetActorRotation(), center);
-		center = (orige + center);
-		center.Z = orige.Z;
+		center = (torige + center);
+		center.Z = torige.Z;
 
 		
 		if (Outconpoment[0]->associatedAnchor.MeshSize.Find("mesh_color2"))

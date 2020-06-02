@@ -531,7 +531,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void IsShowVirtualWallCorner(int32 WallID, bool bShow);
 	UFUNCTION(BlueprintCallable)
-		bool IsMoveBorderWallCorner(int32 CornerID, FVector2D& WallCornerPos_1, FVector2D& WallCornerPos_2);
+		bool IsMoveBorderWallCorner(int32 CornerID, FVector2D& tWallCornerPos_1, FVector2D& tWallCornerPos_2);
 	UFUNCTION(BlueprintCallable)
 		void CorrectCornerPos(int32 CornerID);
 	UFUNCTION(BlueprintCallable)

@@ -9,6 +9,7 @@
 #include "EditorGameInstance.h"
 #include "HomeLayout/Paper/ProjectMgr.h"
 #include "../Commands/CommandMgr.h"
+#include "GameFramework/PlayerInput.h"
 
 // Sets default values
 AGameEditorPawn_Base::AGameEditorPawn_Base()
@@ -36,9 +37,6 @@ void AGameEditorPawn_Base::BeginPlay()
 	{
 		GameInst->ModelSystem = MyWorld->SpawnActor<AModelSystem>(SpawmParams);
 	}
-
-	UProjectPaper *NewPaper = GameInst->ProjectMgr->CreateNewPaper();
-	GameInst->ProjectMgr->SwitchPaper(NewPaper);
 
 	CmdMgr = UCommandMgr::InitInstance(this);
 }

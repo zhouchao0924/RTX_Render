@@ -50,7 +50,7 @@ using namespace std;
 
 #include "Runtime/AssetRegistry/Public/IAssetRegistry.h"
 #include "Runtime/AssetRegistry/Private/AssetRegistry.h"
-#include "FileHelper.h"
+#include "Misc/FileHelper.h"
 
 
 #define KEY_DOWN(VK_NONAME) ((GetAsyncKeyState(VK_NONAME) & 0x8000) ? 1:0) //按键是否按下
@@ -389,7 +389,7 @@ UTexture2D* UPeExtendedToolKitBPLibrary::LoadTexture2D(const FString& ImagePath,
 
 	if (ImageWrapper.IsValid() && ImageWrapper->SetCompressed(CompressedData.GetData(), CompressedData.Num()))
 	{
-		const TArray<uint8>* UncompressedRGBA = nullptr;
+		TArray<uint8> UncompressedRGBA;
 
 		if (ImageWrapper->GetRaw(ERGBFormat::RGBA, 8, UncompressedRGBA))
 		{
@@ -403,7 +403,7 @@ UTexture2D* UPeExtendedToolKitBPLibrary::LoadTexture2D(const FString& ImagePath,
 				OutHeight = ImageWrapper->GetHeight();
 
 				void* TextureData = Texture->PlatformData->Mips[0].BulkData.Lock(LOCK_READ_WRITE);
-				FMemory::Memcpy(TextureData, UncompressedRGBA->GetData(), UncompressedRGBA->Num());
+				FMemory::Memcpy(TextureData, UncompressedRGBA.GetData(), UncompressedRGBA.Num());
 				Texture->PlatformData->Mips[0].BulkData.Unlock();
 				Texture->UpdateResource();
 			}
@@ -531,13 +531,13 @@ TArray<uint8>UPeExtendedToolKitBPLibrary::LoadTexture2DToByte(const FString& Ful
 
 	if (ImageWrapper.IsValid() && ImageWrapper->SetCompressed(CompressedData.GetData(), CompressedData.Num()))
 	{
-		const TArray<uint8>* UncompressedRGBA = NULL;
+		TArray<uint8> UncompressedRGBA;
 
 		if (ImageWrapper->GetRaw(ERGBFormat::BGRA, 8, UncompressedRGBA))
 		{
 			Width = ImageWrapper->GetWidth();//设置输出宽度
 			Height = ImageWrapper->GetHeight();//设置输出高度
-			return *UncompressedRGBA;
+			return UncompressedRGBA;
 		}
 	}
 	return N;
@@ -760,7 +760,7 @@ UTexture2D* UPeExtendedToolKitBPLibrary::LoadTexture2D_From_File(const FString& 
 	//Create T2D!
 	if (ImageWrapper.IsValid() && ImageWrapper->SetCompressed(RawFileData.GetData(), RawFileData.Num()))
 	{
-		const TArray<uint8>* UncompressedBGRA = NULL;
+		TArray<uint8> UncompressedBGRA;
 		if (ImageWrapper->GetRaw(ERGBFormat::BGRA, 8, UncompressedBGRA))
 		{
 			LoadedT2D = UTexture2D::CreateTransient(ImageWrapper->GetWidth(), ImageWrapper->GetHeight(), PF_B8G8R8A8);
@@ -775,7 +775,7 @@ UTexture2D* UPeExtendedToolKitBPLibrary::LoadTexture2D_From_File(const FString& 
 
 			//Copy!
 			void* TextureData = LoadedT2D->PlatformData->Mips[0].BulkData.Lock(LOCK_READ_WRITE);
-			FMemory::Memcpy(TextureData, UncompressedBGRA->GetData(), UncompressedBGRA->Num());
+			FMemory::Memcpy(TextureData, UncompressedBGRA.GetData(), UncompressedBGRA.Num());
 			LoadedT2D->PlatformData->Mips[0].BulkData.Unlock();
 
 			//Update!
@@ -806,7 +806,7 @@ UTexture2D* UPeExtendedToolKitBPLibrary::LoadTexture2D_From_File_Pixels(const FS
 	//Create T2D!
 	if (ImageWrapper.IsValid() && ImageWrapper->SetCompressed(RawFileData.GetData(), RawFileData.Num()))
 	{
-		const TArray<uint8>* UncompressedRGBA = NULL;
+		TArray<uint8> UncompressedRGBA;
 		if (ImageWrapper->GetRaw(ERGBFormat::RGBA, 8, UncompressedRGBA))
 		{
 			LoadedT2D = UTexture2D::CreateTransient(ImageWrapper->GetWidth(), ImageWrapper->GetHeight(), PF_R8G8B8A8);
@@ -819,7 +819,7 @@ UTexture2D* UPeExtendedToolKitBPLibrary::LoadTexture2D_From_File_Pixels(const FS
 			Width = ImageWrapper->GetWidth();
 			Height = ImageWrapper->GetHeight();
 
-			const TArray<uint8>& ByteArray = *UncompressedRGBA;
+			const TArray<uint8>& ByteArray = UncompressedRGBA;
 			//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 			for (int32 v = 0; v < ByteArray.Num(); v += 4)
@@ -842,7 +842,7 @@ UTexture2D* UPeExtendedToolKitBPLibrary::LoadTexture2D_From_File_Pixels(const FS
 
 			//Copy!
 			void* TextureData = LoadedT2D->PlatformData->Mips[0].BulkData.Lock(LOCK_READ_WRITE);
-			FMemory::Memcpy(TextureData, UncompressedRGBA->GetData(), UncompressedRGBA->Num());
+			FMemory::Memcpy(TextureData, UncompressedRGBA.GetData(), UncompressedRGBA.Num());
 			LoadedT2D->PlatformData->Mips[0].BulkData.Unlock();
 
 			//Update!

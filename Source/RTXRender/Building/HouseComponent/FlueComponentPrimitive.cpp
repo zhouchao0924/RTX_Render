@@ -55,14 +55,14 @@ void UFlueComponentPrimitive::Draw(FPaintContext& InContext) const
 	}*/
 }
 
-void UFlueComponentPrimitive::PrimitiveVertexDataGenerate(UWorld* MyWorld ,const FVector2D& mousePos)
+void UFlueComponentPrimitive::PrimitiveVertexDataGenerate(UWorld* InMyWorld ,const FVector2D& mousePos)
 {
 	ComponenetInfo.Loc = mousePos;
 	//WorldLocationToScreen(MyWorld, mousePos, ComponenetInfo.Length, ComponenetInfo.Width, FramePrimitive.LeftTopPos, FramePrimitive.RightBottomPos);
 	//GetOtherPos(FramePrimitive.LeftTopPos, FramePrimitive.RightBottomPos, FramePrimitive.RightTopPos, FramePrimitive.LeftBottomPos);
-	FramePrimitive = WorldLocationToScreen(MyWorld, mousePos, ComponenetInfo.Length, ComponenetInfo.Width);
+	FramePrimitive = WorldLocationToScreen(InMyWorld, mousePos, ComponenetInfo.Length, ComponenetInfo.Width);
 	CenterPos = (FramePrimitive.LeftTopPos+ FramePrimitive.RightBottomPos) / 2.0f;
-	FVector2D size = FramePrimitive.RightBottomPos-FramePrimitive.LeftTopPos;
+	FVector2D tempsize = FramePrimitive.RightBottomPos-FramePrimitive.LeftTopPos;
 
 	float innerLength = ComponenetInfo.Length * proportion;
 	float innerWith = ComponenetInfo.Width * proportion;
@@ -72,14 +72,14 @@ void UFlueComponentPrimitive::PrimitiveVertexDataGenerate(UWorld* MyWorld ,const
 	float ArrowY = innerLength* proportion;
 
 
-	InnerframePrimitive = WorldLocationToScreen(MyWorld, mousePos, innerLength, innerWith);
+	InnerframePrimitive = WorldLocationToScreen(InMyWorld, mousePos, innerLength, innerWith);
 	//HitPrimitive = WorldLocationToScreen(MyWorld, mousePos, ComponenetInfo.Length + 3, ComponenetInfo.Width + 3);
-	if (MyWorld)
+	if (InMyWorld)
 	{
 		FVector locArrow = FVector(mousePos.X + ArrowX / 2.0f, mousePos.Y - ArrowY / 2.0f, 280);
-		MyWorld->GetFirstPlayerController()->ProjectWorldLocationToScreen(locArrow, ArrowPos);
+		InMyWorld->GetFirstPlayerController()->ProjectWorldLocationToScreen(locArrow, ArrowPos);
 
-		MyWorld->GetFirstPlayerController()->ProjectWorldLocationToScreen(FVector(ComponenetInfo.Loc, 280), CenterPos);
+		InMyWorld->GetFirstPlayerController()->ProjectWorldLocationToScreen(FVector(ComponenetInfo.Loc, 280), CenterPos);
 	}
 
 }

@@ -10,7 +10,7 @@ class USewerComponentPrimitive : public UComponentBasePrimitive
 public:
 	USewerComponentPrimitive();
 	virtual void Draw(FPaintContext& InContext) const;
-	virtual void PrimitiveVertexDataGenerate(UWorld* MyWorld, const FVector2D& mousePos);
+	virtual void PrimitiveVertexDataGenerate(UWorld* InMyWorld, const FVector2D& mousePos);
 	//void USewerComponentPrimitive::SetMyBreush()const;
 public:
 	UPROPERTY()

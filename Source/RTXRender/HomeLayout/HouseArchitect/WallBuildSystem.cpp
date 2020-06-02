@@ -27,6 +27,8 @@
 #include "Data/Adapter/DRAreaAdapter.h"
 #include "Data/Adapter/DRCornerAdapter.h"
 #include "Data/FunctionLibrary/DROperationHouseFunctionLibrary.h"
+#include "BuildingSDK.h"
+
 class IObject;
 // Sets default values for this component's properties
 UWallBuildSystem::UWallBuildSystem()
@@ -343,8 +345,8 @@ ALineWallActor* UWallBuildSystem::CuttingWallByPosition(ALineWallActor *Wall2Cut
 TArray<FRoomPath> UWallBuildSystem::GetInnerRoomPathArray() const
 {
 	TArray<FRoomPath> RoomPathArray;
-	UCEditorGameInstance *GameInst = Cast<UCEditorGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
-	for (auto RegionInWorld : GameInst->AreaSystem->GetRegionsInWorld())
+	UCEditorGameInstance *tGameInst = Cast<UCEditorGameInstance>(UGameplayStatics::GetGameInstance(GetWorld()));
+	for (auto RegionInWorld : tGameInst->AreaSystem->GetRegionsInWorld())
 	{
 		RoomPathArray.Add(RegionInWorld->GetRoomPath());
 	}
@@ -520,8 +522,8 @@ ALineWallActor* UWallBuildSystem::GetWallByCorner(const FString &StartCorner, co
 
 ARoomActor* UWallBuildSystem::GetSegmentOwnerRoom(const FVector2D &Start, const FVector2D &End)
 {
-	UCEditorGameInstance *GameInst = Cast<UCEditorGameInstance>(GetWorld()->GetGameInstance());
-	const TArray<ARoomActor*>& RoomActors = GameInst->AreaSystem->GetRegionsInWorld();
+	UCEditorGameInstance *tGameInst = Cast<UCEditorGameInstance>(GetWorld()->GetGameInstance());
+	const TArray<ARoomActor*>& RoomActors = tGameInst->AreaSystem->GetRegionsInWorld();
 	ARoomActor *NearestRoom = nullptr;
 	float RoomDist2Segment = 0.0f;
 	for (ARoomActor *RoomActor : RoomActors)
@@ -697,8 +699,8 @@ bool UWallBuildSystem::CornerMovable(const int32 objectID, const FVector2D &Loc)
 									FVector2D EndPos = CornerData1->GetVector2D("Location");
 									if (objectID == P1 && (BestPos - StartPos).Size() <= border + 5)
 									{
-										IObject *pObj = BuildingSystem->GetObject(objectID);
-										if (pObj)
+										IObject *pObjt = BuildingSystem->GetObject(objectID);
+										if (pObjt)
 										{
 											/*for (int i = 0; i < WallCorners.Num(); ++i)
 											{
@@ -813,19 +815,19 @@ bool UWallBuildSystem::MoveCornner(const int32 objectID, const FVector2D &Loc)
 									FVector2D EndPos = CornerData1->GetVector2D("Location");
 									if (objectID == P1 && (BestPos - StartPos).Size() <= border + 5)
 									{
-										IObject *pObj = BuildingSystem->GetObject(objectID);
-										if (pObj)
+										IObject *pObjn = BuildingSystem->GetObject(objectID);
+										if (pObjn)
 										{
-											for (int i = 0; i < WallCorners.Num(); ++i)
+											for (int indext = 0; indext < WallCorners.Num(); ++indext)
 											{
-												if (WallCorners[i])
+												if (WallCorners[indext])
 												{
-													WallCorners[i]->ShowOutterCircle(true);
-													WallCorners[i]->ShowInnerCircel(false);
-													if (WallCorners[i]->CornerProperty.ObjectId == objectID)
+													WallCorners[indext]->ShowOutterCircle(true);
+													WallCorners[indext]->ShowInnerCircel(false);
+													if (WallCorners[indext]->CornerProperty.ObjectId == objectID)
 													{
-														WallCorners[i]->ShowInnerCircel(true);
-														WallCorners[i]->CornerProperty.Position = ToVector2D(pObj->GetPropertyValue("Location").Vec2Value());
+														WallCorners[indext]->ShowInnerCircel(true);
+														WallCorners[indext]->CornerProperty.Position = ToVector2D(pObjn->GetPropertyValue("Location").Vec2Value());
 													}
 												}
 											}
@@ -835,19 +837,19 @@ bool UWallBuildSystem::MoveCornner(const int32 objectID, const FVector2D &Loc)
 									else
 										if (objectID == P0 && (border + 5) > (BestPos - StartPos).Size())
 										{
-											IObject *pObj = BuildingSystem->GetObject(objectID);
-											if (pObj)
+											IObject *pObjn = BuildingSystem->GetObject(objectID);
+											if (pObjn)
 											{
-												for (int i = 0; i < WallCorners.Num(); ++i)
+												for (int indexa = 0; indexa < WallCorners.Num(); ++indexa)
 												{
-													if (WallCorners[i])
+													if (WallCorners[indexa])
 													{
-														WallCorners[i]->ShowOutterCircle(true);
-														WallCorners[i]->ShowInnerCircel(false);
-														if (WallCorners[i]->CornerProperty.ObjectId == objectID)
+														WallCorners[indexa]->ShowOutterCircle(true);
+														WallCorners[indexa]->ShowInnerCircel(false);
+														if (WallCorners[indexa]->CornerProperty.ObjectId == objectID)
 														{
-															WallCorners[i]->ShowInnerCircel(true);
-															WallCorners[i]->CornerProperty.Position = ToVector2D(pObj->GetPropertyValue("Location").Vec2Value());
+															WallCorners[indexa]->ShowInnerCircel(true);
+															WallCorners[indexa]->CornerProperty.Position = ToVector2D(pObjn->GetPropertyValue("Location").Vec2Value());
 														}
 													}
 												}
@@ -2160,10 +2162,10 @@ void UWallBuildSystem::ClearAllActor()
 		{
 			if (FoundWidgets[i])
 			{
-				UBooleanBase* BooleanUMG = Cast<UBooleanBase>(FoundWidgets[i]);
-				if (BooleanUMG)
+				UBooleanBase* tBooleanUMG = Cast<UBooleanBase>(FoundWidgets[i]);
+				if (tBooleanUMG)
 				{
-					BooleanUMG->RemoveFromParent();
+					tBooleanUMG->RemoveFromParent();
 				}
 			}
 		}
@@ -3970,10 +3972,10 @@ void UWallBuildSystem::SaveVirWall()
 	UWallBuildSystem *WallSystem = nullptr;
 	if (MyWorld)
 	{
-		UCEditorGameInstance *GameInst = Cast<UCEditorGameInstance>(MyWorld->GetGameInstance());
-		if (GameInst)
+		UCEditorGameInstance *tGameInst = Cast<UCEditorGameInstance>(MyWorld->GetGameInstance());
+		if (tGameInst)
 		{
-			GameInst->VirtualWallData.Empty();
+			tGameInst->VirtualWallData.Empty();
 			int num = 1;
 			//for (int i = 0; i < TenmpID; ++i)
 			//{
@@ -4003,7 +4005,7 @@ void UWallBuildSystem::SaveVirWall()
 				Temp.Index = num;
 				Temp.Position.Add(AllVirtualLoc[j].OriginalSartPos);
 				Temp.Position.Add(AllVirtualLoc[j].OriginalEndtPos);
-				GameInst->VirtualWallData.Add(Temp);
+				tGameInst->VirtualWallData.Add(Temp);
 
 				++num;
 			}
@@ -4174,12 +4176,12 @@ void UWallBuildSystem::CutWallByMousePos(const FVector2D &Loc)
 										BuildingSystem->CutAreaSnap(TempVirInfo[i].SartPos, -1, TempVirInfo[i].SartPos, TempVirInfo[i].SnapObj0, WallThickness / 2);
 									if (TempVirInfo[i].SnapObj1 != -1)
 										BuildingSystem->CutAreaSnap(TempVirInfo[i].EndtPos, -1, TempVirInfo[i].EndtPos, TempVirInfo[i].SnapObj1, WallThickness / 2);
-									TArray<int32> WallIDs;
-									WallIDs = AddEdge(TempVirInfo[i].SartPos, TempVirInfo[i].EndtPos, TempVirInfo[i].SnapObj0, TempVirInfo[i].SnapObj1);
-									for (int k = 0; k < WallIDs.Num(); ++k)
+									TArray<int32> tWallIDs;
+									tWallIDs = AddEdge(TempVirInfo[i].SartPos, TempVirInfo[i].EndtPos, TempVirInfo[i].SnapObj0, TempVirInfo[i].SnapObj1);
+									for (int k = 0; k < tWallIDs.Num(); ++k)
 									{
 										IValue & GroundName = UBuildingSystem::GetValueFactory()->Create(TenmpID);
-										IObject * _ObjGround = BuildingSystem->GetObject(WallIDs[k]);
+										IObject * _ObjGround = BuildingSystem->GetObject(tWallIDs[k]);
 										if (_ObjGround)
 										{
 											_ObjGround->SetValue("GroundName", &GroundName);
@@ -6434,10 +6436,10 @@ void UWallBuildSystem::IsInRangeWallComponent(int32 WallID, int32 CornerID, FVec
 								int num = Wallv->GetArrayCount();
 								if (num > 0)
 								{
-									for (size_t i = 0; i < num; i++)
+									for (size_t ti = 0; ti < num; ti++)
 									{
 										UFeatureWall::WallAnnex hole;
-										IValue& val = Wallv->GetField(i);
+										IValue& val = Wallv->GetField(ti);
 										const EObjectType objType = (EObjectType)(val.GetField("ObjType").IntValue());
 										const int objID = val.GetField("HoleID").IntValue();
 										IObject *CompData = BuildingSystem->GetObject(objID);
@@ -6517,10 +6519,10 @@ bool UWallBuildSystem::IsInRangeWallComponent(int32 CornerID, FVector2D Loc)
 							int num = Wallv->GetArrayCount();
 							if (num > 0)
 							{
-								for (size_t i = 0; i < num; i++)
+								for (size_t ni = 0; ni < num; ni++)
 								{
 									UFeatureWall::WallAnnex hole;
-									IValue& val = Wallv->GetField(i);
+									IValue& val = Wallv->GetField(ni);
 									const EObjectType objType = (EObjectType)(val.GetField("ObjType").IntValue());
 									const int objID = val.GetField("HoleID").IntValue();
 									IObject *CompData = BuildingSystem->GetObject(objID);
@@ -7033,12 +7035,12 @@ bool UWallBuildSystem::IsSeleteDeleteHole(UBooleanBase*& Boolean)
 		{
 			if (FoundWidgets[i])
 			{
-				UBooleanBase* BooleanUMG = Cast<UBooleanBase>(FoundWidgets[i]);
-				if (BooleanUMG)
+				UBooleanBase* tBooleanUMG = Cast<UBooleanBase>(FoundWidgets[i]);
+				if (tBooleanUMG)
 				{
-					if (BooleanUMG->HolestatusType == EHolestatusType::EDRDeleteHole)
+					if (tBooleanUMG->HolestatusType == EHolestatusType::EDRDeleteHole)
 					{
-						FDeleteHoleInfo Local_DeleteHoleInfo = BooleanUMG->DeleteHoleInfo;
+						FDeleteHoleInfo Local_DeleteHoleInfo = tBooleanUMG->DeleteHoleInfo;
 						TArray<FVector> Points;
 						FVector2D TempPDirWidth = FVector2D(0, 1);
 						FVector2D TempPDirThickness = FVector2D(1, 0);
@@ -7052,8 +7054,8 @@ bool UWallBuildSystem::IsSeleteDeleteHole(UBooleanBase*& Boolean)
 						Points.Add(TempPoint);
 						if (JudgePointInPolygon(Points, FVector2D(MouseWorldPos)))
 						{
-							BooleanUMG->bIsSelect = true;
-							Boolean = BooleanUMG;
+							tBooleanUMG->bIsSelect = true;
+							Boolean = tBooleanUMG;
 							return true;
 						}
 					}
@@ -7178,10 +7180,10 @@ void UWallBuildSystem::GetAllHoleTypeByWall(const int32 WallID, const int32 Stru
 					{
 						if (FoundWidgets[i])
 						{
-							UBooleanBase* BooleanUMG = Cast<UBooleanBase>(FoundWidgets[i]);
-							if (BooleanUMG)
+							UBooleanBase* tBooleanUMG = Cast<UBooleanBase>(FoundWidgets[i]);
+							if (tBooleanUMG)
 							{
-								if (BooleanUMG->HolestatusType == EHolestatusType::EDRDeleteHole)
+								if (tBooleanUMG->HolestatusType == EHolestatusType::EDRDeleteHole)
 								{
 									FDRWallPosition LocalPosition = Local_WallAdapter->GetWallPositionData();
 									TArray<FVector>InPoints;
@@ -7191,9 +7193,9 @@ void UWallBuildSystem::GetAllHoleTypeByWall(const int32 WallID, const int32 Stru
 									InPoints.Add(LocalPosition.EndPos);
 									InPoints.Add(LocalPosition.RightEndPos);
 									InPoints.Add(LocalPosition.RightStartPos);
-									if (JudgePointInPolygon(InPoints, FVector2D(BooleanUMG->DeleteHoleInfo.Loc)))
+									if (JudgePointInPolygon(InPoints, FVector2D(tBooleanUMG->DeleteHoleInfo.Loc)))
 									{
-										OutDeleteBoolean.Add(BooleanUMG);
+										OutDeleteBoolean.Add(tBooleanUMG);
 									}
 								}
 							}
@@ -7219,15 +7221,15 @@ void UWallBuildSystem::GetAllHoleTypeByWall(const int32 WallID, const int32 Stru
 				{
 					if (FoundWidgets[i])
 					{
-						UBooleanBase* BooleanUMG = Cast<UBooleanBase>(FoundWidgets[i]);
-						if (BooleanUMG)
+						UBooleanBase* yBooleanUMG = Cast<UBooleanBase>(FoundWidgets[i]);
+						if (yBooleanUMG)
 						{
-							if (BooleanUMG->HolestatusType == EHolestatusType::EDRDeleteHole)
+							if (yBooleanUMG->HolestatusType == EHolestatusType::EDRDeleteHole)
 							{
 								TArray<FVector>InPoints= GameInst->DRDeleteWall[StructIndex].Point;
-								if (JudgePointInPolygon(InPoints, FVector2D(BooleanUMG->DeleteHoleInfo.Loc)))
+								if (JudgePointInPolygon(InPoints, FVector2D(yBooleanUMG->DeleteHoleInfo.Loc)))
 								{
-									OutDeleteBoolean.Add(BooleanUMG);
+									OutDeleteBoolean.Add(yBooleanUMG);
 								}
 							}
 						}
@@ -7357,48 +7359,48 @@ void UWallBuildSystem::DrawSlash(const bool IsDelete, const TArray<FVector2D>&In
 		{
 			TArray<FLinePos> TempLinsPosList;
 			forword = (InPoints[0] - InPoints[1]).GetSafeNormal();
-			FVector2D Dir = forword.GetRotated(-Angle);
-			FVector2D TempStartPos = InPoints[1];
+			FVector2D tDir = forword.GetRotated(-Angle);
+			FVector2D tTempStartPos = InPoints[1];
 			while (true)
 			{
-				if ((TempStartPos - InPoints[1]).Size() >= SizeX)
+				if ((tTempStartPos - InPoints[1]).Size() >= SizeX)
 				{
 					break;
 				}
 				FVector2D TempEndPos;
-				if (FPolygonAlg::IntersectionByRayAndSegment(TempStartPos, Dir, InPoints[2], InPoints[3], TempEndPos))
+				if (FPolygonAlg::IntersectionByRayAndSegment(tTempStartPos, tDir, InPoints[2], InPoints[3], TempEndPos))
 				{
 					FLinePos TempLinePos;
-					TempLinePos.Start = TempStartPos;
+					TempLinePos.Start = tTempStartPos;
 					TempLinePos.End = TempEndPos;
 					TempLinsPosList.Add(TempLinePos);
-					TempStartPos = TempStartPos + error * forword;
+					tTempStartPos = tTempStartPos + error * forword;
 					continue;
 				}
-				if (FPolygonAlg::IntersectionByRayAndSegment(TempStartPos, Dir, InPoints[0], InPoints[3], TempEndPos))
+				if (FPolygonAlg::IntersectionByRayAndSegment(tTempStartPos, tDir, InPoints[0], InPoints[3], TempEndPos))
 				{
 					FLinePos TempLinePos;
-					TempLinePos.Start = TempStartPos;
+					TempLinePos.Start = tTempStartPos;
 					TempLinePos.End = TempEndPos;
 					TempLinsPosList.Add(TempLinePos);
-					TempStartPos = TempStartPos + error * forword;
+					tTempStartPos = tTempStartPos + error * forword;
 					continue;
 				}
 				break;
 			}
 			if (TempLinsPosList.Num() > 0)
 			{
-				TempStartPos = TempLinsPosList[0].End - error * forword;
+				tTempStartPos = TempLinsPosList[0].End - error * forword;
 				while (true)
 				{
 					FVector2D TempEndPos;
-					if (FPolygonAlg::IntersectionByRayAndSegment(TempStartPos, -Dir, InPoints[1], InPoints[2], TempEndPos))
+					if (FPolygonAlg::IntersectionByRayAndSegment(tTempStartPos, -tDir, InPoints[1], InPoints[2], TempEndPos))
 					{
 						FLinePos TempLinePos;
-						TempLinePos.Start = TempStartPos;
+						TempLinePos.Start = tTempStartPos;
 						TempLinePos.End = TempEndPos;
 						TempLinsPosList.Add(TempLinePos);
-						TempStartPos = TempStartPos + error * forword;
+						tTempStartPos = tTempStartPos + error * forword;
 						continue;
 					}
 					break;
@@ -7422,12 +7424,12 @@ void UWallBuildSystem::BoxSelectDeleteHole(const FVector2D Main, const FVector2D
 	{
 		if (FoundWidgets[i])
 		{
-			UBooleanBase* BooleanUMG = Cast<UBooleanBase>(FoundWidgets[i]);
-			if (BooleanUMG)
+			UBooleanBase* tBooleanUMG = Cast<UBooleanBase>(FoundWidgets[i]);
+			if (tBooleanUMG)
 			{
-				if (BooleanUMG->HolestatusType == EHolestatusType::EDRDeleteHole)
+				if (tBooleanUMG->HolestatusType == EHolestatusType::EDRDeleteHole)
 				{
-					FDeleteHoleInfo TempHoleInfo = BooleanUMG->DeleteHoleInfo;
+					FDeleteHoleInfo TempHoleInfo = tBooleanUMG->DeleteHoleInfo;
 					float TempWidth = TempHoleInfo.Width*0.5;
 					float TempThickness = TempHoleInfo.Thickness*0.5;
 					FVector Dir = FVector(0, 1,0);
@@ -7442,19 +7444,19 @@ void UWallBuildSystem::BoxSelectDeleteHole(const FVector2D Main, const FVector2D
 					{
 						if (JudgePointInPolygon(Points2, FVector2D(Points1[k])))
 						{
-							BooleanUMG->RemoveFromParent();
-							BooleanUMG = nullptr;
+							tBooleanUMG->RemoveFromParent();
+							tBooleanUMG = nullptr;
 							break;
 						}
 					}
-					if (BooleanUMG)
+					if (tBooleanUMG)
 					{
 						for (int k = 0; k < Points2.Num(); ++k)
 						{
 							if (JudgePointInPolygon(Points1, FVector2D(Points2[k])))
 							{
-								BooleanUMG->RemoveFromParent();
-								BooleanUMG = nullptr;
+								tBooleanUMG->RemoveFromParent();
+								tBooleanUMG = nullptr;
 								break;
 							}
 						}
@@ -7474,12 +7476,12 @@ TArray<UBooleanBase*> UWallBuildSystem::GetAllDeleteHoles()
 	{
 		if (FoundWidgets[i])
 		{
-			UBooleanBase* BooleanUMG = Cast<UBooleanBase>(FoundWidgets[i]);
-			if (BooleanUMG)
+			UBooleanBase* fBooleanUMG = Cast<UBooleanBase>(FoundWidgets[i]);
+			if (fBooleanUMG)
 			{
-				if (BooleanUMG->HolestatusType == EHolestatusType::EDRDeleteHole)
+				if (fBooleanUMG->HolestatusType == EHolestatusType::EDRDeleteHole)
 				{
-					OutBoolenInfo.Add(BooleanUMG);
+					OutBoolenInfo.Add(fBooleanUMG);
 				}
 			}
 		}
@@ -7980,9 +7982,9 @@ int32 UWallBuildSystem::AddEdgeCorner(FVector2D &Location, int32 WallID)
 		if (WallAdapter)
 		{
 			FVector2D Pos_0, Pos_1;
-			float LeftThickness = WallAdapter->GetLeftThick();
-			float RightThickness = WallAdapter->GetRightThick();
-			float WallThickness = LeftThickness + RightThickness;
+			float tLeftThickness = WallAdapter->GetLeftThick();
+			float tRightThickness = WallAdapter->GetRightThick();
+			float cWallThickness = tLeftThickness + tRightThickness;
 			int32 P0 = WallAdapter->GetP0();
 			int32 P1 = WallAdapter->GetP1();
 			UDRCornerAdapter* CornerData_0 = Cast<UDRCornerAdapter>(ProjectDataManager->GetAdapter(P0));
@@ -8001,7 +8003,7 @@ int32 UWallBuildSystem::AddEdgeCorner(FVector2D &Location, int32 WallID)
 				return -1;
 			float Distance_0 = FVector2D::Distance(Pos_0, Location);
 			float Distance_1 = FVector2D::Distance(Pos_1, Location);
-			if (Distance_0 < WallThickness || Distance_1 < WallThickness)
+			if (Distance_0 < cWallThickness || Distance_1 < cWallThickness)
 				return -1;
 			IObject* Obj = BuildingSystem->GetObject(WallID);
 			if (Obj)
@@ -8011,8 +8013,8 @@ int32 UWallBuildSystem::AddEdgeCorner(FVector2D &Location, int32 WallID)
 				{
 					return -1;
 				}
-				UDRProjData* ProjectDataManager = UDRProjData::GetProjectDataManager(this);
-				UDRSolidWallAdapter* New_WallAdapter = Cast<UDRSolidWallAdapter>(ProjectDataManager->GetAdapter(ObjID));
+				UDRProjData* tProjectDataManager = UDRProjData::GetProjectDataManager(this);
+				UDRSolidWallAdapter* New_WallAdapter = Cast<UDRSolidWallAdapter>(tProjectDataManager->GetAdapter(ObjID));
 				TArray<int32> Holes = New_WallAdapter->GetHoles();
 				for (int i = 0; i < Holes.Num(); ++i)
 				{
@@ -8022,9 +8024,9 @@ int32 UWallBuildSystem::AddEdgeCorner(FVector2D &Location, int32 WallID)
 				{
 					if (IsinterlinkNewWall(ObjID))
 					{
-						if (ProjectDataManager)
+						if (tProjectDataManager)
 						{
-							UDRSolidWallAdapter* solidWallAdapter = Cast<UDRSolidWallAdapter>(ProjectDataManager->GetAdapter(ObjID));
+							UDRSolidWallAdapter* solidWallAdapter = Cast<UDRSolidWallAdapter>(tProjectDataManager->GetAdapter(ObjID));
 							if (solidWallAdapter)
 							{
 								solidWallAdapter->SetSolidWallType(ESolidWallType::EDRNewWall);
@@ -8183,9 +8185,9 @@ bool UWallBuildSystem::GetReleatedCorner(int32 BorderCornerId, int32& CornerID)
 	if (WallAdapter)
 	{
 		FVector2D Pos_0, Pos_1;
-		float LeftThickness = WallAdapter->GetLeftThick();
-		float RightThickness = WallAdapter->GetRightThick();
-		float WallThickness = LeftThickness + RightThickness;
+		float tLeftThickness = WallAdapter->GetLeftThick();
+		float tRightThickness = WallAdapter->GetRightThick();
+		float tWallThickness = tLeftThickness + tRightThickness;
 		int32 P0 = WallAdapter->GetP0();
 		int32 P1 = WallAdapter->GetP1();
 		//CorrectCornerPos(BestID);
@@ -8212,7 +8214,7 @@ bool UWallBuildSystem::GetReleatedCorner(int32 BorderCornerId, int32& CornerID)
 		float Dist1 = FVector2D::Distance(CornerPos, Pos_0);
 		float Dist2 = FVector2D::Distance(CornerPos, Pos_1);
 
-		if (Dist1 <= WallThickness)
+		if (Dist1 <= tWallThickness)
 		{
 			IValue *v = nullptr;
 			v = BuildingSystem->GetProperty(P0, "Walls");
@@ -8258,7 +8260,7 @@ bool UWallBuildSystem::GetReleatedCorner(int32 BorderCornerId, int32& CornerID)
 			CornerID = P0;
 			return false;
 		}
-		if (Dist2 <= WallThickness)
+		if (Dist2 <= tWallThickness)
 		{
 
 			IValue *v = nullptr;
@@ -8376,10 +8378,10 @@ void UWallBuildSystem::IsShowVirtualWallCorner(int32 WallID, bool bShow)
 
 }
 
-bool UWallBuildSystem::IsMoveBorderWallCorner(int32 CornerID, FVector2D& WallCornerPos_1, FVector2D& WallCornerPos_2)
+bool UWallBuildSystem::IsMoveBorderWallCorner(int32 CornerID, FVector2D& tWallCornerPos_1, FVector2D& tWallCornerPos_2)
 {
-	WallCornerPos_1 = FVector2D::ZeroVector;
-	WallCornerPos_2 = FVector2D::ZeroVector;
+	tWallCornerPos_1 = FVector2D::ZeroVector;
+	tWallCornerPos_2 = FVector2D::ZeroVector;
 	UDRProjData* projectDataManager = UDRProjData::GetProjectDataManager(this);
 	if (projectDataManager == nullptr) {
 		return false;
@@ -8420,7 +8422,7 @@ bool UWallBuildSystem::IsMoveBorderWallCorner(int32 CornerID, FVector2D& WallCor
 	UDRCornerAdapter* CornerData_1 = Cast<UDRCornerAdapter>(projectDataManager->GetAdapter(WallCorner1));
 	if (CornerData_1)
 	{
-		WallCornerPos_1 = CornerData_1->GetLocaltion();
+		tWallCornerPos_1 = CornerData_1->GetLocaltion();
 	}
 
 	UDRSolidWallAdapter* WallAdapter_2 = Cast<UDRSolidWallAdapter>(projectDataManager->GetAdapter(Walls[1]));
@@ -8445,7 +8447,7 @@ bool UWallBuildSystem::IsMoveBorderWallCorner(int32 CornerID, FVector2D& WallCor
 	UDRCornerAdapter* CornerData_2 = Cast<UDRCornerAdapter>(projectDataManager->GetAdapter(WallCorner2));
 	if (CornerData_2)
 	{
-		WallCornerPos_2 = CornerData_1->GetLocaltion();
+		tWallCornerPos_2 = CornerData_1->GetLocaltion();
 	}
 
 	TArray<int32> BorderCornerArray;

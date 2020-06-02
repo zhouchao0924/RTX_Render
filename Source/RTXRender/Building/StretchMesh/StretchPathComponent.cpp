@@ -1,6 +1,7 @@
 
 
 #include "StretchPathComponent.h"
+#include "BuildingSDK.h"
 #include "EditorGameInstance.h"
 #include "ResourceMgr.h"
 

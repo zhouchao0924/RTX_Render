@@ -12,7 +12,7 @@
 #include "SolidGeometry/SolidGeometryFunctionLibrary.h"
 #include "Building/HouseComponent/ComponentManagerActor.h"
 #include "Building/BuildingData.h"
-
+#include "Engine/PointLight.h"
 
 // Sets default values
 ARoomActor::ARoomActor()
@@ -324,9 +324,9 @@ void ARoomActor::CreatePointLightMatrix(const TArray<FVector>& VertexList, float
 			FVector Location(BeginPoint.X -((j+1)*Spacing),BeginPoint.Y+((i+1)*Spacing), 0.f);
 
 			UKismetSystemLibrary::SphereTraceMultiForObjects(GetWorld(), Location, Location,5.f, SphereTrace,false, IgnoreActor,EDrawDebugTrace::None, OutHit,false);
-			for (int i = 0; i < OutHit.Num(); ++i)
+			for (int index = 0; index < OutHit.Num(); ++index)
 			{
-				if (OutHit[i].Actor == this)
+				if (OutHit[index].Actor == this)
 				{
 					is = true;
 					break;
@@ -504,12 +504,12 @@ void ARoomActor::CreatePointLightMatrix(const TArray<FVector>& VertexList, float
 					FVector Left_PointOfIntersection;
 					FVector out_1To2Direction;
 					float out_Distance;
-					for (int i = 0; i < VertexList.Num(); ++i)
+					for (int index = 0; index < VertexList.Num(); ++index)
 					{
-						if (LineInLine(Pos, FVector(Pos.X + 200.f, Pos.Y, 0.f), VertexList[i], VertexList[(i + 1) % VertexList.Num()])
-							&& LineInLine(VertexList[i], VertexList[(i + 1) % VertexList.Num()], Pos, FVector(Pos.X + 200.f, Pos.Y, 0.f)))
+						if (LineInLine(Pos, FVector(Pos.X + 200.f, Pos.Y, 0.f), VertexList[index], VertexList[(index + 1) % VertexList.Num()])
+							&& LineInLine(VertexList[index], VertexList[(index + 1) % VertexList.Num()], Pos, FVector(Pos.X + 200.f, Pos.Y, 0.f)))
 						{
-							USolidGeometryFunctionLibrary::TwoLineMinDistance_StraightLine(GetWorld(), Pos, FVector(Pos.X + 200.f, Pos.Y, 0.f), VertexList[i], VertexList[(i + 1) % VertexList.Num()], Left_PointOfIntersection, out_1To2Direction, out_Distance, false);
+							USolidGeometryFunctionLibrary::TwoLineMinDistance_StraightLine(GetWorld(), Pos, FVector(Pos.X + 200.f, Pos.Y, 0.f), VertexList[index], VertexList[(index + 1) % VertexList.Num()], Left_PointOfIntersection, out_1To2Direction, out_Distance, false);
 						}
 					}
 					if (FVector(Pos - Left_PointOfIntersection).Size() < DelRadius/*(Spacing / 2)*/)
@@ -526,11 +526,11 @@ void ARoomActor::CreatePointLightMatrix(const TArray<FVector>& VertexList, float
 					FVector Right_PointOfIntersection;
 					FVector out_1To2Direction;
 					float out_Distance;
-					for (int i = 0; i < VertexList.Num(); ++i)
+					for (int index = 0; index < VertexList.Num(); ++index)
 					{
-						if (LineInLine(Pos, FVector(Pos.X - 200.f, Pos.Y, 0.f), VertexList[i], VertexList[(i + 1) % VertexList.Num()])
-							&& LineInLine(VertexList[i], VertexList[(i + 1) % VertexList.Num()], Pos, FVector(Pos.X - 200.f, Pos.Y, 0.f)))
-							USolidGeometryFunctionLibrary::TwoLineMinDistance_StraightLine(GetWorld(), Pos, FVector(Pos.X - 200.f, Pos.Y, 0.f), VertexList[i], VertexList[(i + 1) % VertexList.Num()], Right_PointOfIntersection, out_1To2Direction, out_Distance, false);
+						if (LineInLine(Pos, FVector(Pos.X - 200.f, Pos.Y, 0.f), VertexList[index], VertexList[(index + 1) % VertexList.Num()])
+							&& LineInLine(VertexList[index], VertexList[(index + 1) % VertexList.Num()], Pos, FVector(Pos.X - 200.f, Pos.Y, 0.f)))
+							USolidGeometryFunctionLibrary::TwoLineMinDistance_StraightLine(GetWorld(), Pos, FVector(Pos.X - 200.f, Pos.Y, 0.f), VertexList[index], VertexList[(index + 1) % VertexList.Num()], Right_PointOfIntersection, out_1To2Direction, out_Distance, false);
 					}
 					if (FVector(Pos - Right_PointOfIntersection).Size() < DelRadius/*(Spacing / 2)*/)
 					{
@@ -547,11 +547,11 @@ void ARoomActor::CreatePointLightMatrix(const TArray<FVector>& VertexList, float
 					FVector Top_PointOfIntersection;
 					FVector out_1To2Direction;
 					float out_Distance;
-					for (int i = 0; i < VertexList.Num(); ++i)
+					for (int index = 0; index < VertexList.Num(); ++index)
 					{
-						if (LineInLine(Pos, FVector(Pos.X, Pos.Y - 200.f, 0.f), VertexList[i], VertexList[(i + 1) % VertexList.Num()])
-							&& LineInLine(VertexList[i], VertexList[(i + 1) % VertexList.Num()], Pos, FVector(Pos.X, Pos.Y - 200.f, 0.f)))
-							USolidGeometryFunctionLibrary::TwoLineMinDistance_StraightLine(GetWorld(), Pos, FVector(Pos.X, Pos.Y - 200.f, 0.f), VertexList[i], VertexList[(i + 1) % VertexList.Num()], Top_PointOfIntersection, out_1To2Direction, out_Distance, false);
+						if (LineInLine(Pos, FVector(Pos.X, Pos.Y - 200.f, 0.f), VertexList[index], VertexList[(index + 1) % VertexList.Num()])
+							&& LineInLine(VertexList[index], VertexList[(index + 1) % VertexList.Num()], Pos, FVector(Pos.X, Pos.Y - 200.f, 0.f)))
+							USolidGeometryFunctionLibrary::TwoLineMinDistance_StraightLine(GetWorld(), Pos, FVector(Pos.X, Pos.Y - 200.f, 0.f), VertexList[index], VertexList[(index + 1) % VertexList.Num()], Top_PointOfIntersection, out_1To2Direction, out_Distance, false);
 					}
 					if (FVector(Pos - Top_PointOfIntersection).Size() < DelRadius/*(Spacing / 2)*/)
 					{
@@ -568,11 +568,11 @@ void ARoomActor::CreatePointLightMatrix(const TArray<FVector>& VertexList, float
 					FVector Bottom_PointOfIntersection;
 					FVector out_1To2Direction;
 					float out_Distance;
-					for (int i = 0; i < VertexList.Num(); ++i)
+					for (int index = 0; index < VertexList.Num(); ++index)
 					{
-						if (LineInLine(Pos, FVector(Pos.X, Pos.Y + 200.f, 0.f), VertexList[i], VertexList[(i + 1) % VertexList.Num()])
-							&& LineInLine(VertexList[i], VertexList[(i + 1) % VertexList.Num()], Pos, FVector(Pos.X, Pos.Y + 200.f, 0.f)))
-							USolidGeometryFunctionLibrary::TwoLineMinDistance_StraightLine(GetWorld(), Pos, FVector(Pos.X, Pos.Y + 200.f, 0.f), VertexList[i], VertexList[(i + 1) % VertexList.Num()], Bottom_PointOfIntersection, out_1To2Direction, out_Distance, false);
+						if (LineInLine(Pos, FVector(Pos.X, Pos.Y + 200.f, 0.f), VertexList[index], VertexList[(index + 1) % VertexList.Num()])
+							&& LineInLine(VertexList[index], VertexList[(index + 1) % VertexList.Num()], Pos, FVector(Pos.X, Pos.Y + 200.f, 0.f)))
+							USolidGeometryFunctionLibrary::TwoLineMinDistance_StraightLine(GetWorld(), Pos, FVector(Pos.X, Pos.Y + 200.f, 0.f), VertexList[index], VertexList[(index + 1) % VertexList.Num()], Bottom_PointOfIntersection, out_1To2Direction, out_Distance, false);
 					}
 					if (FVector(Pos - Bottom_PointOfIntersection).Size() < DelRadius/*(Spacing / 2)*/)
 					{

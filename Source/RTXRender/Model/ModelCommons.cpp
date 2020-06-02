@@ -2,8 +2,8 @@
 
 #include "ModelCommons.h"
 #include "ModelFile.h"
-#include "DateTime.h"
-#include "Timespan.h"
+#include "Misc/DateTime.h"
+#include "Misc/Timespan.h"
 
 void FChunk::Serialize(FArchive &Ar, uint32 Ver)
 {

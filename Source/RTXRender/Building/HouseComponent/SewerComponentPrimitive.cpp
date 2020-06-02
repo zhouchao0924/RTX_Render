@@ -46,15 +46,15 @@ void USewerComponentPrimitive::Draw(FPaintContext& InContext) const
 	}
 }
 
-void USewerComponentPrimitive::PrimitiveVertexDataGenerate(UWorld* MyWorld, const FVector2D& mousePos)
+void USewerComponentPrimitive::PrimitiveVertexDataGenerate(UWorld* InMyWorld, const FVector2D& mousePos)
 {
 	ComponenetInfo.Loc = mousePos;
-	FramePrimitive = WorldLocationToScreen(MyWorld, mousePos, ComponenetInfo.Width, ComponenetInfo.Width);
+	FramePrimitive = WorldLocationToScreen(InMyWorld, mousePos, ComponenetInfo.Width, ComponenetInfo.Width);
 	//GetOtherPos(FramePrimitive.LeftTopPos, FramePrimitive.RightBottomPos, FramePrimitive.RightTopPos, FramePrimitive.LeftBottomPos);
 	//CenterPos = (FramePrimitive.LeftTopPos + FramePrimitive.RightBottomPos) / 2.0f;
 	//HitPrimitive = WorldLocationToScreen(MyWorld, mousePos, ComponenetInfo.Width + 3, ComponenetInfo.Width + 3);
-	if (MyWorld)
+	if (InMyWorld)
 	{
-		MyWorld->GetFirstPlayerController()->ProjectWorldLocationToScreen(FVector(ComponenetInfo.Loc, 280), CenterPos);
+		InMyWorld->GetFirstPlayerController()->ProjectWorldLocationToScreen(FVector(ComponenetInfo.Loc, 280), CenterPos);
 	}
 }

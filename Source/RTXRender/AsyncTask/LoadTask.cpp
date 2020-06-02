@@ -53,7 +53,7 @@ void FResLoadAsyncTask::DoWork()
 		UResource *Res = PendLoadingResources[i];
 		if (Res!=NULL)
 		{
-			Writer = IFileManager::Get().CreateFileReader(*Res->Filename);
+			FArchive* Writer = IFileManager::Get().CreateFileReader(*Res->Filename);
 			UE_LOG(LogTemp, Log, TEXT("use mx file[%s]"), *Res->Filename);
 
 			if (Writer && UResource::SkipMark(*Writer))

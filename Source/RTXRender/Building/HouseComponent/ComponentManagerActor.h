@@ -124,12 +124,12 @@ public:
 	UFUNCTION(BlueprintPure, BlueprintCallable, Category = "Component Base Actor")
 		bool IsHousePluginType();
 	UFUNCTION(BlueprintCallable, Category = "Component Base Actor")
-		void SetPluginTopMaterial(bool b);
+		void SetPluginTopMaterial(bool boolean);
 	UFUNCTION(BlueprintImplementableEvent, Category = "Component Base Actor")
 		void InitMaterial(const int32& ModelID);
 
 	UFUNCTION(BlueprintCallable, Category = "Component Base Actor")
-		void HiddenPrimitiveWidget(bool b);
+		void HiddenPrimitiveWidget(bool boolean);
 
 	UFUNCTION(BlueprintCallable, Category = "Component Base Actor")
 		void RevertComponenet(const FComponenetInfo& Info);
@@ -218,7 +218,7 @@ public:
 	void MovePlugin(UWorld* MyWorld, const FVector2D&Loc, float Width, float Length);
 	void SetHousePlugin(class AHousePluginActor * HousePl);
 	void UpdateHousePlugin(int32 id);
-	void CalcuIsWidth(bool b, const FRoomVecData& firstData, const FRoomVecData&  secData);
+	void CalcuIsWidth(bool boolean, const FRoomVecData& firstData, const FRoomVecData& secData);
 	void UpdateArea(int32 id);
 	void UpdateComponentUUID(UComponentBasePrimitive *base);
 	void SetWallIdsInfo(const TArray<int32>&WallIDs);

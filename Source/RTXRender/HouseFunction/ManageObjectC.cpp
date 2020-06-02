@@ -105,14 +105,14 @@ void  AManageObjectC::GetChildData(TArray<FCurreentLevelData>& Datalist, FCustom
 {
 	for (auto i : Furdata->child)
 	{
-		FCurreentLevelData temp;
-		temp.Categoryid = i->Categoryid;
-		temp.ParentCategoryid = i->ParentCategoryid;
-		temp.TwoCategoryid = i->TwoCategoryid;
-		temp.Level = i->Level;
-		temp.name = i->name;
-		temp.TwoName = i->TwoName;
-		Datalist.Add(temp);
+		FCurreentLevelData ttemp;
+		ttemp.Categoryid = i->Categoryid;
+		ttemp.ParentCategoryid = i->ParentCategoryid;
+		ttemp.TwoCategoryid = i->TwoCategoryid;
+		ttemp.Level = i->Level;
+		ttemp.name = i->name;
+		ttemp.TwoName = i->TwoName;
+		Datalist.Add(ttemp);
 
 		if (i->child.Num() > 0)
 		{

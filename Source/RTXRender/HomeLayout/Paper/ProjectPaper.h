@@ -57,7 +57,7 @@ public:
 	FTextLabelData GetRulerData();
 
 	UFUNCTION(BlueprintCallable)
-	void ConvertWallData2SaveGame(UPARAM(ref)FSavedDataNode &OutWallData, UCEditorGameInstance *GameInst, const FWallData &InData);
+	void ConvertWallData2SaveGame(UPARAM(ref)FSavedDataNode &OutWallData, UCEditorGameInstance *InGameInst, const FWallData &InData);
 
 	/*UFUNCTION(BlueprintCallable)
 	void ConvertOpeningData2SaveGame(UPARAM(ref)FSavedDataNode &OutWallData, const FWallData &InData);*/

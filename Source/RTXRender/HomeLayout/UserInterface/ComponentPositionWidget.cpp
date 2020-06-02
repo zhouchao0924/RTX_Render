@@ -69,8 +69,8 @@ void UComponentPositionWidget::UpdateCompInfo()
 		return;
 	if (ComponentBase->GetComponenetType() == EComponenetType::_Sewer || ComponentBase->GetComponenetType() == EComponenetType::_Pillar)
 	{
-		int32 ObjectID = BuildingSystem->HitTest(TargetPosition);
-		if (ObjectID == -1)
+		int32 tObjectID = BuildingSystem->HitTest(TargetPosition);
+		if (tObjectID == -1)
 		{
 			TopTextBox->SetText(FText::FromString(FString::FromInt(0)));
 			BottomTextBox->SetText(FText::FromString(FString::FromInt(0)));
@@ -78,12 +78,12 @@ void UComponentPositionWidget::UpdateCompInfo()
 			RightTextBox->SetText(FText::FromString(FString::FromInt(0)));
 			return;
 		}
-		UBuildingData* Data = BuildingSystem->GetData(ObjectID);
+		UBuildingData* Data = BuildingSystem->GetData(tObjectID);
 		EObjectType Type = (EObjectType)Data->GetObjectType();
 		if (Type == EObjectType::ERoom || Type == EObjectType::EArea || Type == EObjectType::EPolygonArea)
 		{
 			TArray<FVector2D> TempTPoylgon;
-			int num = CompManager->GetPolygonNoCommonPoint(ObjectID, TempTPoylgon);
+			int num = CompManager->GetPolygonNoCommonPoint(tObjectID, TempTPoylgon);
 			if (TempTPoylgon.Num() >= 3)
 			{
 				TPoylgon = TempTPoylgon;

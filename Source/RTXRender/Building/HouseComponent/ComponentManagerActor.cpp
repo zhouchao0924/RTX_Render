@@ -2,10 +2,11 @@
 
 
 #include "ComponentManagerActor.h"
+#include "Kismet/GameplayStatics.h"
 #include "../../EditorGameInstance.h"
-#include "WidgetLayoutLibrary.h"
+#include "Blueprint/WidgetLayoutLibrary.h"
 #include "FlueComponentPrimitive.h"
-#include "UnrealMathUtility.h"
+#include "Math/UnrealMathUtility.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "PillarComponentPrimitive.h"
 #include "BagRiserComponentPrimitive.h"
@@ -693,12 +694,12 @@ void AComponentManagerActor::MovePlugin(UWorld* MyWorld, const FVector2D&Loc, fl
 						}
 						ComponentBase->SetAngleVal(curSideData.AngleVal);
 						ComponentBase->AddWallInfo(curSideData.wallId);
-						FVector2D newStartPos, newEndPos;
-						GetNewPos(ComponentBase, curSideData, newStartPos, newEndPos);
-						MouseAtWall = FMath::ClosestPointOnSegment2D(Loc, newStartPos, newEndPos);
-						FVector2D Temp = newEndPos - newStartPos;
-						Temp.Normalize();
-						centerDir = Temp.GetRotated(90);
+						FVector2D newStartPosn, newEndPosn;
+						GetNewPos(ComponentBase, curSideData, newStartPosn, newEndPosn);
+						MouseAtWall = FMath::ClosestPointOnSegment2D(Loc, newStartPosn, newEndPosn);
+						FVector2D Tempt = newEndPosn - newStartPosn;
+						Tempt.Normalize();
+						centerDir = Tempt.GetRotated(90);
 						centerDir.Normalize();
 						if (curSideData.IsWidth)
 							CenterMouse2D = MouseAtWall + centerDir * (ComponentBase->GetLength() / 2.0f);
@@ -713,11 +714,11 @@ void AComponentManagerActor::MovePlugin(UWorld* MyWorld, const FVector2D&Loc, fl
 					ComponentBase->DestroyWall();
 					ComponentBase->SetAngleVal(curSideData.AngleVal);
 					b = true;
-					FVector2D newStartPos, newEndPos;
-					GetNewPos(ComponentBase, curSideData, newStartPos, newEndPos);
-					FVector2D Temp = newEndPos - newStartPos;
-					Temp.Normalize();
-					centerDir = Temp.GetRotated(90);
+					FVector2D newStartPosn, newEndPosn;
+					GetNewPos(ComponentBase, curSideData, newStartPosn, newEndPosn);
+					FVector2D Tempt = newEndPosn - newStartPosn;
+					Tempt.Normalize();
+					centerDir = Tempt.GetRotated(90);
 					centerDir.Normalize();
 					if (curSideData.IsWidth)
 						CenterMouse2D = MouseAtWall + centerDir * (ComponentBase->GetLength() / 2.0f);
@@ -809,12 +810,12 @@ void AComponentManagerActor::MovePlugin(UWorld* MyWorld, const FVector2D&Loc, fl
 					}
 					ComponentBase->SetAngleVal(curSideData.AngleVal);
 					ComponentBase->AddWallInfo(curSideData.wallId);
-					FVector2D newStartPos, newEndPos;
-					GetNewPos(ComponentBase, curSideData, newStartPos, newEndPos);
-					MouseAtWall = FMath::ClosestPointOnSegment2D(Loc, newStartPos, newEndPos);
-					FVector2D Temp = newEndPos - newStartPos;
-					Temp.Normalize();
-					centerDir = Temp.GetRotated(90);
+					FVector2D newStartPosn, newEndPosn;
+					GetNewPos(ComponentBase, curSideData, newStartPosn, newEndPosn);
+					MouseAtWall = FMath::ClosestPointOnSegment2D(Loc, newStartPosn, newEndPosn);
+					FVector2D Tempt = newEndPosn - newStartPosn;
+					Tempt.Normalize();
+					centerDir = Tempt.GetRotated(90);
 					centerDir.Normalize();
 					if (curSideData.IsWidth)
 						CenterMouse2D = MouseAtWall + centerDir * (ComponentBase->GetLength() / 2.0f);
@@ -827,11 +828,11 @@ void AComponentManagerActor::MovePlugin(UWorld* MyWorld, const FVector2D&Loc, fl
 					ComponentBase->DestroyWall();
 					b = true;
 					ComponentBase->SetAngleVal(curSideData.AngleVal);
-					FVector2D newStartPos, newEndPos;
-					GetNewPos(ComponentBase, curSideData, newStartPos, newEndPos);
-					FVector2D Temp = newEndPos - newStartPos;
-					Temp.Normalize();
-					centerDir = Temp.GetRotated(90);
+					FVector2D newStartPosn, newEndPosn;
+					GetNewPos(ComponentBase, curSideData, newStartPosn, newEndPosn);
+					FVector2D Tempt = newEndPosn - newStartPosn;
+					Tempt.Normalize();
+					centerDir = Tempt.GetRotated(90);
 					centerDir.Normalize();
 					if (curSideData.IsWidth)
 						CenterMouse2D = MouseAtWall + centerDir * (ComponentBase->GetLength() / 2.0f);
@@ -935,24 +936,24 @@ void AComponentManagerActor::UpdateHousePlugin(int32 id)
 }
 
 
-void AComponentManagerActor::CalcuIsWidth(bool b, const FRoomVecData& firstData, const FRoomVecData&  secData)
+void AComponentManagerActor::CalcuIsWidth(bool boolean, const FRoomVecData& firstData, const FRoomVecData& secData)
 {
 
 	UComponentBasePrimitive* ComponentBase = ComponentBaseWidget->GetComponentBase();
 	if (ComponentBase)
 	{
 		ComponentBase->RemoveAll();
-		if (firstData.IsWidth == !b)
+		if (firstData.IsWidth == !boolean)
 		{
 			ComponentBase->AddWallInfo(firstData.wallId);
 			ComponentBase->AddWallInfo(secData.wallId);
 		}
-		else if (secData.IsWidth == !b)
+		else if (secData.IsWidth == !boolean)
 		{
 			ComponentBase->AddWallInfo(secData.wallId);
 			ComponentBase->AddWallInfo(firstData.wallId);
 		}
-		ComponentBase->SetIsWidth(b);
+		ComponentBase->SetIsWidth(boolean);
 
 	}
 }
@@ -1818,12 +1819,12 @@ void AComponentManagerActor::UpdateComponent(UWorld* MyWorld, int32 ObjectID, co
 						}
 						ComponentBase->SetAngleVal(curSideData.AngleVal);
 						ComponentBase->AddWallInfo(curSideData.wallId);
-						FVector2D newStartPos, newEndPos;
-						GetNewPos(ComponentBase, curSideData, newStartPos, newEndPos);
-						MouseAtWall = FMath::ClosestPointOnSegment2D(Loc, newStartPos, newEndPos);
-						FVector2D Temp = newEndPos - newStartPos;
-						Temp.Normalize();
-						centerDir = Temp.GetRotated(90);
+						FVector2D newStartPosn, newEndPosn;
+						GetNewPos(ComponentBase, curSideData, newStartPosn, newEndPosn);
+						MouseAtWall = FMath::ClosestPointOnSegment2D(Loc, newStartPosn, newEndPosn);
+						FVector2D Tempt = newEndPosn - newStartPosn;
+						Tempt.Normalize();
+						centerDir = Tempt.GetRotated(90);
 						centerDir.Normalize();
 						if (curSideData.IsWidth)
 							CenterMouse2D = MouseAtWall + centerDir * (ComponentBase->GetLength() / 2.0f);
@@ -1838,11 +1839,11 @@ void AComponentManagerActor::UpdateComponent(UWorld* MyWorld, int32 ObjectID, co
 					ComponentBase->DestroyWall();
 					ComponentBase->SetAngleVal(curSideData.AngleVal);
 					b = true;
-					FVector2D newStartPos, newEndPos;
-					GetNewPos(ComponentBase, curSideData, newStartPos, newEndPos);
-					FVector2D Temp = newEndPos - newStartPos;
-					Temp.Normalize();
-					centerDir = Temp.GetRotated(90);
+					FVector2D newStartPosn, newEndPosn;
+					GetNewPos(ComponentBase, curSideData, newStartPosn, newEndPosn);
+					FVector2D Tempt = newEndPosn - newStartPosn;
+					Tempt.Normalize();
+					centerDir = Tempt.GetRotated(90);
 					centerDir.Normalize();
 					if (curSideData.IsWidth)
 						CenterMouse2D = MouseAtWall + centerDir * (ComponentBase->GetLength() / 2.0f);
@@ -1937,12 +1938,12 @@ void AComponentManagerActor::UpdateComponent(UWorld* MyWorld, int32 ObjectID, co
 					}
 					ComponentBase->SetAngleVal(curSideData.AngleVal);
 					ComponentBase->AddWallInfo(curSideData.wallId);
-					FVector2D newStartPos, newEndPos;
-					GetNewPos(ComponentBase, curSideData, newStartPos, newEndPos);
-					MouseAtWall = FMath::ClosestPointOnSegment2D(Loc, newStartPos, newEndPos);
-					FVector2D Temp = newEndPos - newStartPos;
-					Temp.Normalize();
-					centerDir = Temp.GetRotated(90);
+					FVector2D newStartPosn, newEndPosn;
+					GetNewPos(ComponentBase, curSideData, newStartPosn, newEndPosn);
+					MouseAtWall = FMath::ClosestPointOnSegment2D(Loc, newStartPosn, newEndPosn);
+					FVector2D Tempt = newEndPosn - newStartPosn;
+					Tempt.Normalize();
+					centerDir = Tempt.GetRotated(90);
 					centerDir.Normalize();
 					if (curSideData.IsWidth)
 						CenterMouse2D = MouseAtWall + centerDir * (ComponentBase->GetLength() / 2.0f);
@@ -1956,11 +1957,11 @@ void AComponentManagerActor::UpdateComponent(UWorld* MyWorld, int32 ObjectID, co
 					ComponentBase->DestroyWall();
 					b = true;
 					ComponentBase->SetAngleVal(curSideData.AngleVal);
-					FVector2D newStartPos, newEndPos;
-					GetNewPos(ComponentBase, curSideData, newStartPos, newEndPos);
-					FVector2D Temp = newEndPos - newStartPos;
-					Temp.Normalize();
-					centerDir = Temp.GetRotated(90);
+					FVector2D newStartPosn, newEndPosn;
+					GetNewPos(ComponentBase, curSideData, newStartPosn, newEndPosn);
+					FVector2D Tempt = newEndPosn - newStartPosn;
+					Tempt.Normalize();
+					centerDir = Tempt.GetRotated(90);
 					centerDir.Normalize();
 					if (curSideData.IsWidth)
 						CenterMouse2D = MouseAtWall + centerDir * (ComponentBase->GetLength() / 2.0f);
@@ -2313,11 +2314,11 @@ void AComponentManagerActor::ChangleLength(float Val)
 	}
 }
 
-void AComponentManagerActor::HiddenPrimitiveWidget(bool b)
+void AComponentManagerActor::HiddenPrimitiveWidget(bool boolean)
 {
 	if (ComponentBaseWidget)
 	{
-		if (b)
+		if (boolean)
 		{
 			ComponentBaseWidget->SetVisibility(ESlateVisibility::SelfHitTestInvisible);
 		}
@@ -2826,7 +2827,7 @@ FComponenetInfo AComponentManagerActor::GetHouseComponentInfo() const
 	return FComponenetInfo();
 }
 
-void AComponentManagerActor::SetPluginTopMaterial(bool b)
+void AComponentManagerActor::SetPluginTopMaterial(bool boolean)
 {
 	if (ComponentBaseWidget)
 	{
@@ -2837,7 +2838,7 @@ void AComponentManagerActor::SetPluginTopMaterial(bool b)
 			{
 				if (HousePluginActor)
 				{
-					HousePluginActor->SetPluginTopMaterial(b);
+					HousePluginActor->SetPluginTopMaterial(boolean);
 				}
 			}
 		}

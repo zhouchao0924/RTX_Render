@@ -16,6 +16,18 @@
 class UResourceMgr;
 class UProjectManager;
 
+UENUM(BlueprintType)
+enum class EDrawHouseType : uint8
+{
+	NormalDrawType,
+	SmallHouseDrawType,
+	OrdersDrawType,
+	ChaigaiDrawType,
+	NewHouseType,
+	UserHouseType,
+	NationalHouseType
+};
+
 UCLASS()
 class RTXRENDER_API UCEditorGameInstance : public UGameInstance
 {
@@ -158,7 +170,8 @@ public:
 
 	UPROPERTY(Transient)
 	UDRModelFactory * TempDRMoldeFactory;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		EDrawHouseType DrawHouse_Type;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		FString CurrentBaseHouseId;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

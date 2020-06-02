@@ -216,10 +216,10 @@ namespace PolyEdgeLib
 			return *pRet;
 		if (!bPrecise)
 		{
-			for (auto p : mPoints)
+			for (auto pIndex : mPoints)
 			{
-				if (p.Value->GetVector().Equals(Pos, mMinPointDistMerge))
-					return p.Value;
+				if (pIndex.Value->GetVector().Equals(Pos, mMinPointDistMerge))
+					return pIndex.Value;
 			}
 		}
 		return nullptr;
@@ -655,10 +655,10 @@ namespace PolyEdgeLib
 			}
 			if (pNowSeg->mEnd != pPointEnd)
 			{
-				TSegment* pSeg = NewSegment(pNowSeg->mEnd, pPointEnd);
-				pSeg->mPreSeg = pNowSeg;
-				pNowSeg->mNextSeg = pSeg;
-				pNowSeg = pSeg;
+				TSegment* pSegTmp = NewSegment(pNowSeg->mEnd, pPointEnd);
+				pSegTmp->mPreSeg = pNowSeg;
+				pNowSeg->mNextSeg = pSegTmp;
+				pNowSeg = pSegTmp;
 			}
 			if (pNowSeg->mEnd == pStartSeg->mStart)
 			{
@@ -787,9 +787,9 @@ namespace PolyEdgeLib
 		PathOnWall.Add(Pos);
 		for (TSegment* pSeg = pRemainHead; pSeg != pRemainTail; pSeg = pSeg->mNextSeg)
 		{
-			FVector2D Pos = pSeg->mEnd->GetVector();
-			PathOnWall.Add(Pos);
-			OutLineAll.Add(Pos);
+			FVector2D PosTmp = pSeg->mEnd->GetVector();
+			PathOnWall.Add(PosTmp);
+			OutLineAll.Add(PosTmp);
 		}
 		PathOnWall.Add(OutLineAll[0]);
 		return true;

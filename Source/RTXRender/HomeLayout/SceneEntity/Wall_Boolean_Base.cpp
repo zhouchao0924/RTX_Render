@@ -8,6 +8,9 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Data/DRProjData.h"
 #include "Data/Adapter/DRDoorHoleAdapter.h"
+#include "Components/ArrowComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 AWall_Boolean_Base::AWall_Boolean_Base()
 {
@@ -497,7 +500,7 @@ void AWall_Boolean_Base::UpdateBuildingData(UBuildingData * Data)
 		FVector Local_Location = BuildingData->GetVector(TEXT("Location"));
 		int32 _WallID = BuildingData->GetInt(TEXT("WallID"));
 		UBuildingData * _WallData = BuildingData->GetBuildingSystem()->GetData(_WallID);
-		float WallHeight = _WallData->GetFloat("Height");
+		float LocalWallHeight = _WallData->GetFloat("Height");
 		if (BooleanBaseHUDWidget)
 		{
 			BooleanBaseHUDWidget->WallID = _WallID;
@@ -606,10 +609,10 @@ void AWall_Boolean_Base::UpdateBuildingData(UBuildingData * Data)
 			Under->UpdateMeshSection(0, Ver, Normal, UnderUV0, NullVColors, NullTangents);
 			Ver =
 			{
-				FVector(_Width / 2.f,-_Thickness / 2.f,WallHeight+2),
-				FVector(_Width / 2.f,_Thickness / 2.f,WallHeight+2),
-				FVector(-_Width / 2.f,_Thickness / 2.f,WallHeight+2),
-				FVector(-_Width / 2.f,-_Thickness / 2.f,WallHeight+2),
+				FVector(_Width / 2.f,-_Thickness / 2.f,LocalWallHeight+2),
+				FVector(_Width / 2.f,_Thickness / 2.f,LocalWallHeight+2),
+				FVector(-_Width / 2.f,_Thickness / 2.f,LocalWallHeight+2),
+				FVector(-_Width / 2.f,-_Thickness / 2.f,LocalWallHeight+2),
 			};
 			LitUp->UpdateMeshSection(0, Ver, Normal, UV0, NullVColors, NullTangents);
 		}
@@ -847,11 +850,11 @@ float AWall_Boolean_Base::GetMaxWidth()
 		{
 			int WallID = HoleData->GetInt("WallID");
 			TArray<FVector> WallNodes;
-			FVector Start, End;
+			FVector Startn, Endn;
 			float Zpos;
 			BuildingData->GetBuildingSystem()->GetWallBorderLines(WallID, WallNodes, Zpos);
-			UDRFunLibrary::CalculateBooleanMaxMinLoction(WallNodes, Start, End);
-			MaxWidth = (End - Start).Size() - 10;
+			UDRFunLibrary::CalculateBooleanMaxMinLoction(WallNodes, Startn, Endn);
+			MaxWidth = (Endn - Startn).Size() - 10;
 		}
 	}
 	return MaxWidth;
@@ -902,12 +905,12 @@ float AWall_Boolean_Base::GetWidth()
 float AWall_Boolean_Base::GetHeight()
 {
 	UBuildingData *HoleData = BuildingData->GetBuildingSystem()->GetData(ObjectID);
-	float Height = 0.f;
+	float tHeight = 0.f;
 	if (HoleData)
 	{
-		Height = HoleData->GetFloat("Height");
+		tHeight = HoleData->GetFloat("Height");
 	}
-	return Height;
+	return tHeight;
 }
 
 void AWall_Boolean_Base::SetZPos(const float &z)
@@ -952,14 +955,14 @@ void AWall_Boolean_Base::SetWidth(const float &w)
 			FVector dir;
 			int WallID = HoleData->GetInt("WallID");
 			TArray<FVector> WallNodes;
-			FVector Start, End;
+			FVector tStart, tEnd;
 			float Zpos;
 			BuildingData->GetBuildingSystem()->GetWallBorderLines(WallID, WallNodes, Zpos);
-			UDRFunLibrary::CalculateBooleanMaxMinLoction(WallNodes, Start, End);
-			float MaxWidth = (End - Start).Size() - 10;
+			UDRFunLibrary::CalculateBooleanMaxMinLoction(WallNodes, tStart, tEnd);
+			float MaxWidth = (tEnd - tStart).Size() - 10;
 			UBuildingData *WallData = BuildingData->GetBuildingSystem()->GetData(WallID);
 			int32 CornerID = HoleData->GetInt("CornerID");
-			FVector2D RightTemp = (FVector2D(End) - FVector2D(Start)).GetRotated(90);
+			FVector2D RightTemp = (FVector2D(tEnd) - FVector2D(tStart)).GetRotated(90);
 			RightTemp.Normalize();
 			if (CornerID != INDEX_NONE)
 			{
@@ -977,7 +980,7 @@ void AWall_Boolean_Base::SetWidth(const float &w)
 			if (w < MaxWidth)
 			{
 				//HoleData->SetFloat("Width", w);
-				Pos1 = FVector2D(FMath::ClosestPointOnSegment(FVector(Pos1,0), Start + dir* (w / 2 + 5), End - dir* (w / 2 + 5)));
+				Pos1 = FVector2D(FMath::ClosestPointOnSegment(FVector(Pos1,0), tStart + dir* (w / 2 + 5), tEnd - dir* (w / 2 + 5)));
 				HoleData->SetFloat("Width", w);
 				//BuildingData->GetBuildingSystem()->ForceUpdateSuit();
 				Length = w;
@@ -993,7 +996,7 @@ void AWall_Boolean_Base::SetWidth(const float &w)
 			{
 				HoleData->SetFloat("Width", MaxWidth);
 				//BuildingData->GetBuildingSystem()->ForceUpdateSuit();
-				Pos1 = FVector2D(FMath::ClosestPointOnSegment(FVector(Pos1,0), Start + dir * (MaxWidth / 2 + 5), End - dir * (MaxWidth / 2 + 5)));
+				Pos1 = FVector2D(FMath::ClosestPointOnSegment(FVector(Pos1,0), tStart + dir * (MaxWidth / 2 + 5), tEnd - dir * (MaxWidth / 2 + 5)));
 				Length = MaxWidth;
 				if (ThickRight != ThickLeft)
 				{

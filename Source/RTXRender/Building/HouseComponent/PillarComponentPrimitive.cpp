@@ -47,17 +47,17 @@ void UPillarComponentPrimitive::Draw(FPaintContext& InContext) const
 	//}
 }
 
-void UPillarComponentPrimitive::PrimitiveVertexDataGenerate(UWorld* MyWorld ,const FVector2D& mousePos)
+void UPillarComponentPrimitive::PrimitiveVertexDataGenerate(UWorld* InMyWorld ,const FVector2D& mousePos)
 {
 	ComponenetInfo.Loc = mousePos;
 	//WorldLocationToScreen(MyWorld, mousePos, ComponenetInfo.Length, ComponenetInfo.Width, FramePrimitive.LeftTopPos, FramePrimitive.RightBottomPos);
-	FramePrimitive = WorldLocationToScreen(MyWorld, mousePos, ComponenetInfo.Length, ComponenetInfo.Width);
+	FramePrimitive = WorldLocationToScreen(InMyWorld, mousePos, ComponenetInfo.Length, ComponenetInfo.Width);
 	//GetOtherPos(FramePrimitive.LeftTopPos, FramePrimitive.RightBottomPos, FramePrimitive.RightTopPos, FramePrimitive.LeftBottomPos);
 	//CenterPos = (FramePrimitive.LeftTopPos + FramePrimitive.RightBottomPos) / 2.0f;
 	//HitPrimitive = WorldLocationToScreen(MyWorld, mousePos, ComponenetInfo.Length + 3, ComponenetInfo.Width + 3);
-	if (MyWorld)
+	if (InMyWorld)
 	{
-		MyWorld->GetFirstPlayerController()->ProjectWorldLocationToScreen(FVector(ComponenetInfo.Loc, 280), CenterPos);
+		InMyWorld->GetFirstPlayerController()->ProjectWorldLocationToScreen(FVector(ComponenetInfo.Loc, 280), CenterPos);
 	}
 }
 

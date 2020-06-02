@@ -2,11 +2,11 @@
 
 #include "UploadLoadTask.h"
 #include "ResourceMgr.h"
-#include "AJHttpUploader.h"
 #include "Misc/Base64.h"
 #include "HttpModule.h"
 #include "Interfaces/IHttpResponse.h"
 #include "Interfaces/IHttpRequest.h"
+#include "VaRestSubsystem.h"
 
 FUploadAsyncTask::FUploadAsyncTask(UResource *Resource, const FString &InURL)
 {
@@ -165,7 +165,7 @@ void FUploadAsyncTask::OnResponseReceived(FHttpRequestPtr HttpRequest, FHttpResp
 				UProtocalImpl *Protocal = UProtocalImpl::GetProtocal(PendingResource->ResMgr);
 				if (Protocal)
 				{
-					UVaRestJsonObject *VaJson = UVaRestJsonObject::ConstructJsonObject(PendingResource->ResMgr);
+					UVaRestJsonObject *VaJson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 					Protocal->Protocal_Upload(PendingResource, VaJson, Delegate);
 					if (Delegate.URL.Len() > 0)
 					{
@@ -209,7 +209,7 @@ void FUploadAsyncTask::OnResponseReceived(FHttpRequestPtr HttpRequest, FHttpResp
 				if (bRetSuccess && JsonData.IsValid())
 				{
 					bCommitSuccess = true;
-					UVaRestJsonObject *VaJson = UVaRestJsonObject::ConstructJsonObject(PendingResource->ResMgr);
+					UVaRestJsonObject *VaJson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 					VaJson->SetRootObject(JsonData);
 					
 					int32 materialId = JsonData->GetIntegerField("userMaterialId");

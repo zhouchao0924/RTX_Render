@@ -64,7 +64,7 @@ bool ASceneExport::Export(int SolutionID, const FString& strPath /* = "" */)
 		}
 	}
 	//
-	const FString strDire = FPaths::GameSavedDir() / TEXT("Autosaves") / TEXT("SceneDataForAR");
+	const FString strDire = FPaths::ProjectSavedDir() / TEXT("Autosaves") / TEXT("SceneDataForAR");
 	const FString strFile = strDire / TEXT("SceneDataForAR.json");
 	if (FPlatformFileManager::Get().GetPlatformFile().DirectoryExists(*strDire))
 	{

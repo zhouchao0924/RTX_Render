@@ -11,7 +11,7 @@ class UFlueComponentPrimitive :public UComponentBasePrimitive
 public:
 	UFlueComponentPrimitive();
 	virtual void Draw(FPaintContext& InContext) const;
-	virtual void PrimitiveVertexDataGenerate(UWorld* MyWorld ,const FVector2D& mousePos);
+	virtual void PrimitiveVertexDataGenerate(UWorld* InMyWorld ,const FVector2D& mousePos);
 	//void DrawSelectStatePrimitive(FPaintContext& InContext)const;
 public:
 

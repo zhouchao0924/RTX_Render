@@ -10,6 +10,7 @@
 #include "../Building/BuildingSystem.h"
 #include "HouseFunctionLibrary.h"
 #include "HouseFunction/ExpansionDrawing/DynamicTableboard.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -262,9 +263,9 @@ bool ASkuComponentActor::GetHole(TArray<FVector2D>& Holelist)
 
 		kArray<kPoint>& OutBound = OutBoundarys[0];
 		
-		for (int i = 0; i < OutBound.size(); ++i)
+		for (int index = 0; index < OutBound.size(); ++index)
 		{
-			FVector2D a = FVector2D(OutBound[i].x, OutBound[i].y);
+			FVector2D a = FVector2D(OutBound[index].x, OutBound[index].y);
 			auto tp = UHouseFunctionLibrary::GetRotationPos(rot,FVector(a.X,a.Y,0));
 			tp += location;
 			a.Set(tp.X, tp.Y);

@@ -49,7 +49,7 @@ TArray<FExpansionTest> UCustomLayoutFunctionLibrary::CreateExpansionDrawingMesh(
 		//Ori = FurActor[i]->GetActorRightVector()* 0.7f + Ori;
 		if (i == 0)
 		{
-			FVector Size1, Ori;
+			FVector Size1, tOri;
 			FurActor[i]->GetActorBounds(bIs, orige, Size1);
 			
 		}
@@ -539,14 +539,14 @@ TArray<TArray<FVector>> UCustomLayoutFunctionLibrary::GetForwardPoints(UObject *
 			FurActor[i]->FindComponent(name, Outconpoment);
 			if (Outconpoment.Num() > 0)
 			{
-				FVector orige, extent;
-				FurActor[i]->GetActorBounds(true, orige, extent);
+				FVector torige, extent;
+				FurActor[i]->GetActorBounds(true, torige, extent);
 
 				FVector center, size;
 				FurActor[i]->compoundElementInterface->GetMeshcCenter(Outconpoment[0]->ElementID, center, "mesh_color1");
 				center = LayoutMath::GetInstance()->GetPosToRotator(FurActor[i]->GetActorRotation(), center);
 				auto rotator = -FurActor[i]->GetActorRightVector();
-				center = (orige + center)+(-FurActor[i]->GetActorRightVector() * 0.9f);
+				center = (torige + center)+(-FurActor[i]->GetActorRightVector() * 0.9f);
 
 				center = center + (-FurActor[i]->GetActorForwardVector() * 0.5f);
 
@@ -568,7 +568,7 @@ TArray<TArray<FVector>> UCustomLayoutFunctionLibrary::GetForwardPoints(UObject *
 
 				FurActor[i]->compoundElementInterface->GetMeshcCenter(Outconpoment[0]->ElementID, center, "mesh_color2");
 				center = LayoutMath::GetInstance()->GetPosToRotator(FurActor[i]->GetActorRotation(), center);
-				center = (orige + center) +(-FurActor[i]->GetActorForwardVector() * 0.9f);
+				center = (torige + center) +(-FurActor[i]->GetActorForwardVector() * 0.9f);
 
 				center.Set(center.X, center.Y, 0.f);
 				rotator = -FurActor[i]->GetActorForwardVector();
@@ -694,10 +694,10 @@ void UCustomLayoutFunctionLibrary::LoadloftData(UObject * WorldContextObject, co
 			else
 				Tempmx1 = data.ForwardBreakwater[i].mx;
 
-				auto tempactor = FurActor.Find(ids[0]);
-				if (!tempactor)
+				auto ttempactor = FurActor.Find(ids[0]);
+				if (!ttempactor)
 					return;
-				ForwardbreakActor->CreateTopMesh(temppoints, Tempmx1, hight, ids, EArticlelofting::ForwardBreakwater, (*tempactor)->LCategoryid);
+				ForwardbreakActor->CreateTopMesh(temppoints, Tempmx1, hight, ids, EArticlelofting::ForwardBreakwater, (*ttempactor)->LCategoryid);
 				BreakWater.Add(ForwardbreakActor);
 				ForwardbreakActor->bIsFinish = true;
 			
@@ -726,10 +726,10 @@ void UCustomLayoutFunctionLibrary::LoadloftData(UObject * WorldContextObject, co
 			else
 				Tempmx1 = data.LastBreakwater[i].mx;
 
-				auto tempactor = FurActor.Find(ids[0]);
-				if (!tempactor)
+				auto ttempactor = FurActor.Find(ids[0]);
+				if (!ttempactor)
 					return;
-				LastBreakActor->CreateTopMesh(temppoints, Tempmx1, hight, ids, EArticlelofting::LastBreakwater, (*tempactor)->LCategoryid);
+				LastBreakActor->CreateTopMesh(temppoints, Tempmx1, hight, ids, EArticlelofting::LastBreakwater, (*ttempactor)->LCategoryid);
 				BreakWater.Add(LastBreakActor);
 				LastBreakActor->bIsFinish = true;
 			

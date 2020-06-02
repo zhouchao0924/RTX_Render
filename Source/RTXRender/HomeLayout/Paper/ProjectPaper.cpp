@@ -94,9 +94,9 @@ FString UProjectPaper::CreateNewGuid()
 	return FGuid::NewGuid().ToString().ToLower();
 }
 
-void UProjectPaper::ConvertWallData2SaveGame(UPARAM(ref)FSavedDataNode &OutWallData, UCEditorGameInstance *GameInst, const FWallData &InData)
+void UProjectPaper::ConvertWallData2SaveGame(FSavedDataNode &OutWallData, UCEditorGameInstance *InGameInst, const FWallData &InData)
 {
-	OutWallData = GameInst->WallBuildSystem->GetDefaultWallSetting();
+	OutWallData = InGameInst->WallBuildSystem->GetDefaultWallSetting();
 	OutWallData.bIsDelete = false;
 	OutWallData.Type = EWallTypeCPP::Wall;
 	OutWallData.Transform = FTransform::Identity;

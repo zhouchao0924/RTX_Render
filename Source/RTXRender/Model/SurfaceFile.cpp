@@ -366,7 +366,7 @@ FString USurfaceFile::GetSurfaceChineseName( )
 {
 	if (DRInfo == NULL)
 	{
-		DRInfo = UVaRestJsonObject::ConstructJsonObject(this);
+		return TEXT("");
 	}
 	FString OutSurfaceName=	DRInfo->GetStringField("ChineseName");
 	if (OutSurfaceName.Len() <= 0)
@@ -385,7 +385,7 @@ void USurfaceFile::SetSurfaceChineseName( const FString & InSurfaceName)
 {
 	if(DRInfo==NULL)
 	{ 
-		DRInfo = UVaRestJsonObject::ConstructJsonObject(this);
+		return;
 	}
 	DRInfo->SetStringField("ChineseName", InSurfaceName);
 	FResourceSummary *Summary = GetSummary();
@@ -570,14 +570,7 @@ void USurfaceFile::BuildPreviewImage()
 
 	if (DynMtrl)
 	{
-		int32 SizeX = 0, SizeY = 0;
-		UEditorUtils::GetPreviewMaterialImageSize(SizeX, SizeY);
-
-		UTextureRenderTarget2D *TexTarget = UEditorUtils::GetMaterialPreviewTexture(this, SizeX, SizeY, DynMtrl);
-		if (TexTarget)
-		{
-			UEditorUtils::SaveImage(this, TexTarget);
-		}
+		
 	}
 }
 

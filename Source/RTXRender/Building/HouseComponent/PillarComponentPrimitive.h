@@ -11,7 +11,7 @@ class UPillarComponentPrimitive :public UComponentBasePrimitive
 public:
 	UPillarComponentPrimitive();
 	virtual void Draw(FPaintContext& InContext) const;
-	virtual void PrimitiveVertexDataGenerate(UWorld* MyWorld ,const FVector2D& mousePos);
+	virtual void PrimitiveVertexDataGenerate(UWorld* InMyWorld ,const FVector2D& mousePos);
 	virtual void SetFrameColor(const FLinearColor Color);
 public:
 

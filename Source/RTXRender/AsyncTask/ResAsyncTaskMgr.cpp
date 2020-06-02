@@ -1,6 +1,6 @@
 
 #include "ResAsyncTaskMgr.h"
-#include "HttpDownloadMgr.h"
+#include "Download/HttpDownloadMgr.h"
 
 FDRAsyncTaskManager &FDRAsyncTaskManager::Get()
 {

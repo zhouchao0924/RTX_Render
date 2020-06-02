@@ -1933,18 +1933,18 @@ bool FPolygonAlg::LocateCentersOfRoom(const FPoint2DArray InPnts, FVector2D& Max
 		}
 
 		float MaxArea = AreaSet[0];
-		int32 TargetIndex = 0;
+		int32 tTargetIndex = 0;
 		for (int32 CenterIndex = 1; CenterIndex < AreaCenters.Num(); CenterIndex++)
 		{
 			if (AreaSet[CenterIndex] > MaxArea)
 			{
 				MaxArea = AreaSet[CenterIndex];
-				TargetIndex = CenterIndex;
+				tTargetIndex = CenterIndex;
 			}
 		}
-		if (AreaSet[TargetIndex] >= 150 * 100)
+		if (AreaSet[tTargetIndex] >= 150 * 100)
 		{
-			MaxRegionCenter = AreaCenters[TargetIndex];
+			MaxRegionCenter = AreaCenters[tTargetIndex];
 		}
 		else
 		{
@@ -2007,7 +2007,7 @@ bool FPolygonAlg::LocateCentersOfRoom(const FPoint2DArray InPnts, FVector2D& Max
 			}
 			Mesher mesher(Mycdt);
 			mesher.refine_mesh();
-			TArray<float> AreaSet;
+			TArray<float> yAreaSet;
 			TArray<FVector2D> TriangleCenters;
 			for (auto Fbegin = Mycdt.finite_faces_begin(), Fend = Mycdt.finite_faces_end(); Fbegin != Fend; ++Fbegin)
 			{
@@ -2017,17 +2017,17 @@ bool FPolygonAlg::LocateCentersOfRoom(const FPoint2DArray InPnts, FVector2D& Max
 					FVector2D V1(Mycdt.triangle(Fbegin).vertex(1)[0], Mycdt.triangle(Fbegin).vertex(1)[1]);
 					FVector2D V2(Mycdt.triangle(Fbegin).vertex(2)[0], Mycdt.triangle(Fbegin).vertex(2)[1]);
 					Triangle_2 Tri(Mycdt.triangle(Fbegin));
-					AreaSet.Add(Tri.area());
+					yAreaSet.Add(Tri.area());
 					TriangleCenters.Add(FVector2D(centroid(Tri).x(), centroid(Tri).y()));
 				}
 			}
-			float MaxArea = AreaSet[0];
+			float tMaxArea = yAreaSet[0];
 			int32 TargetIndex = 0;
-			for (int32 Index = 1; Index < AreaSet.Num(); Index++)
+			for (int32 Index = 1; Index < yAreaSet.Num(); Index++)
 			{
-				if (MaxArea < AreaSet[Index])
+				if (tMaxArea < yAreaSet[Index])
 				{
-					MaxArea = AreaSet[Index];
+					tMaxArea = yAreaSet[Index];
 					TargetIndex = Index;
 				}
 			}
@@ -2315,7 +2315,7 @@ bool FPolygonAlg::LocateCenterOfKitchen(const TArray<FVector2D> InPnts, FVector2
 				}
 			}
 			Mesher mesher(Mycdt);
-			TArray<float> AreaSet;
+			TArray<float> tAreaSet;
 			TArray<FVector2D> TriangleCenters;
 			for (auto Fbegin = Mycdt.finite_faces_begin(), Fend = Mycdt.finite_faces_end(); Fbegin != Fend; ++Fbegin)
 			{
@@ -2325,21 +2325,21 @@ bool FPolygonAlg::LocateCenterOfKitchen(const TArray<FVector2D> InPnts, FVector2
 					FVector2D V1(Mycdt.triangle(Fbegin).vertex(1)[0], Mycdt.triangle(Fbegin).vertex(1)[1]);
 					FVector2D V2(Mycdt.triangle(Fbegin).vertex(2)[0], Mycdt.triangle(Fbegin).vertex(2)[1]);
 					Triangle_2 Tri(Mycdt.triangle(Fbegin));
-					AreaSet.Add(Tri.area());
+					tAreaSet.Add(Tri.area());
 					TriangleCenters.Add(FVector2D(centroid(Tri).x(), centroid(Tri).y()));
 				}
 			}
-			float MaxArea = AreaSet[0];
-			int32 TargetIndex = 0;
-			for (int32 Index = 1; Index < AreaSet.Num(); Index++)
+			float bMaxArea = tAreaSet[0];
+			int32 nTargetIndex = 0;
+			for (int32 Index = 1; Index < tAreaSet.Num(); Index++)
 			{
-				if (MaxArea < AreaSet[Index])
+				if (bMaxArea < tAreaSet[Index])
 				{
-					MaxArea = AreaSet[Index];
-					TargetIndex = Index;
+					bMaxArea = tAreaSet[Index];
+					nTargetIndex = Index;
 				}
 			}
-			MaxRegionCenter = TriangleCenters[TargetIndex];
+			MaxRegionCenter = TriangleCenters[nTargetIndex];
 		}
 
 	}
@@ -7011,12 +7011,12 @@ bool FPolygonAlg::GetMaxAreaEndPoints(const TArray<FVector2D> InPutPolygon, TArr
 					IndexMapDirPoints.Add(UsefulAreaNum, TempDirPoints);
 					UsefulAreaNum++;
 
-					TArray<FVector2D> TempUsefulRegion;
-					TempUsefulRegion.Add(OutPnts[PStart]);
-					TempUsefulRegion.Add(OutPnts[PNext]);
-					TempUsefulRegion.Add(OutPnts[PNextNext]);
-					TempUsefulRegion.Add(OutPnts[PFront]);
-					UsefulRegions.Add(TempUsefulRegion);
+					TArray<FVector2D> nTempUsefulRegion;
+					nTempUsefulRegion.Add(OutPnts[PStart]);
+					nTempUsefulRegion.Add(OutPnts[PNext]);
+					nTempUsefulRegion.Add(OutPnts[PNextNext]);
+					nTempUsefulRegion.Add(OutPnts[PFront]);
+					UsefulRegions.Add(nTempUsefulRegion);
 				}
 				else
 				{
@@ -8024,8 +8024,8 @@ bool FPolygonAlg::GetMaxRegionOfSpecialRoom(const TArray<FVector2D> InPutPolygon
 							if (IfInRegion)
 							{
 								FVector2D InterSectP;
-								bool IsLocated = FPolygonAlg::CalculateRayInterSectPoly(OutPnts, TempDoorCenter, RotateOfVec, InterSectP, TempDisVound);
-								if (IsLocated)
+								bool tIsLocated = FPolygonAlg::CalculateRayInterSectPoly(OutPnts, TempDoorCenter, RotateOfVec, InterSectP, TempDisVound);
+								if (tIsLocated)
 								{
 									SuitPoint = 0.5*(TempDoorCenter + InterSectP);
 									LocalFindRes = true;
@@ -8034,8 +8034,8 @@ bool FPolygonAlg::GetMaxRegionOfSpecialRoom(const TArray<FVector2D> InPutPolygon
 							else
 							{
 								FVector2D InterSectP;
-								bool IsLocated = FPolygonAlg::CalculateRayInterSectPoly(OutPnts, TempDoorCenter, -RotateOfVec, InterSectP, TempDisVound);
-								if (IsLocated)
+								bool vIsLocated = FPolygonAlg::CalculateRayInterSectPoly(OutPnts, TempDoorCenter, -RotateOfVec, InterSectP, TempDisVound);
+								if (vIsLocated)
 								{
 									SuitPoint = 0.5*(TempDoorCenter + InterSectP);
 									LocalFindRes = true;
@@ -8490,7 +8490,7 @@ bool FPolygonAlg::GetMaxLocalRegionCenter(const FPoint2DArray InPnts, FVector2D&
 			}
 			Mesher mesher(Mycdt);
 			mesher.refine_mesh();
-			TArray<float> AreaSet;
+			TArray<float> tAreaSet;
 			TArray<FVector2D> TriangleCenters;
 			for (auto Fbegin = Mycdt.finite_faces_begin(), Fend = Mycdt.finite_faces_end(); Fbegin != Fend; ++Fbegin)
 			{
@@ -8500,21 +8500,21 @@ bool FPolygonAlg::GetMaxLocalRegionCenter(const FPoint2DArray InPnts, FVector2D&
 					FVector2D V1(Mycdt.triangle(Fbegin).vertex(1)[0], Mycdt.triangle(Fbegin).vertex(1)[1]);
 					FVector2D V2(Mycdt.triangle(Fbegin).vertex(2)[0], Mycdt.triangle(Fbegin).vertex(2)[1]);
 					Triangle_2 Tri(Mycdt.triangle(Fbegin));
-					AreaSet.Add(Tri.area());
+					tAreaSet.Add(Tri.area());
 					TriangleCenters.Add(FVector2D(centroid(Tri).x(), centroid(Tri).y()));
 				}
 			}
-			float MaxArea = AreaSet[0];
-			int32 TargetIndex = 0;
-			for (int32 Index = 1; Index < AreaSet.Num(); Index++)
+			float qMaxArea = tAreaSet[0];
+			int32 qTargetIndex = 0;
+			for (int32 Index = 1; Index < tAreaSet.Num(); Index++)
 			{
-				if (MaxArea < AreaSet[Index])
+				if (qMaxArea < tAreaSet[Index])
 				{
-					MaxArea = AreaSet[Index];
-					TargetIndex = Index;
+					qMaxArea = tAreaSet[Index];
+					qTargetIndex = Index;
 				}
 			}
-			SuitableCenter = TriangleCenters[TargetIndex];
+			SuitableCenter = TriangleCenters[qTargetIndex];
 		}
 	}
 	return true;
@@ -12914,14 +12914,14 @@ bool FPolygonAlg::DownLightsLocation(const TArray<FVector2D> RegionPs, const flo
 				FVector2D TempInterSectP1, TempInterSectP2;
 				CalculateRayToInterSectP(PostRegionPs, RegionCenter, DirOfLongEdge, TempInterSectP1);
 				CalculateRayToInterSectP(PostRegionPs, RegionCenter, -DirOfLongEdge, TempInterSectP2);
-				float TempDis1 = FVector2D::Distance(RegionCenter, TempInterSectP1);
-				float TempDis2 = FVector2D::Distance(RegionCenter, TempInterSectP2);
-				if (TempDis1 > 0.5*LightEqualSpace)
+				float qTempDis1 = FVector2D::Distance(RegionCenter, TempInterSectP1);
+				float qTempDis2 = FVector2D::Distance(RegionCenter, TempInterSectP2);
+				if (qTempDis1 > 0.5*LightEqualSpace)
 				{
 					////////计算Side1的灯的位置/////////////////////
 					FVector2D FirstLightOfSide1 = RegionCenter + 0.5*LightEqualSpace*DirOfLongEdge;
 					Part1Lights.AddUnique(FirstLightOfSide1);
-					float DisR = TempDis1 - 0.5*LightEqualSpace;
+					float DisR = qTempDis1 - 0.5*LightEqualSpace;
 					int NumOfR = DisR / LightEqualSpace;
 					if (NumOfR >= 1)
 					{
@@ -12933,12 +12933,12 @@ bool FPolygonAlg::DownLightsLocation(const TArray<FVector2D> RegionPs, const flo
 					}
 				}
 
-				if (TempDis2 > 0.5*LightEqualSpace)
+				if (qTempDis2 > 0.5*LightEqualSpace)
 				{
 					////////计算Side2的灯的位置/////////////////////
 					FVector2D FirstLightOfSide2 = RegionCenter - 0.5*LightEqualSpace*DirOfLongEdge;
 					Part2Lights.AddUnique(FirstLightOfSide2);
-					float DisL = TempDis2 - 0.5*LightEqualSpace;
+					float DisL = qTempDis2 - 0.5*LightEqualSpace;
 					int NumOfL = DisL / LightEqualSpace;
 					if (NumOfL >= 1)
 					{
@@ -12950,7 +12950,7 @@ bool FPolygonAlg::DownLightsLocation(const TArray<FVector2D> RegionPs, const flo
 					}
 				}
 				////////////////////////////////////////////////////////////////////
-				if ((TempDis1 <= 0.5*LightEqualSpace) && (TempDis2 <= 0.5*LightEqualSpace))
+				if ((qTempDis1 <= 0.5*LightEqualSpace) && (qTempDis2 <= 0.5*LightEqualSpace))
 				{
 					TempLightsLoc.AddUnique(RegionCenter);
 				}

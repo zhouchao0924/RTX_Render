@@ -46,9 +46,9 @@ TSkuData* FCabinetGlobal::GetSku(FVector2D CabinetSize, int32 CategoryId, int32 
 		auto p = mSkuDatas.Find(InstanceId);
 		if (p)
 			return *p;
-		for (auto p : mSkuDatas)
+		for (auto curp : mSkuDatas)
 		{
-			TSkuData* Data = p.Value;
+			TSkuData* Data = curp.Value;
 			if (Data->mCategoryId == CategoryId)
 				return Data;
 		}

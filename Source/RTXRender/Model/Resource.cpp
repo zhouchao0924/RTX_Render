@@ -3,7 +3,7 @@
 #include "ModelFile.h"
 #include "SurfaceFile.h"
 #include "ResourceMgr.h"
-#include "ZLibFunctionLibrary.h"
+#include "VaRestSubsystem.h"
 
 #undef UpdateResource
 
@@ -280,47 +280,7 @@ void UResource::SetResourceFileName(const FString & InFileName)
 
 UTexture *UResource::GetPreviewTexture()
 {
-	if (!PreviewImage)
-	{
-		PreviewImage = UEditorUtils::GetImage(this);
-
-		if (!PreviewImage)
-		{
-			FResourceSummary *Header = GetSummary();
-			if (Header)
-			{
-				if ( Header->Image.Data.Num() == 0 || 
-					 Header->Image.SizeX*Header->Image.SizeY<=0)
-				{
-					BuildPreviewImage();
-				}
-
-				if (Header->Image.Data.Num() > 0)
-				{
-					UTexture2D *Image2D = UTexture2D::CreateTransient(Header->Image.SizeX, Header->Image.SizeY);
-					Image2D->SRGB = 0;
-					void *pData = Image2D->PlatformData->Mips[0].BulkData.Lock(LOCK_READ_WRITE);
-					if (pData)
-					{
-						FMemory::Memcpy(pData, Header->Image.Data.GetData(), Header->Image.Data.Num());
-						Image2D->PlatformData->Mips[0].BulkData.Unlock();
-					}
-					
-					Image2D->UpdateResource();
-					FlushRenderingCommands();
-					PreviewImage = Image2D;
-
-					UEditorUtils::SaveImage(this, Header->Image.SizeX, Header->Image.SizeY, Header->Image.Data.GetData(), true);
-				}
-			}
-			else
-			{
-				BuildPreviewImage();
-				PreviewImage = UEditorUtils::GetImage(this);
-			}
-		}
-	}
-	return PreviewImage;
+	return nullptr;
 }
 
 void UResource::GetPreviewImageSize(int32 &OutSizeX, int32 &OutSizeY)
@@ -488,7 +448,7 @@ void UResource::SerializeHeader(FArchive &Ar)
 					Ar << JsonStr;
 					if (JsonStr.Len() > 0)
 					{
-						DRInfo = UVaRestJsonObject::ConstructJsonObject(this);
+						DRInfo = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 						DRInfo->DecodeJson(JsonStr);
 					}
 				}
@@ -527,20 +487,11 @@ void UResource::ForceLoad()
 				}
 			}
 		}
-		bool UseGZFile = false;
-		bool success = GConfig->GetBool(TEXT("Iray"), TEXT("UseGZFile"), UseGZFile, GGameIni);
+
 		FArchive* Writer = nullptr;
-		if (success && UseGZFile)
-		{
-			Filename = UZLibFunctionLibrary::GetDRFileName(Filename);
-			Writer = UZLibFunctionLibrary::DRReadFile(Filename);
-			UE_LOG(LogTemp, Log, TEXT("ForceLoad, use mx.gz file[%s]"), *Filename);
-		}
-		else
-		{
-			Writer = IFileManager::Get().CreateFileReader(*Filename);
-			UE_LOG(LogTemp, Log, TEXT("ForceLoad, use mx file[%s]"), *Filename);
-		}
+
+		Writer = IFileManager::Get().CreateFileReader(*Filename);
+		UE_LOG(LogTemp, Log, TEXT("ForceLoad, use mx file[%s]"), *Filename);
 
 		if (Writer)
 		{

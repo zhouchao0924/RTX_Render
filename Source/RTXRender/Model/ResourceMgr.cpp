@@ -8,7 +8,6 @@
 #include "AsyncTask/ProtocalTask.h"
 #include "AsyncTask/ResAsyncTaskMgr.h"
 #include "DRGameMode.h"
-#include "Editor/EditorUtils.h"
 #include "EditorGameInstance.h"
 #include "AsyncTask/UploadLoadTask.h"
 #include "AsyncTask/CookTask.h"
@@ -935,22 +934,12 @@ void UResourceMgr::ReleaseResource(UResource * InResource)
 
 int32 UResourceMgr::GetNumberOfStandardMaterials()
 {
-	UStandardMaterialCollection *MaterialCollection = UEditorUtils::GetMaterialCollection(this);
-	if (MaterialCollection)
-	{
-		return MaterialCollection->StdMaterials.Num();
-	}
 	return 0;
 }
 
 FStdMaterialInfo &UResourceMgr::GetStandardMaterial(int32 MaterialIndex)
 {
-	UStandardMaterialCollection *MaterialCollection = UEditorUtils::GetMaterialCollection(this);
-	
-	check(MaterialCollection && MaterialCollection->StdMaterials.IsValidIndex(MaterialIndex));
-	FStdMaterialInfo &SlotInfo =  MaterialCollection->StdMaterials[MaterialIndex];
-
-	return SlotInfo;
+	return FStdMaterialInfo();
 }
 
 void UResourceMgr::BeginCook(UResource *Resource, const FCookArgs &InArgs/*= FCookArgs()*/)

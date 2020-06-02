@@ -105,10 +105,10 @@ FCabinetRes Json2CabinetRes(UVaRestJsonObject* p, FCabinetArea* pArea, int nType
 				if (ssName == "mesh_color1")
 				{
 					FVector TableSize;
-					bool OutIsValid;
+					bool OutIsValidTmp;
 					FString sSize = meshName->GetStringField("meshSize");
-					UKismetStringLibrary::Conv_StringToVector(sSize, TableSize, OutIsValid);
-					if (OutIsValid)
+					UKismetStringLibrary::Conv_StringToVector(sSize, TableSize, OutIsValidTmp);
+					if (OutIsValidTmp)
 					{
 						res.mTableSize.Set(Float2Int2(TableSize.X*res.mMeshScale.X), Float2Int2(TableSize.Y*res.mMeshScale.Y));
 					}
@@ -804,8 +804,8 @@ bool UCabinetSdk::AutoLayout( FCabinetAreaRaw AreaRaw, const FCabinetAutoSet & S
 
 bool UCabinetSdk::LayoutResultBack(UObject* WorldContextObject, const FCabinetLayoutResult & Data)
 {
-	UVaRestJsonObject* MessageJson = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-	UVaRestJsonObject* data = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
+	UVaRestJsonObject* MessageJson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+	UVaRestJsonObject* data = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 	MessageJson->SetNumberField(TEXT("type"), 6);
 	UWorld* MyWorld = WorldContextObject->GetWorld();
 	UCEditorGameInstance *GameInstance = Cast<UCEditorGameInstance>(MyWorld->GetGameInstance());
@@ -813,14 +813,14 @@ bool UCabinetSdk::LayoutResultBack(UObject* WorldContextObject, const FCabinetLa
 	TArray<UVaRestJsonObject*>tatamiList;
 	TArray<UVaRestJsonObject*>failList;
 
-	UVaRestJsonObject* inputParams = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
+	UVaRestJsonObject* inputParams = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 
 	for (FCabinetWalldata var : Data.mFailDatas)
 	{
 		TArray<UVaRestJsonObject*>modelList;
-		UVaRestJsonObject* tempfail = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-		UVaRestJsonObject* start = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-		UVaRestJsonObject* end = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
+		UVaRestJsonObject* tempfail = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+		UVaRestJsonObject* start = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+		UVaRestJsonObject* end = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 
 		tempfail->SetNumberField("success", var.success);
 		tempfail->SetStringField("msg", var.msg);
@@ -836,11 +836,11 @@ bool UCabinetSdk::LayoutResultBack(UObject* WorldContextObject, const FCabinetLa
 
 		for (FCabinetModle mod : var.mCabinets)
 		{
-			UVaRestJsonObject* temp2 = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-			UVaRestJsonObject* modelSize = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-			UVaRestJsonObject* point = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-			UVaRestJsonObject* rotate = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-			UVaRestJsonObject* scale = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
+			UVaRestJsonObject* temp2 = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+			UVaRestJsonObject* modelSize = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+			UVaRestJsonObject* point = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+			UVaRestJsonObject* rotate = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+			UVaRestJsonObject* scale = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 			temp2->SetNumberField("actorId", mod.actorId);
 			temp2->SetNumberField("templateId", mod.templateId);
 			temp2->SetNumberField("categoryId", mod.categoryId);
@@ -876,11 +876,11 @@ bool UCabinetSdk::LayoutResultBack(UObject* WorldContextObject, const FCabinetLa
 	
 
 	for (FCabinetSkuModel sku : Data.mCookExtern) {
-		UVaRestJsonObject* temp3 = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-		UVaRestJsonObject* modelSize = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-		UVaRestJsonObject* point = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-		UVaRestJsonObject* start = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-		UVaRestJsonObject* end = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
+		UVaRestJsonObject* temp3 = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+		UVaRestJsonObject* modelSize = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+		UVaRestJsonObject* point = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+		UVaRestJsonObject* start = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+		UVaRestJsonObject* end = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 
 		start->SetNumberField("x", sku.wallline.mStart.X);
 		start->SetNumberField("y", sku.wallline.mStart.Y);
@@ -905,9 +905,9 @@ bool UCabinetSdk::LayoutResultBack(UObject* WorldContextObject, const FCabinetLa
 		skumodellist.Add(temp3);
 	}
 	for (FCabinetTatamiExtern tata : Data.mTatamiExtern) {
-		UVaRestJsonObject* temp4 = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-		UVaRestJsonObject* point = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-		UVaRestJsonObject* size = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
+		UVaRestJsonObject* temp4 = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+		UVaRestJsonObject* point = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+		UVaRestJsonObject* size = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 		point->SetNumberField("x", tata.point.X);
 		point->SetNumberField("y", tata.point.Y);
 		size->SetNumberField("dx", tata.size.X);
@@ -941,18 +941,18 @@ bool UCabinetSdk::LayoutResultBack(UObject* WorldContextObject, const FCabinetLa
 
 bool UCabinetSdk::OverlayResultBack(UObject* WorldContextObject, const FCabinetOverlayResult & Data)
 {
-	UVaRestJsonObject* MessageJson= UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
+	UVaRestJsonObject* MessageJson= UVaRestSubsystem::StaticConstructVaRestJsonObject();
 	MessageJson->SetNumberField(TEXT("type"), 6);
 	UWorld* MyWorld = WorldContextObject->GetWorld();
 	UCEditorGameInstance *GameInstance = Cast<UCEditorGameInstance>(MyWorld->GetGameInstance());
 	TArray<UVaRestJsonObject*>failList;
-	UVaRestJsonObject* data = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-	UVaRestJsonObject* inputParams = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
+	UVaRestJsonObject* data = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+	UVaRestJsonObject* inputParams = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 	for(FCabinetWalldata var : Data.mFailDatas)
 	{
-		UVaRestJsonObject* temp = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-		UVaRestJsonObject* start = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-		UVaRestJsonObject* end = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
+		UVaRestJsonObject* temp = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+		UVaRestJsonObject* start = UVaRestSubsystem::StaticConstructVaRestJsonObject();
+		UVaRestJsonObject* end = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 		temp->SetStringField("msg", var.msg);
 		start->SetNumberField("x", var.wallline.mStart.X);
 		start->SetNumberField("y", var.wallline.mStart.Y);
@@ -1002,41 +1002,7 @@ bool UCabinetSdk::ModifySkuPos(int type, FVector2D NewPos)
 
 bool UCabinetSdk::ModifySkuPosBack(UObject* WorldContextObject,const FCabinetSkuModel & Data)
 {
-	UVaRestJsonObject* MessageJson= UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-	MessageJson->SetNumberField(TEXT("type"), 6);
-	
-	UWorld* MyWorld = WorldContextObject->GetWorld();
-	UCEditorGameInstance *GameInstance = Cast<UCEditorGameInstance>(MyWorld->GetGameInstance());
-	UVaRestJsonObject* data = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-	UVaRestJsonObject* inputParams = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-	UVaRestJsonObject* modelSize = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-	UVaRestJsonObject* point = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-	UVaRestJsonObject* start = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-	UVaRestJsonObject* end = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
-	modelSize->SetNumberField("dx", Data.size.X);
-	modelSize->SetNumberField("dy", Data.size.Y);
-	point->SetNumberField("x", Data.point.X);
-	point->SetNumberField("y", Data.point.Y);
-
-	start->SetNumberField("x", Data.wallline.mStart.X);
-	start->SetNumberField("y", Data.wallline.mStart.Y);
-
-	end->SetNumberField("x", Data.wallline.mEnd.X);
-	end->SetNumberField("y", Data.wallline.mEnd.Y);
-
-	inputParams->SetNumberField("skuid", Data.skuid);
-	inputParams->SetNumberField("type", Data.type);
-	inputParams->SetObjectField("modelSize", modelSize);
-	inputParams->SetObjectField("point", point);
-	inputParams->SetNumberField("rotate", Data.rotate);
-	inputParams->SetObjectField("start", start);
-	inputParams->SetObjectField("end", end);
-
-	data->SetNumberField(TEXT("operation"), 3);
-	data->SetStringField("functionName", "getSkuPos");
-	data->SetStringField("inputParams", inputParams->EncodeJsonToSingleString());
-	MessageJson->SetObjectField(TEXT("data"), data);
-	return GameInstance->SocketSend(MessageJson->EncodeJsonToSingleString());
+	return true;
 }
 
 bool UCabinetSdk::Complete()

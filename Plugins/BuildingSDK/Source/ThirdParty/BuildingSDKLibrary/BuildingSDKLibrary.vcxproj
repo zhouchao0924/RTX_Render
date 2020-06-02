@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{82D74E0F-FF05-4325-AD9F-473ABA19FEEA}</ProjectGuid>
+    <RootNamespace>BuildingSDK</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <ProjectName>BuildingSDKLibrary</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>
+      </SDLCheck>
+      <AdditionalIncludeDirectories>./;./Math;./Private</AdditionalIncludeDirectories>
+      <ObjectFileName>$(SolutionDir)..\..\..\obj\$(ProjectName)\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>$(SolutionDir)..\..\..\obj\$(ProjectName)\$(Configuration)\vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <BrowseInformationFile>$(SolutionDir)..\..\..\obj\$(ProjectName)\$(Configuration)\</BrowseInformationFile>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <BuildLog>
+      <Path>$(IntDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
+    <Bscmake>
+      <OutputFile>$(SolutionDir)..\..\..\obj\$(ProjectName)\$(Configuration)\$(TargetName).bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>./;./Public;./Public/Math;./Private;./Private/External;./Thridparty/FBX/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WINDOWS;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetPath)" "$(SolutionDir)..\..\..\Binaries\ThirdParty\BuildingSDKLibrary\Win64\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>./;./Public;./Public/Math;./Private;./Private/External;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;EXAMPLELIBRARY_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(TargetPath)" "$(SolutionDir)..\..\..\Binaries\ThirdParty\BuildingSDKLibrary\Win64\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="BuildingSDKLibrary.h" />
+    <ClInclude Include="Private\BuildingSDK.h" />
+    <ClInclude Include="Private\Class\ClassLibaray.h" />
+    <ClInclude Include="Private\Class\Object.h" />
+    <ClInclude Include="Private\Class\ObjectDesc.h" />
+    <ClInclude Include="Private\Class\Property.h" />
+    <ClInclude Include="Private\Class\PValue.h" />
+    <ClInclude Include="Private\Class\ValueFactory.h" />
+    <ClInclude Include="Private\Elements\Anchor.h" />
+    <ClInclude Include="Private\Elements\BuildingConfig.h" />
+    <ClInclude Include="Private\Elements\BuildingObject.h" />
+    <ClInclude Include="Private\Elements\CompoudObject.h" />
+    <ClInclude Include="Private\Elements\Corner.h" />
+    <ClInclude Include="Private\Elements\DoorHole.h" />
+    <ClInclude Include="Private\Elements\ModelInstance.h" />
+    <ClInclude Include="Private\Elements\PinCorner.h" />
+    <ClInclude Include="Private\Elements\PlanePrimitive.h" />
+    <ClInclude Include="Private\Elements\Primitive.h" />
+    <ClInclude Include="Private\Elements\Room.h" />
+    <ClInclude Include="Private\Elements\Skirting.h" />
+    <ClInclude Include="Private\Elements\SparseMap.h" />
+    <ClInclude Include="Private\Elements\SuiteImpl.h" />
+    <ClInclude Include="Private\Elements\Surface.h" />
+    <ClInclude Include="Private\Elements\Wall.h" />
+    <ClInclude Include="Private\Elements\WallHole.h" />
+    <ClInclude Include="Private\Elements\Window.h" />
+    <ClInclude Include="Private\External\png\lodepng.h" />
+    <ClInclude Include="Private\External\png\lodepng_util.h" />
+    <ClInclude Include="Private\External\poly2tri\common\shapes.h" />
+    <ClInclude Include="Private\External\poly2tri\common\utils.h" />
+    <ClInclude Include="Private\External\poly2tri\poly2tri.h" />
+    <ClInclude Include="Private\External\poly2tri\sweep\advancing_front.h" />
+    <ClInclude Include="Private\External\poly2tri\sweep\cdt.h" />
+    <ClInclude Include="Private\External\poly2tri\sweep\sweep.h" />
+    <ClInclude Include="Private\External\poly2tri\sweep\sweep_context.h" />
+    <ClInclude Include="Private\Importer\ImporterImpl.h" />
+    <ClInclude Include="Private\Mesh\MeshObject.h" />
+    <ClInclude Include="Private\Mesh\SurfaceObject.h" />
+    <ClInclude Include="Private\MXFile\MXFile.h" />
+    <ClInclude Include="Private\MXFile\MXTexture.h" />
+    <ClInclude Include="Private\Platform.h" />
+    <ClInclude Include="Private\Stream\FileStream.h" />
+    <ClInclude Include="Private\Stream\MemStream.h" />
+    <ClInclude Include="Private\Stream\StreamImpl.h" />
+    <ClInclude Include="Private\Transaction\DRTransactionSystem.h" />
+    <ClInclude Include="Private\Transaction\Transaction.h" />
+    <ClInclude Include="Public\IBuildingSDK.h" />
+    <ClInclude Include="Public\IClass.h" />
+    <ClInclude Include="Public\IMeshObject.h" />
+    <ClInclude Include="Public\IImporter.h" />
+    <ClInclude Include="Public\IProperty.h" />
+    <ClInclude Include="Public\ISerialize.h" />
+    <ClInclude Include="Public\ISuite.h" />
+    <ClInclude Include="Public\ITransaction.h" />
+    <ClInclude Include="Public\Math\kBox.h" />
+    <ClInclude Include="Public\Math\kCapsule.h" />
+    <ClInclude Include="Public\Math\kColor.h" />
+    <ClInclude Include="Public\Math\kLine.h" />
+    <ClInclude Include="Public\Math\kLine2D.h" />
+    <ClInclude Include="Public\Math\kMatrix43.h" />
+    <ClInclude Include="Public\Math\kPlane.h" />
+    <ClInclude Include="Public\Math\kQuat.h" />
+    <ClInclude Include="Public\Math\kSphere.h" />
+    <ClInclude Include="Public\Math\kTriangle.h" />
+    <ClInclude Include="Public\Math\kVector2D.h" />
+    <ClInclude Include="Public\Math\kVector3D.h" />
+    <ClInclude Include="Public\Math\kVector4D.h" />
+    <ClInclude Include="Public\Math\MathBase.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BuildingSDKLibrary.cpp" />
+    <ClCompile Include="Private\BuildingSDK.cpp" />
+    <ClCompile Include="Private\Class\ClassLibaray.cpp" />
+    <ClCompile Include="Private\Class\Object.cpp" />
+    <ClCompile Include="Private\Class\ObjectDesc.cpp" />
+    <ClCompile Include="Private\Class\Property.cpp" />
+    <ClCompile Include="Private\Class\PValue.cpp" />
+    <ClCompile Include="Private\Class\ValueFactory.cpp" />
+    <ClCompile Include="Private\Elements\Anchor.cpp" />
+    <ClCompile Include="Private\Elements\BuildingConfig.cpp" />
+    <ClCompile Include="Private\Elements\BuildingObject.cpp" />
+    <ClCompile Include="Private\Elements\CompoudObject.cpp" />
+    <ClCompile Include="Private\Elements\Corner.cpp" />
+    <ClCompile Include="Private\Elements\DoorHole.cpp" />
+    <ClCompile Include="Private\Elements\ModelInstance.cpp" />
+    <ClCompile Include="Private\Elements\PinCorner.cpp" />
+    <ClCompile Include="Private\Elements\PlanePrimitive.cpp" />
+    <ClCompile Include="Private\Elements\Primitive.cpp" />
+    <ClCompile Include="Private\Elements\Room.cpp" />
+    <ClCompile Include="Private\Elements\Skirting.cpp" />
+    <ClCompile Include="Private\Elements\SparseMap.cpp" />
+    <ClCompile Include="Private\Elements\SuiteImpl.cpp" />
+    <ClCompile Include="Private\Elements\Surface.cpp" />
+    <ClCompile Include="Private\Elements\Wall.cpp" />
+    <ClCompile Include="Private\Elements\WallHole.cpp" />
+    <ClCompile Include="Private\Elements\Window.cpp" />
+    <ClCompile Include="Private\External\png\lodepng.cpp" />
+    <ClCompile Include="Private\External\png\lodepng_benchmark.cpp" />
+    <ClCompile Include="Private\External\png\lodepng_util.cpp" />
+    <ClCompile Include="Private\External\png\pngdetail.cpp" />
+    <ClCompile Include="Private\External\poly2tri\common\shapes.cc" />
+    <ClCompile Include="Private\External\poly2tri\sweep\advancing_front.cc" />
+    <ClCompile Include="Private\External\poly2tri\sweep\cdt.cc" />
+    <ClCompile Include="Private\External\poly2tri\sweep\sweep.cc" />
+    <ClCompile Include="Private\External\poly2tri\sweep\sweep_context.cc" />
+    <ClCompile Include="Private\Importer\ImporterImpl.cpp" />
+    <ClCompile Include="Private\Mesh\MeshObject.cpp" />
+    <ClCompile Include="Private\Mesh\SurfaceObject.cpp" />
+    <ClCompile Include="Private\MXFile\MXFile.cpp" />
+    <ClCompile Include="Private\MXFile\MXTexture.cpp" />
+    <ClCompile Include="Private\Stream\FileStream.cpp" />
+    <ClCompile Include="Private\Stream\MemStream.cpp" />
+    <ClCompile Include="Private\Stream\StreamImpl.cpp" />
+    <ClCompile Include="Private\Transaction\DRTransactionSystem.cpp" />
+    <ClCompile Include="Private\Transaction\Transaction.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Private\External\png\README.md" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

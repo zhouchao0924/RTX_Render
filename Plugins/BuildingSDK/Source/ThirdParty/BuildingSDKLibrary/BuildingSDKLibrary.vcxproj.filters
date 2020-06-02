@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="BuildingSDKLibrary.cpp" />
+    <ClCompile Include="Private\Class\ClassLibaray.cpp">
+      <Filter>Private\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Class\ObjectDesc.cpp">
+      <Filter>Private\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Class\Object.cpp">
+      <Filter>Private\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Class\Property.cpp">
+      <Filter>Private\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Class\PValue.cpp">
+      <Filter>Private\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Class\ValueFactory.cpp">
+      <Filter>Private\Class</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\MXFile\MXTexture.cpp">
+      <Filter>Private\MXFile</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\MXFile\MXFile.cpp">
+      <Filter>Private\MXFile</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Stream\MemStream.cpp">
+      <Filter>Private\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Stream\FileStream.cpp">
+      <Filter>Private\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Stream\StreamImpl.cpp">
+      <Filter>Private\Stream</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Transaction\Transaction.cpp">
+      <Filter>Private\Transaction</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\Anchor.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\BuildingConfig.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\BuildingObject.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\Corner.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\DoorHole.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\ModelInstance.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\PlanePrimitive.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\Primitive.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\Room.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\Skirting.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\SparseMap.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\SuiteImpl.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\Surface.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\Wall.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\WallHole.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\Window.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\BuildingSDK.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\External\png\lodepng.cpp">
+      <Filter>Private\External\png</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\External\png\lodepng_benchmark.cpp">
+      <Filter>Private\External\png</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\External\png\lodepng_util.cpp">
+      <Filter>Private\External\png</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\External\png\pngdetail.cpp">
+      <Filter>Private\External\png</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\External\poly2tri\common\shapes.cc">
+      <Filter>Private\External\polytri\common</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\External\poly2tri\sweep\advancing_front.cc">
+      <Filter>Private\External\polytri\sweep</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\External\poly2tri\sweep\cdt.cc">
+      <Filter>Private\External\polytri\sweep</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\External\poly2tri\sweep\sweep.cc">
+      <Filter>Private\External\polytri\sweep</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\External\poly2tri\sweep\sweep_context.cc">
+      <Filter>Private\External\polytri\sweep</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Mesh\MeshObject.cpp">
+      <Filter>Private\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Mesh\SurfaceObject.cpp">
+      <Filter>Private\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Transaction\DRTransactionSystem.cpp">
+      <Filter>Private\Transaction</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\PinCorner.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Importer\ImporterImpl.cpp">
+      <Filter>Private\Import</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Elements\CompoudObject.cpp">
+      <Filter>Private\Elements</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BuildingSDKLibrary.h" />
+    <ClInclude Include="Private\Class\ClassLibaray.h">
+      <Filter>Private\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Class\ObjectDesc.h">
+      <Filter>Private\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Class\Object.h">
+      <Filter>Private\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Class\Property.h">
+      <Filter>Private\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Class\PValue.h">
+      <Filter>Private\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Class\ValueFactory.h">
+      <Filter>Private\Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\MXFile\MXFile.h">
+      <Filter>Private\MXFile</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\MXFile\MXTexture.h">
+      <Filter>Private\MXFile</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Stream\MemStream.h">
+      <Filter>Private\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Stream\FileStream.h">
+      <Filter>Private\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Stream\StreamImpl.h">
+      <Filter>Private\Stream</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Transaction\Transaction.h">
+      <Filter>Private\Transaction</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\Anchor.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\BuildingConfig.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\BuildingObject.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\Corner.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\DoorHole.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\ModelInstance.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\PlanePrimitive.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\Primitive.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\Room.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\Skirting.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\SparseMap.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\SuiteImpl.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\Surface.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\Wall.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\WallHole.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\Window.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\BuildingSDK.h">
+      <Filter>Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\External\png\lodepng.h">
+      <Filter>Private\External\png</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\External\png\lodepng_util.h">
+      <Filter>Private\External\png</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\External\poly2tri\common\shapes.h">
+      <Filter>Private\External\polytri\common</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\External\poly2tri\common\utils.h">
+      <Filter>Private\External\polytri\common</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\External\poly2tri\sweep\advancing_front.h">
+      <Filter>Private\External\polytri\sweep</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\External\poly2tri\sweep\cdt.h">
+      <Filter>Private\External\polytri\sweep</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\External\poly2tri\sweep\sweep.h">
+      <Filter>Private\External\polytri\sweep</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\External\poly2tri\sweep\sweep_context.h">
+      <Filter>Private\External\polytri\sweep</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\External\poly2tri\poly2tri.h">
+      <Filter>Private\External\polytri</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Mesh\MeshObject.h">
+      <Filter>Private\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Mesh\SurfaceObject.h">
+      <Filter>Private\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\kBox.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\kCapsule.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\kColor.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\kLine.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\kLine2D.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\kMatrix43.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\kPlane.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\kQuat.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\kSphere.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\kVector2D.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\kVector3D.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\kVector4D.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\MathBase.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\IBuildingSDK.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\IClass.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\IMeshObject.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\IProperty.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\ISerialize.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\ISuite.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\ITransaction.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Transaction\DRTransactionSystem.h">
+      <Filter>Private\Transaction</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Math\kTriangle.h">
+      <Filter>Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\PinCorner.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\IImporter.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Importer\ImporterImpl.h">
+      <Filter>Private\Import</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Platform.h">
+      <Filter>Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Elements\CompoudObject.h">
+      <Filter>Private\Elements</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Private">
+      <UniqueIdentifier>{ca808cc9-30e7-4c07-b728-7390263cfee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Class">
+      <UniqueIdentifier>{5066e99a-4ba3-43c8-b608-4d3ca1f6a04a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\MXFile">
+      <UniqueIdentifier>{1eb918d3-8325-4423-b2fa-f950426b6d4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Stream">
+      <UniqueIdentifier>{b9c8cdc2-3290-4188-b542-e6550e17cbf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Transaction">
+      <UniqueIdentifier>{9a82fb99-f983-4b88-968d-76e511453204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Elements">
+      <UniqueIdentifier>{4bffaa7f-a5e0-4572-bf29-7fd5c4f52885}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\External">
+      <UniqueIdentifier>{b67ec13a-ad9f-4dcf-bcff-db859eeed7db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\External\png">
+      <UniqueIdentifier>{29e59497-167c-403d-8b32-207174a42184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\External\polytri">
+      <UniqueIdentifier>{901f294d-234f-48cc-a7db-ba29e6825428}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\External\polytri\common">
+      <UniqueIdentifier>{69f8e094-e1c6-43c8-9908-5f8b045c7076}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\External\polytri\sweep">
+      <UniqueIdentifier>{69c031bb-9058-4340-b12e-128aa9fd64f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Mesh">
+      <UniqueIdentifier>{e8e02a4f-6b12-4114-87fd-ff407b837f6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public">
+      <UniqueIdentifier>{ae0ae3b5-63ae-421e-b786-735ea42469b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Math">
+      <UniqueIdentifier>{82395b3c-09cb-4628-9d19-99ba665c6dc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Import">
+      <UniqueIdentifier>{8f024166-cdc1-4997-bb8c-84c569c07c49}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Private\External\png\README.md">
+      <Filter>Private\External\png</Filter>
+    </None>
+  </ItemGroup>
+</Project>

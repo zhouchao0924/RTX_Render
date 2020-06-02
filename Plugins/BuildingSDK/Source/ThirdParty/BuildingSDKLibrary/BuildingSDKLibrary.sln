@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildingSDKLibrary", "BuildingSDKLibrary.vcxproj", "{82D74E0F-FF05-4325-AD9F-473ABA19FEEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82D74E0F-FF05-4325-AD9F-473ABA19FEEA}.Debug|x64.ActiveCfg = Debug|x64
+		{82D74E0F-FF05-4325-AD9F-473ABA19FEEA}.Debug|x64.Build.0 = Debug|x64
+		{82D74E0F-FF05-4325-AD9F-473ABA19FEEA}.Debug|x86.ActiveCfg = Debug|Win32
+		{82D74E0F-FF05-4325-AD9F-473ABA19FEEA}.Debug|x86.Build.0 = Debug|Win32
+		{82D74E0F-FF05-4325-AD9F-473ABA19FEEA}.Release|x64.ActiveCfg = Release|x64
+		{82D74E0F-FF05-4325-AD9F-473ABA19FEEA}.Release|x64.Build.0 = Release|x64
+		{82D74E0F-FF05-4325-AD9F-473ABA19FEEA}.Release|x86.ActiveCfg = Release|Win32
+		{82D74E0F-FF05-4325-AD9F-473ABA19FEEA}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A66DE26C-7901-46F8-BF12-7C113C9B25FC}
+	EndGlobalSection
+EndGlobal

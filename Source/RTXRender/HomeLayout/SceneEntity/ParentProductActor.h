@@ -9,7 +9,7 @@
  * 
  */
 UCLASS()
-class AJDR_API AParentProductActor : public AStaticMeshActor
+class RTXRENDER_API AParentProductActor : public AStaticMeshActor
 {
 	GENERATED_BODY()
 	

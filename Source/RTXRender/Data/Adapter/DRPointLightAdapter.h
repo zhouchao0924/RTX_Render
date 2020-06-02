@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UDRPointLightAdapter : public UDRLightAdapter
+class RTXRENDER_API UDRPointLightAdapter : public UDRLightAdapter
 {
 	GENERATED_UCLASS_BODY()
 public:

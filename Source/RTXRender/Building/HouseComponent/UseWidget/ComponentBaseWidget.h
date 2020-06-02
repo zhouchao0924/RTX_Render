@@ -5,7 +5,7 @@
 #include "ComponentBaseWidget.generated.h"
 
 UCLASS(BlueprintType)
-class  AJDR_API UComponentBaseWidget:public UUserWidget
+class  RTXRENDER_API UComponentBaseWidget:public UUserWidget
 {
 	GENERATED_BODY()
 public:

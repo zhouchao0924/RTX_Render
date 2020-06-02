@@ -10,7 +10,7 @@
 class FPrimitiveSceneProxy;
 
 UCLASS( ClassGroup=(Custom), hidecategories = (Object, LOD, Lighting, TextureStreaming), meta=(BlueprintSpawnableComponent, DisplayName = "CustomRender"))
-class AJDR_API UCustomRenderComponent : public UPrimitiveComponent
+class RTXRENDER_API UCustomRenderComponent : public UPrimitiveComponent
 {
 	GENERATED_BODY()
 

@@ -17,7 +17,7 @@ class ASkuComponentActor;
 class ADynamicTableboard;
 #define TAMHIGHT 2.f
 UCLASS(BlueprintType)
-class AJDR_API AHouseCustomActor : public AResourceActor
+class RTXRENDER_API AHouseCustomActor : public AResourceActor
 {
 	//GENERATED_UCLASS_BODY()
 	GENERATED_BODY()

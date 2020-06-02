@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UDRWallAdapter : public UDataAdapter
+class RTXRENDER_API UDRWallAdapter : public UDataAdapter
 {
 	GENERATED_UCLASS_BODY()
 public:

@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UMaterialSaveGame : public USaveGame
+class RTXRENDER_API UMaterialSaveGame : public USaveGame
 {
 	GENERATED_BODY()
 	

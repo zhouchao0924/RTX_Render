@@ -22,7 +22,7 @@
 
 UCLASS()
 
-class AJDR_API UUserInputRulerWidget : public UUserWidget
+class RTXRENDER_API UUserInputRulerWidget : public UUserWidget
 
 {
 

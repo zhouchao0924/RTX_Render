@@ -11,7 +11,7 @@
 
 class UBooleanBase;
 UCLASS(BlueprintType)
-class AJDR_API AFurnitureModelActor : public ADRActor
+class RTXRENDER_API AFurnitureModelActor : public ADRActor
 {
 	GENERATED_BODY()
 private:

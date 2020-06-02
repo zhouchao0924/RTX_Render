@@ -9,7 +9,7 @@
 // THomeSrc name:
 // Map Base
 UCLASS()
-class AJDR_API ASceneBaseActor : public AActor
+class RTXRENDER_API ASceneBaseActor : public AActor
 {
 	GENERATED_BODY()
 	

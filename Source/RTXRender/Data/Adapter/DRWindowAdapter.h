@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UDRWindowAdapter : public UDRModelInstanceAdapter
+class RTXRENDER_API UDRWindowAdapter : public UDRModelInstanceAdapter
 {
 	GENERATED_UCLASS_BODY()
 	

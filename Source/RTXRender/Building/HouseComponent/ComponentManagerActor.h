@@ -61,7 +61,7 @@ public:
 	}
 };
 UCLASS()
-class AJDR_API AComponentManagerActor : public AActor
+class RTXRENDER_API AComponentManagerActor : public AActor
 {
 	GENERATED_BODY()
 

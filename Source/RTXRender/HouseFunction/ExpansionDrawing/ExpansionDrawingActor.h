@@ -11,7 +11,7 @@
 class ADynamicTableboard;
 class AFunctionManage;
 UCLASS()
-class AJDR_API AExpansionDrawingActor : public AActor
+class RTXRENDER_API AExpansionDrawingActor : public AActor
 {
 	GENERATED_BODY()
 	

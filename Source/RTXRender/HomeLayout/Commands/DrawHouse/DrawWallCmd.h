@@ -70,7 +70,7 @@ public:
  * 
  */
 UCLASS()
-class AJDR_API UDrawWallCmd : public UDrawHouseBaseCmd
+class RTXRENDER_API UDrawWallCmd : public UDrawHouseBaseCmd
 {
 	GENERATED_BODY()
 

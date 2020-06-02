@@ -18,7 +18,7 @@ class USkirtingSegComponent;
 class UBuildingData;
 
 UCLASS()
-class AJDR_API ARoomActor : public ADRActor
+class RTXRENDER_API ARoomActor : public ADRActor
 {
 	GENERATED_BODY()
 	
@@ -225,7 +225,7 @@ public:
 
 
 USTRUCT(BlueprintType)
-struct AJDR_API FRoomList
+struct RTXRENDER_API FRoomList
 {
 	GENERATED_BODY()
 

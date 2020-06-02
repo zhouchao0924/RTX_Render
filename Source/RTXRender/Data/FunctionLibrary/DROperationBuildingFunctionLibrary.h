@@ -11,7 +11,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UDROperationBuildingFunctionLibrary : public UBlueprintFunctionLibrary
+class RTXRENDER_API UDROperationBuildingFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 

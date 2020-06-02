@@ -12,7 +12,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UComponentPositionWidget : public UUserWidget
+class RTXRENDER_API UComponentPositionWidget : public UUserWidget
 {
 	GENERATED_BODY()
 

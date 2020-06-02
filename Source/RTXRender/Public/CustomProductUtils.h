@@ -75,7 +75,7 @@ public:
  * 
  */
 UCLASS()
-class AJDR_API UCustomProductUtils : public UBlueprintFunctionLibrary
+class RTXRENDER_API UCustomProductUtils : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 	

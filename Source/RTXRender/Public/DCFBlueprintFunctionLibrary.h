@@ -278,7 +278,7 @@ extern "C" static NvAPI_GPU_GetPCIIdentifiersType m_pfnNvAPI_GPU_GetPCIIdentifie
 /*
 * @brief GPU信息
 */
-struct AJDR_API _GPU_INFO
+struct RTXRENDER_API _GPU_INFO
 {
 	NvPhysicalGpuHandle     nvGpuHandle;        // GPU句柄
 	int                     nUsage;             // GPU占用率
@@ -287,7 +287,7 @@ typedef _GPU_INFO GPU_INFO;
 /*
 * @brief 显卡信息
 */
-struct AJDR_API DISPLAY_CARD_INFO
+struct RTXRENDER_API DISPLAY_CARD_INFO
 {
 	NvDisplayHandle nvDisplayHandle;            // 显卡句柄
 	int             nGpuCount;                  // Gpu个数
@@ -301,7 +301,7 @@ struct AJDR_API DISPLAY_CARD_INFO
 /*
 * @brief 显卡相关信息（可用于导出的结构体）
 */
-struct AJDR_API _DISPLAY_INFO
+struct RTXRENDER_API _DISPLAY_INFO
 {
 	int         nGpuCount;                  // Gpu个数
 	int         nGpuUsages[MAX_GPU_NUM];    // Gpu占用率
@@ -311,7 +311,7 @@ struct AJDR_API _DISPLAY_INFO
 typedef _DISPLAY_INFO DISPLAY_INFO;
 
 USTRUCT(Blueprintable)
-struct AJDR_API FDISPLAY_INFO
+struct RTXRENDER_API FDISPLAY_INFO
 {
 	GENERATED_USTRUCT_BODY()
 
@@ -336,7 +336,7 @@ enum class MemoryStates:uint8
 struct DXGI_ADAPTER_DESC;
 
 UCLASS()
-class AJDR_API UDCFBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
+class RTXRENDER_API UDCFBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 	

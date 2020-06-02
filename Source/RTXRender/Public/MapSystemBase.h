@@ -7,7 +7,7 @@
 #include "MapSystemBase.generated.h"
 
 UCLASS()
-class AJDR_API AMapSystemBase : public AActor
+class RTXRENDER_API AMapSystemBase : public AActor
 {
 	GENERATED_BODY()
 	

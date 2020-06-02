@@ -7,7 +7,7 @@
 #include "MapBase_VirtualObject.generated.h"
 
 UCLASS()
-class AJDR_API AMapBase_VirtualObject : public AActor
+class RTXRENDER_API AMapBase_VirtualObject : public AActor
 {
 	GENERATED_BODY()
 	

@@ -11,7 +11,7 @@
  * 
  */
 UCLASS()
-class AJDR_API ADRPointLightActor : public ADRActor
+class RTXRENDER_API ADRPointLightActor : public ADRActor
 {
 	GENERATED_BODY()
 public:

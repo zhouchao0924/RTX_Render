@@ -126,7 +126,7 @@ public:
 
 
 UCLASS(BlueprintType, Blueprintable)
-class AJDR_API UWallBuildSystem : public UActorComponent
+class RTXRENDER_API UWallBuildSystem : public UActorComponent
 {
 	GENERATED_BODY()
 

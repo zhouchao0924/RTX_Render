@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UDrawHouseBaseCmd : public UBaseCmd
+class RTXRENDER_API UDrawHouseBaseCmd : public UBaseCmd
 {
 	GENERATED_BODY()
 	

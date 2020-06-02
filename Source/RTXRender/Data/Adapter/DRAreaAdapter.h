@@ -11,7 +11,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UDRAreaAdapter : public UDataAdapter
+class RTXRENDER_API UDRAreaAdapter : public UDataAdapter
 {
 	GENERATED_UCLASS_BODY()
 public:

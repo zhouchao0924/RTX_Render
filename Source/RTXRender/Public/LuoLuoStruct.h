@@ -23,7 +23,7 @@ enum class CuttingErrorType : uint8
 };
 
 UCLASS()
-class AJDR_API ULuoLuoBlueprintFunctionLibrary :public UBlueprintFunctionLibrary
+class RTXRENDER_API ULuoLuoBlueprintFunctionLibrary :public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 

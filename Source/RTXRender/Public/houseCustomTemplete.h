@@ -87,7 +87,7 @@ public:
 
 };
 UCLASS(BlueprintType)
-class AJDR_API UhouseCustomTemplete : public UObject
+class RTXRENDER_API UhouseCustomTemplete : public UObject
 {
 	GENERATED_BODY()
 public:
@@ -192,7 +192,7 @@ public:
 
 
 UCLASS(BlueprintType)
-class AJDR_API UHouseCustomTempleteFunctionLibrary :public  UBlueprintFunctionLibrary
+class RTXRENDER_API UHouseCustomTempleteFunctionLibrary :public  UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 public:

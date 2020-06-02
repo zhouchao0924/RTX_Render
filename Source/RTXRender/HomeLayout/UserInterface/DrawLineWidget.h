@@ -10,7 +10,7 @@
  * 
  */
 UCLASS(BlueprintType)
-class AJDR_API UDrawLineWidget : public UUserWidget
+class RTXRENDER_API UDrawLineWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	

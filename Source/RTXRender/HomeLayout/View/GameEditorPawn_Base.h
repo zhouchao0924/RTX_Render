@@ -7,7 +7,7 @@
 #include "GameEditorPawn_Base.generated.h"
 
 UCLASS()
-class AJDR_API AGameEditorPawn_Base : public APawn
+class RTXRENDER_API AGameEditorPawn_Base : public APawn
 {
 	GENERATED_BODY()
 

@@ -197,7 +197,7 @@ public:
 
 
 UCLASS()
-class AJDR_API UPlaneHousePicture : public UBlueprintFunctionLibrary
+class RTXRENDER_API UPlaneHousePicture : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 

@@ -9,7 +9,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UAutoBuildAreaMsgBox : public UUserWidget
+class RTXRENDER_API UAutoBuildAreaMsgBox : public UUserWidget
 {
 	GENERATED_BODY()
 	

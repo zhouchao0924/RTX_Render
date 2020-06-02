@@ -9,7 +9,7 @@
  * 
  */
 UCLASS()
-class AJDR_API URulerLabelWidget : public UUserWidget
+class RTXRENDER_API URulerLabelWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	

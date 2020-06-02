@@ -7,7 +7,7 @@
 /**
  * 
  */
-class AJDR_API OBBQuadrilateral
+class RTXRENDER_API OBBQuadrilateral
 {
 public:
 

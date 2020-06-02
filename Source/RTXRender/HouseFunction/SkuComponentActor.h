@@ -11,7 +11,7 @@ class UModelFile;
 class UModelFileComponent;
 class ADynamicTableboard;
 UCLASS()
-class AJDR_API ASkuComponentActor : public AActor
+class RTXRENDER_API ASkuComponentActor : public AActor
 {
 	GENERATED_BODY()
 	

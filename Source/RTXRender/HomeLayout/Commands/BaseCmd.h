@@ -9,7 +9,7 @@
  * 
  */
 UCLASS(BlueprintType, Blueprintable)
-class AJDR_API UBaseCmd : public UObject
+class RTXRENDER_API UBaseCmd : public UObject
 {
 	GENERATED_BODY()
 public:

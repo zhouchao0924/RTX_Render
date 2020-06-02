@@ -9,7 +9,7 @@
  * 
  */
 UCLASS()
-class AJDR_API AOpeningActor : public AWall_Boolean_Base
+class RTXRENDER_API AOpeningActor : public AWall_Boolean_Base
 {
 	GENERATED_BODY()
 	

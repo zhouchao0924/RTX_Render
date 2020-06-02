@@ -12,7 +12,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UCustomLayoutFunctionLibrary : public UBlueprintFunctionLibrary
+class RTXRENDER_API UCustomLayoutFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 

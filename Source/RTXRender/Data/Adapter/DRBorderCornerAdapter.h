@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UDRBorderCornerAdapter : public UDRCornerAdapter
+class RTXRENDER_API UDRBorderCornerAdapter : public UDRCornerAdapter
 {
 	GENERATED_UCLASS_BODY()	
 public:

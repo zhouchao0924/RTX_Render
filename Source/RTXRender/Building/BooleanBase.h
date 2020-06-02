@@ -12,7 +12,7 @@
  * 
  */
 UCLASS(BlueprintType)
-class AJDR_API UBooleanBase : public UUserWidget
+class RTXRENDER_API UBooleanBase : public UUserWidget
 {
 	GENERATED_BODY()
 	

@@ -9,7 +9,7 @@
 *
 */
 UCLASS()
-class AJDR_API UDrawHouseWidget : public UUserWidget
+class RTXRENDER_API UDrawHouseWidget : public UUserWidget
 {
 	GENERATED_BODY()
 

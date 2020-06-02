@@ -19,7 +19,7 @@ class UResourceMgr;
 class UProjectManager;
 
 UCLASS()
-class AJDR_API UCEditorGameInstance : public UGameInstance
+class RTXRENDER_API UCEditorGameInstance : public UGameInstance
 {
 	GENERATED_UCLASS_BODY()
 

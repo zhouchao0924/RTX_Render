@@ -24,7 +24,7 @@ public:
 };
 
 UCLASS(BlueprintType, Blueprintable)
-class AJDR_API AAreaSystem : public AActor
+class RTXRENDER_API AAreaSystem : public AActor
 {
 	GENERATED_BODY()
 

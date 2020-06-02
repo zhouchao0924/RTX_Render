@@ -11,7 +11,7 @@
 
 
 UCLASS()
-class AJDR_API AFunctionManage : public AActor
+class RTXRENDER_API AFunctionManage : public AActor
 {
 	GENERATED_BODY()
 

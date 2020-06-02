@@ -13,7 +13,7 @@
 #include "WallPlane.generated.h"
 
 UCLASS()
-class AJDR_API AWallPlaneBase : public AActor
+class RTXRENDER_API AWallPlaneBase : public AActor
 {
 	GENERATED_BODY()
 	

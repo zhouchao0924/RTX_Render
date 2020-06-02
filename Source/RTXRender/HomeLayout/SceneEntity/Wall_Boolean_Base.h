@@ -15,7 +15,7 @@
 #include "Wall_Boolean_Base.generated.h"
 
 UCLASS()
-class AJDR_API AWall_Boolean_Base : public ADRActor
+class RTXRENDER_API AWall_Boolean_Base : public ADRActor
 {
 	GENERATED_BODY()
 

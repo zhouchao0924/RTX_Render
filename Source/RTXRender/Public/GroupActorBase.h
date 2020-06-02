@@ -7,7 +7,7 @@
 #include "GroupActorBase.generated.h"
 
 UCLASS(BlueprintType)
-class AJDR_API AGroupActorBase : public AActor
+class RTXRENDER_API AGroupActorBase : public AActor
 {
 	GENERATED_BODY()
 	

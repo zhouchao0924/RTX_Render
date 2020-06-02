@@ -9,7 +9,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UMouseSnapWidget : public UUserWidget
+class RTXRENDER_API UMouseSnapWidget : public UUserWidget
 {
 	GENERATED_BODY()
 

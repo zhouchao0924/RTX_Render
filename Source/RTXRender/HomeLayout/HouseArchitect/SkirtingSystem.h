@@ -29,7 +29,7 @@ public:
 };
 
 UCLASS(BlueprintType, Blueprintable)
-class AJDR_API ASkirtingSystem : public AActor
+class RTXRENDER_API ASkirtingSystem : public AActor
 {
 	GENERATED_BODY()
 
@@ -238,7 +238,7 @@ public:
 };
 
 UCLASS(BlueprintType, Blueprintable)
-class AJDR_API ASkirtingActor : public AActor
+class RTXRENDER_API ASkirtingActor : public AActor
 {
 	GENERATED_BODY()
 

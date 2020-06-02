@@ -11,7 +11,7 @@
  * Map Base Object
  */
 UCLASS()
-class AJDR_API ACornerActor : public AActor
+class RTXRENDER_API ACornerActor : public AActor
 {
 	GENERATED_UCLASS_BODY()
 	

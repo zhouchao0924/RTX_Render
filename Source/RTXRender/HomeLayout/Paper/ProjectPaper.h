@@ -15,7 +15,7 @@
 
 
 UCLASS(BlueprintType)
-class AJDR_API UProjectPaper : public UObject
+class RTXRENDER_API UProjectPaper : public UObject
 {
 	GENERATED_BODY()
 	

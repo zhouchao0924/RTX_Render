@@ -14,6 +14,7 @@ public class RTXRender : ModuleRules
         PublicDefinitions.Add("BOOST_SYSTEM_NOEXCEPT");
 
         PublicIncludePaths.AddRange( new string[] {
+            ModuleDirectory,
             Path.Combine(ModuleDirectory, "Model"),
             Path.Combine(ModuleDirectory, "Data"),
             Path.Combine(ModuleDirectory, "Struct"),

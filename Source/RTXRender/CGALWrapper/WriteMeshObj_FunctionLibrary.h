@@ -182,7 +182,7 @@ public:
 UCLASS()
 
 
-class AJDR_API UWriteMeshObj_FunctionLibrary : public UBlueprintFunctionLibrary
+class RTXRENDER_API UWriteMeshObj_FunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 

@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UDRDoorAdapter : public UDRModelInstanceAdapter
+class RTXRENDER_API UDRDoorAdapter : public UDRModelInstanceAdapter
 {
 	GENERATED_UCLASS_BODY()
 

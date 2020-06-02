@@ -11,7 +11,7 @@
  * Map Base Object
  */
 UCLASS()
-class AJDR_API ASceneInteriorActor : public ASceneBaseActor
+class RTXRENDER_API ASceneInteriorActor : public ASceneBaseActor
 {
 	GENERATED_BODY()
 	

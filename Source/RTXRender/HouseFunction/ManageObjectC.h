@@ -64,7 +64,7 @@ public:
 
 class ASkuComponentActor;
 UCLASS()
-class AJDR_API AManageObjectC : public AActor
+class RTXRENDER_API AManageObjectC : public AActor
 {
 	GENERATED_BODY()
 

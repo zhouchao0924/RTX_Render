@@ -8,7 +8,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UArea_TagBase : public UUserWidget
+class RTXRENDER_API UArea_TagBase : public UUserWidget
 {
 	GENERATED_BODY()
 public:

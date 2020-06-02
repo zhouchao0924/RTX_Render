@@ -9,7 +9,7 @@
  * 
  */
 UCLASS()
-class AJDR_API ADRPlayerController : public APlayerController
+class RTXRENDER_API ADRPlayerController : public APlayerController
 {
 	GENERATED_UCLASS_BODY()
 	

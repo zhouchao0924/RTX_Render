@@ -12,7 +12,7 @@
 
 
 UCLASS(Blueprintable,BlueprintType)
-class AJDR_API ACeilingManage : public AActor
+class RTXRENDER_API ACeilingManage : public AActor
 {
 	GENERATED_BODY()
 

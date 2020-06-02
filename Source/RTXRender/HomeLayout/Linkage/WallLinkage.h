@@ -12,7 +12,7 @@
 
 
 UCLASS(BlueprintType, Blueprintable)
-class AJDR_API UWallLinkageComponent : public UActorComponent
+class RTXRENDER_API UWallLinkageComponent : public UActorComponent
 {
 	GENERATED_BODY()
 

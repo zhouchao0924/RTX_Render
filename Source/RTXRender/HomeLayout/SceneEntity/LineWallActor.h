@@ -46,7 +46,7 @@ public:
 
 // B_Wall
 UCLASS()
-class AJDR_API ALineWallActor : public ADRActor
+class RTXRENDER_API ALineWallActor : public ADRActor
 {
 	GENERATED_BODY()
 

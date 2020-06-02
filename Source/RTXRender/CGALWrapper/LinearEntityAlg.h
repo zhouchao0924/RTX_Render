@@ -77,7 +77,7 @@ typedef FClosedIntervalD1<double> FDClosedInterval;
 
 // library for linear entity like point, segment, line, polygon
 UCLASS()
-class AJDR_API ULinearEntityLibrary : public UBlueprintFunctionLibrary
+class RTXRENDER_API ULinearEntityLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 

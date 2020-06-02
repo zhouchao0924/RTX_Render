@@ -154,7 +154,7 @@ struct  FCustomWallData
 };
 
 UCLASS()
-class AJDR_API UHouseFunctionLibrary : public UBlueprintFunctionLibrary
+class RTXRENDER_API UHouseFunctionLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 public:

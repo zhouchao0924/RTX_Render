@@ -9,7 +9,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UCornerSnapPntWidget : public UUserWidget
+class RTXRENDER_API UCornerSnapPntWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	

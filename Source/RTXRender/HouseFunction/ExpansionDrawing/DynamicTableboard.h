@@ -14,7 +14,7 @@
 #include "DynamicTableboard.generated.h"
 
 UCLASS()
-class AJDR_API ADynamicTableboard : public AActor
+class RTXRENDER_API ADynamicTableboard : public AActor
 {
 	GENERATED_BODY()
 	

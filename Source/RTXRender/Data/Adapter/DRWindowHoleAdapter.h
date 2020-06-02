@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class AJDR_API UDRWindowHoleAdapter : public UDRHoleAdapter
+class RTXRENDER_API UDRWindowHoleAdapter : public UDRHoleAdapter
 {
 	GENERATED_UCLASS_BODY()
 public:

@@ -14,7 +14,9 @@ public class RTXRender : ModuleRules
         PublicDefinitions.Add("BOOST_SYSTEM_NOEXCEPT");
 
         PublicIncludePaths.AddRange( new string[] {
-
+            Path.Combine(ModuleDirectory, "Model"),
+            Path.Combine(ModuleDirectory, "Data"),
+            Path.Combine(ModuleDirectory, "Struct"),
         });
 
         PublicDependencyModuleNames.AddRange(new string[] {
@@ -33,7 +35,7 @@ public class RTXRender : ModuleRules
             "nvTextureTools"
         });
 
-		PrivateDependencyModuleNames.AddRange(new string[] {
+		PublicDependencyModuleNames.AddRange(new string[] {
             "BuildingSDK",
             "CGAL",
             "VaRest",

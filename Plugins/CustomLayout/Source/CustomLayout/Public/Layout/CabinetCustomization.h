@@ -19,7 +19,7 @@ class CUSTOMLAYOUT_API CabinetCustomization : public CustomCabinetsObject
 {
 public:
 	CabinetCustomization();
-	~CabinetCustomization();
+	virtual ~CabinetCustomization();
 
 public:
 	CabinetCustom LayoutFloorCabinet(const FSelectWalldata& data);

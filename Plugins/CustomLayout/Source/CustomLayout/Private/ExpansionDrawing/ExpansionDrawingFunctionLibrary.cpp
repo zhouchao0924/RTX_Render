@@ -1,8 +1,8 @@
 // Copyright? 2017 ihomefnt All Rights Reserved.
 
-#include "ExpansionDrawingFunctionLibrary.h"
+#include "ExpansionDrawing/ExpansionDrawingFunctionLibrary.h"
 #include "Math/LayoutMath.h"
-#include "TopLineBoard.h"
+#include "ExpansionDrawing/TopLineBoard.h"
 
 void UExpansionDrawingFunctionLibrary::CreateExpansionDrawingMesh(UObject * WorldContextObject,const TArray<AActor*>& FurActor, const TArray <FExpansionLine>& WallList, FString mx)
 {

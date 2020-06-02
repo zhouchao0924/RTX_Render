@@ -2,7 +2,7 @@
 
 #include "Math/LayoutMath.h"
 #include "../Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h"
-#include"UnrealMathUtility.h"
+#include "Math/UnrealMathUtility.h"
 
 LayoutMath* LayoutMath::Instance = nullptr;
 LayoutMath::LayoutMath()
@@ -710,7 +710,7 @@ void LayoutMath::GetLastPoint(const TArray<ExpansionAuadrangle>& AuadrangleList,
 		TArray<FVector> tell;
 		tell.Add(TempList[0]);
 		relist1.Add(TempList[0]);
-		for (int i = 0; i < tell.Num(); ++i)
+		for (int index = 0; index < tell.Num(); ++index)
 		{
 			
 			for (auto j : relist2)
@@ -718,13 +718,13 @@ void LayoutMath::GetLastPoint(const TArray<ExpansionAuadrangle>& AuadrangleList,
 				if (relist1.Find(j) > -1)
 
 					continue;
-				if (ERRORBANDEX(j.X, tell[i].X, 3.f) || ERRORBANDEX(j.Y, tell[i].Y, 3.f))
+				if (ERRORBANDEX(j.X, tell[index].X, 3.f) || ERRORBANDEX(j.Y, tell[index].Y, 3.f))
 				{
 					auto temppos = j;
-					if (ERRORBANDEX(j.X, tell[i].X, 3.f))
-						temppos.X = tell[i].X;
+					if (ERRORBANDEX(j.X, tell[index].X, 3.f))
+						temppos.X = tell[index].X;
 					else 
-						temppos.Y = tell[i].Y;
+						temppos.Y = tell[index].Y;
 					tell.Add(temppos);
 					relist1.Add(j);
 					break;
@@ -862,11 +862,11 @@ TArray<TArray<FVector>> LayoutMath::GetForwardPoint(TMap<int, Atbestline>& conte
 
 		TArray<FVector>PointList,PointDir;
 
-		for (int i = leftPointlist.Num() - 1; i >= 0; --i)
-			PointList.Add(leftPointlist[i]);
+		for (int lpIndex = leftPointlist.Num() - 1; lpIndex >= 0; --lpIndex)
+			PointList.Add(leftPointlist[lpIndex]);
 
-		for (int i = leftdir.Num() - 1; i >= 0; --i)
-			PointDir.Add(leftdir[i]);
+		for (int ldIndex = leftdir.Num() - 1; ldIndex >= 0; --ldIndex)
+			PointDir.Add(leftdir[ldIndex]);
 
 		
 		for (int g = startindex; g < clear.Num(); ++g)
@@ -1313,8 +1313,8 @@ TArray<TArray<FVector>> LayoutMath::RemovedLastBreakwaterPoint(const TArray<TArr
 					Templist.Add(ForwardList[i][ForwardList[i].Num() - 2]);
 					auto temptl = Templist;
 					Templist.Empty();
-					for (int len = temptl.Num() - 1; len >= 0; --len)
-						Templist.Add(temptl[len]);
+					for (int lenIndex = temptl.Num() - 1; lenIndex >= 0; --lenIndex)
+						Templist.Add(temptl[lenIndex]);
 					bIs = true;
 				}
 			}
@@ -1340,8 +1340,8 @@ TArray<TArray<FVector>> LayoutMath::RemovedLastBreakwaterPoint(const TArray<TArr
 					Templist.Insert(ForwardList[i][1], 0);
 					auto temptl = Templist;
 					Templist.Empty();
-					for (int len = temptl.Num() - 1; len >= 0; --len)
-						Templist.Add(temptl[len]);
+					for (int lenIndex = temptl.Num() - 1; lenIndex >= 0; --lenIndex)
+						Templist.Add(temptl[lenIndex]);
 
 					bIs = true;
 				}
@@ -1388,8 +1388,8 @@ TArray<TArray<FVector>> LayoutMath::RemovedLastBreakwaterPoint(const TArray<TArr
 		{
 			auto tmlist = Templist;
 			Templist.Empty();
-			for (int i = tmlist.Num() - 1; i >= 0; --i)
-				Templist.Add(tmlist[i]);
+			for (int tmIndex = tmlist.Num() - 1; tmIndex >= 0; --tmIndex)
+				Templist.Add(tmlist[tmIndex]);
 		}
 		BreakwaterTemp.Add(Templist);
 	
@@ -1531,8 +1531,8 @@ FVector LayoutMath::GetDir(FVector other, FVector pos1, FVector pos2,TArray<FVec
 		FLine line2(tpos, other);
 		if (LineIntersect(line1, line2))
 		{
-			auto tpos = i * 2.f + other;
-			FVector2D tmpespos(tpos.X, tpos.Y);
+			auto tmpTpos = i * 2.f + other;
+			FVector2D tmpespos(tmpTpos.X, tmpTpos.Y);
 			if (ChekColseInterval(tmpespos, areas))
 				Temp = i * -1.f;
 			else

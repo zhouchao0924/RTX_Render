@@ -1,0 +1,65 @@
+XXXPlatformFactory.RegisterBuildPlatforms: XXXPlatformSDK using manually installed SDK 1.0.0
+MacPlatformFactory.RegisterBuildPlatforms: UnrealBuildTool.MacPlatformSDK using manually installed SDK
+TVOSPlatformFactory.RegisterBuildPlatforms: UnrealBuildTool.IOSPlatformSDK has no valid SDK
+AndroidPlatformFactory.RegisterBuildPlatforms: UnrealBuildTool.AndroidPlatformSDK has no valid SDK
+HoloLensPlatformFactory.RegisterBuildPlatforms: UnrealBuildTool.HoloLensPlatformSDK using manually installed SDK
+IOSPlatformFactory.RegisterBuildPlatforms: UnrealBuildTool.IOSPlatformSDK has no valid SDK
+LinuxPlatformFactory.RegisterBuildPlatforms: UnrealBuildTool.LinuxPlatformSDK has no valid SDK
+LuminSDKVersionHelper.HasAnySDK: *** Unable to determine MLSDK location ***
+LuminSDKVersionHelper.HasAnySDK: *** Unable to determine MLSDK location ***
+LuminPlatformFactory.RegisterBuildPlatforms: UnrealBuildTool.LuminPlatformSDK has no valid SDK
+WindowsPlatformFactory.RegisterBuildPlatforms: UnrealBuildTool.WindowsPlatformSDK using manually installed SDK
+ProjectFileGenerator.GenerateProjectFiles: Discovering modules, targets and source code for project...
+WindowsPlatform.FindVSInstallDirs: Found Visual Studio installation: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community (Product=Microsoft.VisualStudio.Product.Community, Version=15.9.28307.905, Sort=0)
+WindowsPlatform.FindToolChainDirs: Found Visual Studio toolchain: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023 (Version=14.16.27034)
+WindowsPlatform.EnumerateSdkRootDirs: Found Windows 10 SDK root at C:\Program Files (x86)\Windows Kits\10 (1)
+WindowsPlatform.EnumerateSdkRootDirs: Found Windows 10 SDK root at C:\Program Files (x86)\Windows Kits\10 (2)
+WindowsPlatform.UpdateCachedWindowsSdks: Found Windows 10 SDK version 10.0.17763.0 at C:\Program Files (x86)\Windows Kits\10
+WindowsPlatform.UpdateCachedWindowsSdks: Found Universal CRT version 10.0.17763.0 at C:\Program Files (x86)\Windows Kits\10
+DynamicCompilation.RequiresCompilation: Compiling D:\Library\Documents\Unreal Projects\RTXRender\Intermediate\Build\BuildRules\RTXRenderModuleRules.dll: D:\Library\Documents\Unreal Projects\RTXRender\Source\RTXRender\RTXRender.Build.cs is newer
+DynamicCompilation.CompileAssembly: While compiling D:\Library\Documents\Unreal Projects\RTXRender\Intermediate\Build\BuildRules\RTXRenderModuleRules.dll:
+DynamicCompilation.CompileAssembly: d:\Library\Documents\Unreal Projects\RTXRender\Source\RTXRender\RTXRender.Build.cs(16,16) : error CS0103: 当前上下文中不存在名称“Path”
+DynamicCompilation.CompileAssembly: d:\Library\Documents\Unreal Projects\RTXRender\Source\RTXRender\RTXRender.Build.cs(17,16) : error CS0103: 当前上下文中不存在名称“Path”
+DynamicCompilation.CompileAssembly: d:\Library\Documents\Unreal Projects\RTXRender\Source\RTXRender\RTXRender.Build.cs(18,16) : error CS0103: 当前上下文中不存在名称“Path”
+UnrealBuildTool.Main: ERROR: Unable to compile source files.
+UnrealBuildTool.Main: BuildException: Unable to compile source files.
+UnrealBuildTool.Main:    在 UnrealBuildTool.DynamicCompilation.CompileAssembly(FileReference OutputAssemblyPath, HashSet`1 SourceFileNames, List`1 ReferencedAssembies, List`1 PreprocessorDefines, Boolean TreatWarningsAsErrors) 位置 D:\Library\Desktop\Projects\UnrealEngine-4.25\Engine\Source\Programs\UnrealBuildTool\System\DynamicCompilation.cs:行号 375
+UnrealBuildTool.Main:    在 UnrealBuildTool.DynamicCompilation.CompileAndLoadAssembly(FileReference OutputAssemblyPath, HashSet`1 SourceFileNames, List`1 ReferencedAssembies, List`1 PreprocessorDefines, Boolean DoNotCompile, Boolean TreatWarningsAsErrors) 位置 D:\Library\Desktop\Projects\UnrealEngine-4.25\Engine\Source\Programs\UnrealBuildTool\System\DynamicCompilation.cs:行号 442
+UnrealBuildTool.Main:    在 UnrealBuildTool.RulesAssembly..ctor(RulesScope Scope, List`1 BaseDirs, IReadOnlyList`1 Plugins, Dictionary`2 ModuleFileToContext, List`1 TargetFiles, FileReference AssemblyFileName, Boolean bContainsEngineModules, Nullable`1 DefaultBuildSettings, Boolean bReadOnly, Boolean bSkipCompile, RulesAssembly Parent) 位置 D:\Library\Desktop\Projects\UnrealEngine-4.25\Engine\Source\Programs\UnrealBuildTool\System\RulesAssembly.cs:行号 110
+UnrealBuildTool.Main:    在 UnrealBuildTool.RulesCompiler.CreateProjectRulesAssembly(FileReference ProjectFileName, Boolean bUsePrecompiled, Boolean bSkipCompile) 位置 D:\Library\Desktop\Projects\UnrealEngine-4.25\Engine\Source\Programs\UnrealBuildTool\System\RulesCompiler.cs:行号 613
+UnrealBuildTool.Main:    在 UnrealBuildTool.ProjectFileGenerator.AddProjectsForAllTargets(PlatformProjectGeneratorCollection PlatformProjectGenerators, List`1 AllGames, List`1 AllTargetFiles, String[] Arguments, ProjectFile& EngineProject, ProjectFile& EnterpriseProject, List`1& GameProjects, Dictionary`2& ProgramProjects) 位置 D:\Library\Desktop\Projects\UnrealEngine-4.25\Engine\Source\Programs\UnrealBuildTool\ProjectFiles\ProjectFileGenerator.cs:行号 2288
+UnrealBuildTool.Main:    在 UnrealBuildTool.ProjectFileGenerator.GenerateProjectFiles(PlatformProjectGeneratorCollection PlatformProjectGenerators, String[] Arguments) 位置 D:\Library\Desktop\Projects\UnrealEngine-4.25\Engine\Source\Programs\UnrealBuildTool\ProjectFiles\ProjectFileGenerator.cs:行号 753
+UnrealBuildTool.Main:    在 UnrealBuildTool.GenerateProjectFilesMode.Execute(CommandLineArguments Arguments) 位置 D:\Library\Desktop\Projects\UnrealEngine-4.25\Engine\Source\Programs\UnrealBuildTool\Modes\GenerateProjectFilesMode.cs:行号 198
+UnrealBuildTool.Main:    在 UnrealBuildTool.UnrealBuildTool.Main(String[] ArgumentsArray) 位置 D:\Library\Desktop\Projects\UnrealEngine-4.25\Engine\Source\Programs\UnrealBuildTool\UnrealBuildTool.cs:行号 550
+Timeline.Print: Timeline:
+Timeline.Print: 
+Timeline.Print: [ 0.000]
+Timeline.Print: [ 0.000](+0.029) <unknown>
+Timeline.Print: [ 0.029](+0.015) XmlConfig.ReadConfigFiles()
+Timeline.Print: [ 0.044](+0.000) SingleInstanceMutex.Acquire()
+Timeline.Print: [ 0.044](+0.064) UEBuildPlatform.RegisterPlatforms()
+Timeline.Print:   0.045          [ 0.000](+0.032) Initializing InstalledPlatformInfo
+Timeline.Print:   0.078          [ 0.033](+0.000) Querying types
+Timeline.Print:   0.079          [ 0.034](+0.015) XXXPlatformFactory
+Timeline.Print:   0.095          [ 0.050](+0.000) MacPlatformFactory
+Timeline.Print:   0.095          [ 0.050](+0.004) TVOSPlatformFactory
+Timeline.Print:   0.100          [ 0.055](+0.002) AndroidPlatformFactory
+Timeline.Print:   0.103          [ 0.058](+0.000) HoloLensPlatformFactory
+Timeline.Print:   0.103          [ 0.058](+0.001) IOSPlatformFactory
+Timeline.Print:   0.105          [ 0.060](+0.002) LinuxPlatformFactory
+Timeline.Print:   0.107          [ 0.062](+0.001) LuminPlatformFactory
+Timeline.Print:   0.109          [ 0.064](+0.000) WindowsPlatformFactory
+Timeline.Print: [ 0.109](+0.700) <unknown>
+Timeline.Print: [ 0.810](+0.005) Finding engine modules
+Timeline.Print: [ 0.816](+0.000) Finding engine modules
+Timeline.Print: [ 0.816](+0.002) Finding plugin modules
+Timeline.Print: [ 0.819](+0.052) <unknown>
+Timeline.Print: [ 0.871](+0.001) Finding program modules
+Timeline.Print: [ 0.872](+0.000) Finding program targets
+Timeline.Print: [ 0.872](+0.000) Finding program modules
+Timeline.Print: [ 0.872](+0.000) Finding program targets
+Timeline.Print: [ 0.872](+0.485) <unknown>
+Timeline.Print: [ 1.358](+0.243) Compiling rules assembly (RTXRenderModuleRules.dll)
+Timeline.Print: [ 1.601](+0.063) <unknown>
+Timeline.Print: [ 1.665](+0.000) FileMetadataPrefetch.Stop()
+Timeline.Print: [ 1.667]

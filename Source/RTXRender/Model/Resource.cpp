@@ -3,8 +3,6 @@
 #include "ModelFile.h"
 #include "SurfaceFile.h"
 #include "ResourceMgr.h"
-#include "EditorContext.h"
-#include "EditorUtils.h"
 #include "ZLibFunctionLibrary.h"
 
 #undef UpdateResource

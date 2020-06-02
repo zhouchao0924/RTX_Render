@@ -39,7 +39,7 @@ void UComponentPositionWidget::UpdateCompInfo()
 		GetWorld()->GetFirstPlayerController()->ProjectWorldLocationToScreen(FVector(TargetPosition, 280), TempVec);
 	}
 	SetWidgetToViewport(FVector2D(TempVec.X - 110, TempVec.Y - 85));
-	SetWidgetAngle(Angle);
+	SetWidgetAngle(mAngle);
 
 	//if (!bMoved && CurrentScreenPos == TempVec)
 	//	return;
@@ -124,11 +124,11 @@ void UComponentPositionWidget::UpdateCompInfo()
 			TempFVector2D = TPoylgon[0] - TPoylgon[i];
 		}
 		TempFVector2D.Normalize();
-		float TempAngle = Angle;
+		float TempAngle = mAngle;
 
 		float TempWidth, TempLength;
-		TempWidth = Width;
-		TempLength = Length;
+		TempWidth = mWidth;
+		TempLength = mLength;
 		
 		FVector2D UpNor(1, 0), BottomNor(-1, 0), LeftNor(0, -1), Right(0, 1);
 
@@ -333,7 +333,7 @@ void UComponentPositionWidget::UpdateCompInfo()
 
 void UComponentPositionWidget::UpDateTopLength(float InputLength)
 {
-	float TempAngle = Angle;
+	float TempAngle = mAngle;
 	FVector2D UpNor(1, 0), BottomNor(-1, 0), LeftNor(0, -1), Right(0, 1);
 	float TopDist, BottomDist, LeftDist, RightDist;
 
@@ -343,7 +343,7 @@ void UComponentPositionWidget::UpDateTopLength(float InputLength)
 	FVector2D CurrentNor = FVector2D((UpNor.X * Cos(TempAngle / 180 * PI) - UpNor.Y * Sin(TempAngle / 180 * PI)), (UpNor.Y * Cos(TempAngle / 180 * PI) + UpNor.X * Sin(TempAngle / 180 * PI)));
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, TopVec[0], TopVec[1], TempEndPos))
 	{
-		TopDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * Width / 2), TempEndPos) * 10.f);
+		TopDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * mWidth / 2), TempEndPos) * 10.f);
 	}
 	else
 		return;
@@ -353,7 +353,7 @@ void UComponentPositionWidget::UpDateTopLength(float InputLength)
 	CurrentNor = FVector2D((BottomNor.X * Cos(TempAngle / 180 * PI) - BottomNor.Y * Sin(TempAngle / 180 * PI)), (BottomNor.Y * Cos(TempAngle / 180 * PI) + BottomNor.X * Sin(TempAngle / 180 * PI)));
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, BottomVec[0], BottomVec[1], TempEndPos))
 	{
-		BottomDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * Width / 2), TempEndPos) * 10.f);
+		BottomDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * mWidth / 2), TempEndPos) * 10.f);
 	}
 	else
 		return;
@@ -364,7 +364,7 @@ void UComponentPositionWidget::UpDateTopLength(float InputLength)
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, LeftVec[0], LeftVec[1], TempEndPos))
 	{
 		//Left
-			LeftDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * Length / 2), TempEndPos) * 10.f);
+			LeftDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * mLength / 2), TempEndPos) * 10.f);
 
 	}
 
@@ -375,7 +375,7 @@ void UComponentPositionWidget::UpDateTopLength(float InputLength)
 	{
 		//Right
 		{
-			RightDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * Length / 2), TempEndPos) * 10.f);
+			RightDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * mLength / 2), TempEndPos) * 10.f);
 		}
 	}
 	if (InputLength <= 0)
@@ -414,7 +414,7 @@ void UComponentPositionWidget::UpDateTopLength(float InputLength)
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, TopVec[0], TopVec[1], TempEndPos))
 	{
 		CurrentNor.Normalize();
-		FVector2D TempVec = TempEndPos -  (InputLength / 10.f + Width / 2.f)* CurrentNor;
+		FVector2D TempVec = TempEndPos -  (InputLength / 10.f + mWidth / 2.f)* CurrentNor;
 		if (CompManager == nullptr)
 			return;
 		float RotationAngel = 0;
@@ -446,7 +446,7 @@ void UComponentPositionWidget::UpDateTopLength(float InputLength)
 
 void UComponentPositionWidget::UpDateBottomLength(float InputLength)
 {
-	float TempAngle = Angle;
+	float TempAngle = mAngle;
 	FVector2D UpNor(1, 0), BottomNor(-1, 0), LeftNor(0, -1), Right(0, 1);
 	float TopDist, BottomDist,LeftDist,RightDist;
 
@@ -456,7 +456,7 @@ void UComponentPositionWidget::UpDateBottomLength(float InputLength)
 	FVector2D CurrentNor = FVector2D((UpNor.X * Cos(TempAngle / 180 * PI) - UpNor.Y * Sin(TempAngle / 180 * PI)), (UpNor.Y * Cos(TempAngle / 180 * PI) + UpNor.X * Sin(TempAngle / 180 * PI)));
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, TopVec[0], TopVec[1], TempEndPos))
 	{
-		TopDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * Width / 2), TempEndPos) * 10.f);
+		TopDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * mWidth / 2), TempEndPos) * 10.f);
 	}
 	else
 		return;
@@ -466,7 +466,7 @@ void UComponentPositionWidget::UpDateBottomLength(float InputLength)
 	CurrentNor = FVector2D((BottomNor.X * Cos(TempAngle / 180 * PI) - BottomNor.Y * Sin(TempAngle / 180 * PI)), (BottomNor.Y * Cos(TempAngle / 180 * PI) + BottomNor.X * Sin(TempAngle / 180 * PI)));
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, BottomVec[0], BottomVec[1], TempEndPos))
 	{
-		BottomDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * Width / 2), TempEndPos) * 10.f);
+		BottomDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * mWidth / 2), TempEndPos) * 10.f);
 	}
 	else
 		return;
@@ -477,7 +477,7 @@ void UComponentPositionWidget::UpDateBottomLength(float InputLength)
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, LeftVec[0], LeftVec[1], TempEndPos))
 	{
 		//Left
-		LeftDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * Length / 2), TempEndPos) * 10.f);
+		LeftDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * mLength / 2), TempEndPos) * 10.f);
 
 	}
 
@@ -488,7 +488,7 @@ void UComponentPositionWidget::UpDateBottomLength(float InputLength)
 	{
 		//Right
 		{
-			RightDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * Length / 2), TempEndPos) * 10.f);
+			RightDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * mLength / 2), TempEndPos) * 10.f);
 		}
 	}
 
@@ -527,7 +527,7 @@ void UComponentPositionWidget::UpDateBottomLength(float InputLength)
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, BottomVec[0], BottomVec[1], TempEndPos))
 	{
 		CurrentNor.Normalize();
-		FVector2D TempVec = TempEndPos - (InputLength / 10.f + Width / 2.f)* CurrentNor;
+		FVector2D TempVec = TempEndPos - (InputLength / 10.f + mWidth / 2.f)* CurrentNor;
 		if (CompManager == nullptr)
 			return;
 		float RotationAngel = 0;
@@ -559,7 +559,7 @@ void UComponentPositionWidget::UpDateBottomLength(float InputLength)
 
 void UComponentPositionWidget::UpDateLeftLength(float InputLength)
 {
-	float TempAngle = Angle;
+	float TempAngle = mAngle;
 	FVector2D  LeftNor(0, -1), RightNor(0, 1);
 	float LeftDist, RightDist;
 
@@ -569,7 +569,7 @@ void UComponentPositionWidget::UpDateLeftLength(float InputLength)
 	FVector2D CurrentNor = FVector2D((LeftNor.X * Cos(TempAngle / 180 * PI) - LeftNor.Y * Sin(TempAngle / 180 * PI)), (LeftNor.Y * Cos(TempAngle / 180 * PI) + LeftNor.X * Sin(TempAngle / 180 * PI)));
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, LeftVec[0], LeftVec[1], TempEndPos))
 	{
-		LeftDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * Length / 2), TempEndPos) * 10.f);
+		LeftDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * mLength / 2), TempEndPos) * 10.f);
 	}
 	else
 		return;
@@ -579,7 +579,7 @@ void UComponentPositionWidget::UpDateLeftLength(float InputLength)
 	CurrentNor = FVector2D((RightNor.X * Cos(TempAngle / 180 * PI) - RightNor.Y * Sin(TempAngle / 180 * PI)), (RightNor.Y * Cos(TempAngle / 180 * PI) + RightNor.X * Sin(TempAngle / 180 * PI)));
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, RightVec[0], RightVec[1], TempEndPos))
 	{
-		RightDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * Length / 2), TempEndPos) * 10.f);
+		RightDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * mLength / 2), TempEndPos) * 10.f);
 	}
 	else
 		return;
@@ -606,7 +606,7 @@ void UComponentPositionWidget::UpDateLeftLength(float InputLength)
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, LeftVec[0], LeftVec[1], TempEndPos))
 	{
 		CurrentNor.Normalize();
-		FVector2D TempVec = TempEndPos - (InputLength / 10.f + Length / 2.f)* CurrentNor;
+		FVector2D TempVec = TempEndPos - (InputLength / 10.f + mLength / 2.f)* CurrentNor;
 		if (CompManager == nullptr)
 			return;
 		float RotationAngel = 0;
@@ -638,7 +638,7 @@ void UComponentPositionWidget::UpDateLeftLength(float InputLength)
 
 void UComponentPositionWidget::UpDateRightLength(float InputLength)
 {
-	float TempAngle = Angle;
+	float TempAngle = mAngle;
 	FVector2D  LeftNor(0, -1), RightNor(0, 1);
 	float LeftDist, RightDist;
 
@@ -648,7 +648,7 @@ void UComponentPositionWidget::UpDateRightLength(float InputLength)
 	FVector2D CurrentNor = FVector2D((LeftNor.X * Cos(TempAngle / 180 * PI) - LeftNor.Y * Sin(TempAngle / 180 * PI)), (LeftNor.Y * Cos(TempAngle / 180 * PI) + LeftNor.X * Sin(TempAngle / 180 * PI)));
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, LeftVec[0], LeftVec[1], TempEndPos))
 	{
-		LeftDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * Length / 2), TempEndPos) * 10.f);
+		LeftDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * mLength / 2), TempEndPos) * 10.f);
 	}
 	else
 		return;
@@ -658,7 +658,7 @@ void UComponentPositionWidget::UpDateRightLength(float InputLength)
 	CurrentNor = FVector2D((RightNor.X * Cos(TempAngle / 180 * PI) - RightNor.Y * Sin(TempAngle / 180 * PI)), (RightNor.Y * Cos(TempAngle / 180 * PI) + RightNor.X * Sin(TempAngle / 180 * PI)));
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, RightVec[0], RightVec[1], TempEndPos))
 	{
-		RightDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * Length / 2), TempEndPos) * 10.f);
+		RightDist = FMath::TruncToInt(FVector2D::Distance((TargetPosition + CurrentNor * mLength / 2), TempEndPos) * 10.f);
 	}
 	else
 		return;
@@ -684,7 +684,7 @@ void UComponentPositionWidget::UpDateRightLength(float InputLength)
 	if (FPolygonAlg::IntersectionByRayAndSegment(TargetPosition, CurrentNor, RightVec[0], RightVec[1], TempEndPos))
 	{
 		CurrentNor.Normalize();
-		FVector2D TempVec = TempEndPos - (InputLength / 10.f + Length / 2.f)* CurrentNor;
+		FVector2D TempVec = TempEndPos - (InputLength / 10.f + mLength / 2.f)* CurrentNor;
 		if (CompManager == nullptr)
 			return;
 		float RotationAngel = 0;
@@ -749,13 +749,13 @@ void UComponentPositionWidget::UpdateComponentPos(FVector2D CurrentPos)
 			switch (ComponentBase->GetComponenetType())
 			{
 			case EComponenetType::_FLUE:
-				BuildingSystem->UpdateFlueProperty(ObjectID, CurrentPos, ComponentBase->GetAngleVal(), Width, Length);
+				BuildingSystem->UpdateFlueProperty(ObjectID, CurrentPos, ComponentBase->GetAngleVal(), mWidth, mLength);
 				break;
 			case EComponenetType::_BagRiser:
-				BuildingSystem->UpdateTubeProperty(ObjectID, CurrentPos, ComponentBase->GetAngleVal(), Width, Length);
+				BuildingSystem->UpdateTubeProperty(ObjectID, CurrentPos, ComponentBase->GetAngleVal(), mWidth, mLength);
 				break;
 			case EComponenetType::_Pillar:
-				BuildingSystem->UpdatePillarProperty(ObjectID, CurrentPos, ComponentBase->GetAngleVal(), Width, Length);
+				BuildingSystem->UpdatePillarProperty(ObjectID, CurrentPos, ComponentBase->GetAngleVal(), mWidth, mLength);
 				break;
 			case EComponenetType::_Sewer:
 				BuildingSystem->UpdateSewerProperty(ObjectID, CurrentPos, ComponentBase->GetWidth());
@@ -774,7 +774,7 @@ void UComponentPositionWidget::UpdateComponentPos(FVector2D CurrentPos)
 				}
 			}
 			if (!bResetPos)
-				CompManager->UpdateComponent(GetWorld(), ObjectID, ComponentBase->GetLoc(), Width, Length);
+				CompManager->UpdateComponent(GetWorld(), ObjectID, ComponentBase->GetLoc(), mWidth, mLength);
 		}
 	}
 }
@@ -809,14 +809,14 @@ float UComponentPositionWidget::CheckCompAngel(FVector2D LateTargetPos)
 		{
 			float dis = CompManager->roomVecDatas[i] - LateTargetPos;
 			dis = dis * 2.0f;
-			if ((dis - Width < 4.0f) || (dis - Length < 4.0f))
+			if ((dis - mWidth < 4.0f) || (dis - mLength < 4.0f))
 			{
 				ComponentBase->SetAngleVal(CompManager->roomVecDatas[i].AngleVal);
-				float DeltaAngle = CompManager->roomVecDatas[i].AngleVal - Angle;
+				float DeltaAngle = CompManager->roomVecDatas[i].AngleVal - mAngle;
 				if (DeltaAngle != 0)
 				{
 					bResetPos = true;
-					Angle = CompManager->roomVecDatas[i].AngleVal;
+					mAngle = CompManager->roomVecDatas[i].AngleVal;
 					//UpdateCompInfo();
 					ResetCompPos(DeltaAngle);
 				}
@@ -830,8 +830,8 @@ float UComponentPositionWidget::CheckCompAngel(FVector2D LateTargetPos)
 	if (ComponentBase)
 	{
 		ComponentBase->SetAngle(0);
-		float DeltaAngle = -Angle;
-		Angle = ComponentBase->GetAngle();
+		float DeltaAngle = -mAngle;
+		mAngle = ComponentBase->GetAngle();
 		UpdateCompInfo();
 		return DeltaAngle;
 	}

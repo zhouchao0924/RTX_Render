@@ -1,7 +1,7 @@
 
 #include "ComponentBaseWidget.h"
-#include "WidgetBlueprintLibrary.h"
-#include "WidgetLayoutLibrary.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
+#include "Blueprint/WidgetLayoutLibrary.h"
 #include "../../../EditorGameInstance.h"
 #include "../../BuildingSystem.h"
 #include "../FlueComponentPrimitive.h"

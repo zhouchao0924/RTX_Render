@@ -310,11 +310,11 @@ void AWallPlaneBase::ShowInputRulerWidget()
 	if (!GameInst)
 		return;
 	FVector2D MousePos;
-	if (LastCornerID != -1)
+	if (mLastCornerID != -1)
 	{
 		if (GameInst->WallBuildSystem)
 		{
-			MousePos = FVector2D(GameInst->WallBuildSystem->OrthogonalDraw(FVector2D(MouseWorldPos), LastCornerID, true));
+			MousePos = FVector2D(GameInst->WallBuildSystem->OrthogonalDraw(FVector2D(MouseWorldPos), mLastCornerID, true));
 		}
 		else
 			return;
@@ -323,7 +323,7 @@ void AWallPlaneBase::ShowInputRulerWidget()
 		if (projectDataManager == nullptr) {
 			return;
 		}
-		UDRCornerAdapter* CornerAdapter_0 = Cast<UDRCornerAdapter>(projectDataManager->GetAdapter(LastCornerID));
+		UDRCornerAdapter* CornerAdapter_0 = Cast<UDRCornerAdapter>(projectDataManager->GetAdapter(mLastCornerID));
 		if (CornerAdapter_0 == nullptr)
 		{
 			return;

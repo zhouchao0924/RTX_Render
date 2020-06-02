@@ -36,7 +36,8 @@ public class RTXRender : ModuleRules
             "nvTextureTools",
             "UMG",
             "Slate",
-            "RenderCore"
+            "RenderCore",
+            "HTTP"
         });
 
 		PublicDependencyModuleNames.AddRange(new string[] {

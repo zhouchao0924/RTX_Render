@@ -3,10 +3,10 @@
 #include "ModelFile.h"
 #include "SurfaceFile.h"
 #include "ModelImporter.h"
-#include "ImportTask.h"
-#include "LoadTask.h"
-#include "ProtocalTask.h"
-#include "ResAsyncTaskMgr.h"
+#include "AsyncTask/ImportTask.h"
+#include "AsyncTask/LoadTask.h"
+#include "AsyncTask/ProtocalTask.h"
+#include "AsyncTask/ResAsyncTaskMgr.h"
 #include "DRGameMode.h"
 #include "Editor/EditorUtils.h"
 #include "EditorGameInstance.h"
@@ -16,7 +16,6 @@
 #include "IrayGameMode.h"
 #include "Model/CompoundModelFile.h"
 #include "ResourceMgrComponent.h"
-#include "ZLibFunctionLibrary.h"
 
 DEFINE_LOG_CATEGORY(LogResMgr);
 
@@ -66,21 +65,6 @@ void UResourceMgr::Destroy()
 UResourceMgr *UResourceMgr::Instance(UObject *WorldContextObject) 
 {
 	return s_Instance;
-// 	UWorld *MyWorld = WorldContextObject ? WorldContextObject->GetWorld() : NULL;
-// 	if (MyWorld)
-// 	{
-// 		UCEditorGameInstance *MyGame = Cast<UCEditorGameInstance>(MyWorld->GetGameInstance());
-// 		if (MyGame)
-// 		{
-// 			UResourceMgr *ResMgr = MyGame->Context.ResManager;
-// 			if (ResMgr)
-// 			{
-// 				ResMgr->ConditionalInit();
-// 			}
-// 			return ResMgr;
-// 		}
-// 	}
-// 	return NULL;
 }
 
 UResourceMgr *UResourceMgr::GetResourceMgr()
@@ -763,20 +747,9 @@ void  UResourceMgr::LoadHeader(UResource *Resource)
 {
 	if (Resource && !Resource->bHeadLoaded)
 	{
-		bool UseGZFile = false;
-		bool success = GConfig->GetBool(TEXT("Iray"), TEXT("UseGZFile"), UseGZFile, GGameIni);
-		FArchive* Reader = nullptr;
-		if (success && UseGZFile)
-		{
-			Resource->Filename = UZLibFunctionLibrary::GetDRFileName(Resource->Filename);
-			Reader = UZLibFunctionLibrary::DRReadFile(Resource->Filename);
-			UE_LOG(LogTemp, Log, TEXT("LoadHeader GZ,use mx.gz file[%s]"), *Resource->Filename);
-		}
-		else
-		{
-			Reader = IFileManager::Get().CreateFileReader(*Resource->Filename);
-			UE_LOG(LogTemp, Log, TEXT("LoadHeader use mx file[%s]"), *Resource->Filename);
-		}
+
+		Reader = IFileManager::Get().CreateFileReader(*Resource->Filename);
+		UE_LOG(LogTemp, Log, TEXT("LoadHeader use mx file[%s]"), *Resource->Filename);
 
 		if (Reader)
 		{
@@ -798,20 +771,9 @@ UResource *UResourceMgr::Preload(const FString &Filename, bool bNeedHeader, bool
 {
 	UResource *Resource = NULL;
 	UE_LOG(LogTemp, Log, TEXT("begin to ReadFile"));
-	bool UseGZFile = false;
-	bool success = GConfig->GetBool(TEXT("Iray"), TEXT("UseGZFile"), UseGZFile, GGameIni);
-	FArchive* Reader = nullptr;
-	if (success && UseGZFile)
-	{
-		FString Temp = UZLibFunctionLibrary::GetDRFileName(Filename);
-		Reader = UZLibFunctionLibrary::DRReadFile(Temp);
-		UE_LOG(LogTemp, Log, TEXT("use mx.gz file[%s]"), *Temp);
-	}
-	else
-	{
-		Reader = IFileManager::Get().CreateFileReader(*Filename);
-		UE_LOG(LogTemp, Log, TEXT("use mx file[%s]"), *Filename);
-	}
+
+	Reader = IFileManager::Get().CreateFileReader(*Filename);
+	UE_LOG(LogTemp, Log, TEXT("use mx file[%s]"), *Filename);
 
 	UE_LOG(LogTemp, Log, TEXT("end to ReadFile"));
 	if (Reader)
@@ -1024,75 +986,7 @@ void UResourceMgr::GetResourceList(TArray<UResource *> &ResourceList)
 
 void UResourceMgr::GetMaterialList(TArray<FMaterialListItem> &MaterialItems,const FString &CategoryName, const FString &SeachName, bool bOther, bool bAll, bool isbasesx)
 {
-	FScopeLock Scope(&CriticalSection);
-	bool section = false;
-	for (int32 i = 0; i < PooledResource.Num(); ++i)
-	{
-		FResourceInfo &Info = PooledResource[i];
-		if (isbasesx)
-		{
-			section = Info.Filename.Contains(FString("BaseSx"));
-		}
-		else {
-			section = !Info.Filename.Contains(FString("BaseSx"));
-		}
 
-		if (Info.ResType == EResType::EResSurface&&section)
-		{
-			
-			Info.Resource = LoadResByID(Info.ResID, true);
-			USurfaceFile *Surface = Cast<USurfaceFile>(Info.Resource);
-			UMaterialInterface *Mtrl = Surface->GetUE4Material();
-			if (Mtrl == nullptr) {
-				Info.Resource = FindRes(Info.ResID, false);
-				Info.Resource->ForceLoad();
-				Mtrl = Surface->GetUE4Material();
-			}
-			FString disname="";
-			if (Surface)
-			{
-				if (Surface->DRInfo)
-				{
-					disname= Surface->DRInfo->GetStringField("ChineseName");
-				}
-				else
-				{
-					disname= Surface->GetSummary()->ResourceName;
-				}
-			}
-			if (SeachName.Len()>0 && !disname.Contains(SeachName))
-			{
-				continue;
-			}
-		
-
-			UStandardMaterialCollection *MtrlCollection = UEditorUtils::GetMaterialCollection(this);
-			if (MtrlCollection)
-			{
-				//UMaterialInterface *Mtrl = Surface->GetUE4Material();
-				for (int32 index = 0; index < MtrlCollection->StdMaterials.Num(); ++index)
-				{
-					FStdMaterialInfo &MtrlInfo = MtrlCollection->StdMaterials[index];
-					if (MtrlInfo.GetMaterial() == Mtrl)
-					{
-						FString MtrlCategoryName = MtrlInfo.CategoryName;
-						if (bAll ||
-							MtrlCategoryName == CategoryName ||
-							(MtrlCategoryName.Len() == 0 && bOther))
-						{
-							int32 materialIndex = MaterialItems.Num();
-							FMaterialListItem *Item = new (MaterialItems) FMaterialListItem();
-							Item->DisplayName = Surface->GetSummary()->ResourceName;
-							Item->Surface = Surface;
-							Item->Index = materialIndex;
-							Item->PreviewImage = Item->Surface->GetPreviewTexture();
-						}
-						break;
-					}
-				}
-			}
-		}
-	}
 }
 
 

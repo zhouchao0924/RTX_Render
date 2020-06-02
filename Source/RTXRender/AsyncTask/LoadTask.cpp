@@ -6,7 +6,6 @@
 #include "ModelFile.h"
 #include "ModelImporter.h"
 #include "Interfaces/IHttpRequest.h"
-#include "ZLibFunctionLibrary.h"
 
 FResLoadAsyncTask::FResLoadAsyncTask(UResource *Resource)
 {
@@ -54,20 +53,8 @@ void FResLoadAsyncTask::DoWork()
 		UResource *Res = PendLoadingResources[i];
 		if (Res!=NULL)
 		{
-			bool UseGZFile = false;
-			bool success = GConfig->GetBool(TEXT("Iray"), TEXT("UseGZFile"), UseGZFile, GGameIni);
-			FArchive* Writer = nullptr;
-			if (success && UseGZFile)
-			{
-				Res->Filename = UZLibFunctionLibrary::GetDRFileName(Res->Filename);
-				Writer = UZLibFunctionLibrary::DRReadFile(Res->Filename);
-				UE_LOG(LogTemp, Log, TEXT("use mx.gz file[%s]"), *Res->Filename);
-			}
-			else
-			{
-				Writer = IFileManager::Get().CreateFileReader(*Res->Filename);
-				UE_LOG(LogTemp, Log, TEXT("use mx file[%s]"), *Res->Filename);
-			}
+			Writer = IFileManager::Get().CreateFileReader(*Res->Filename);
+			UE_LOG(LogTemp, Log, TEXT("use mx file[%s]"), *Res->Filename);
 
 			if (Writer && UResource::SkipMark(*Writer))
 			{

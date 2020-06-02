@@ -46,7 +46,7 @@ public class CGAL : ModuleRules
         PublicDefinitions.Add("CGAL_USE_GMP");
 
         // Startard Module Dependencies
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "BuildingSDK", "BuildingSDKLibrary" });
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", });
         PrivateDependencyModuleNames.AddRange(new string[] { "CoreUObject", "Engine", "Slate", "SlateCore", "Projects" });
 
         // Start CGAL linking here!

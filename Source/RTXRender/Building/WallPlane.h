@@ -106,7 +106,7 @@ public:
 		FVector SpinBoxPos; 
 
 	UPROPERTY(BlueprintReadWrite)
-		int32 LastCornerID = -1;
+		int32 mLastCornerID = -1;
 
 	FVector2D LastMousePos;
 };

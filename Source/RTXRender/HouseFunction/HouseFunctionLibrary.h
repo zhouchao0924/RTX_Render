@@ -3,12 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "Math/LayoutMath.h"
 #include "ImageUtils.h"
 #include "IImageWrapper.h"
 #include "IImageWrapperModule.h"
-#include "../Building/FeatureWalls.h"
+#include "Building/FeatureWalls.h"
 #include "HomeLayout/HouseArchitect/PlaneHousePicture.h"
 #include "Cabinet/CabinetStruct.h"
 #include "CustomDataStructure.h"

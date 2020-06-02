@@ -50,8 +50,8 @@ struct FAssociatedAnchor
 public:
 	FAssociatedAnchor()
 		:doorHandleOffset(0)
-		, uvAngle(0)
 		, doorhandleDirection(-1)
+		, uvAngle(0)
 		, InternalsType(0)
 	{
 

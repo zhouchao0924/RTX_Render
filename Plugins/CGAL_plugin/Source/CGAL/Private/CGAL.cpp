@@ -24,7 +24,7 @@
 #include "CGALPrivatePCH.h"
 #include "Core.h"
 #include "Modules/ModuleManager.h"
-#include "IPluginManager.h"
+#include "Interfaces/IPluginManager.h"
 
 #define LOCTEXT_NAMESPACE "FCGALModule"
 

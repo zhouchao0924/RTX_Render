@@ -1,6 +1,6 @@
 
 #include "SewerComponentPrimitive.h"
-#include "WidgetBlueprintLibrary.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
 
 USewerComponentPrimitive::USewerComponentPrimitive()
 	:FrameColor(FLinearColor(1, 1, 1, 0.5))

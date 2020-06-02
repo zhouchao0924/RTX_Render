@@ -1,7 +1,6 @@
 
 #include "SurfaceFile.h"
 #include "DRGameMode.h"
-#include "EditorUtils.h"
 #include "ModelCompress.h"
 #include "ModelImporter.h"
 #include "ResourceMgr.h"
@@ -281,7 +280,7 @@ UTexture * USurfaceFile::GetMaterialPreviewImage(int32 SizeX, int32 SizeY)
 				if (dynMtrl)
 				{
 					mtrl->UpdateParameters(dynMtrl, m_Textures);
-					MtrlPreviewImage = UEditorUtils::GetMaterialPreviewTexture(this, SizeX, SizeY, dynMtrl);
+					MtrlPreviewImage = nullptr;
 				}
 			}
 		}
@@ -351,8 +350,7 @@ FString USurfaceFile::GetMaterialName()
 			}
 			else if (Material->GetType() == EMaterialUE4)
 			{
-				UStandardMaterialCollection* MaterialCollection = UEditorUtils::GetMaterialCollection(this);
-				return Material->GetName(MaterialCollection);
+				return TEXT("");
 			}
 		}
 		else

@@ -1,6 +1,6 @@
 
 #include "PillarComponentPrimitive.h"
-#include "WidgetBlueprintLibrary.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
 
 UPillarComponentPrimitive::UPillarComponentPrimitive()
 	:FrameColor(FLinearColor(1, 0.48, 0,1))

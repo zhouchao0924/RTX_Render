@@ -1,6 +1,6 @@
 
 #include "FlueComponentPrimitive.h"
-#include "WidgetBlueprintLibrary.h"
+#include "Blueprint/WidgetBlueprintLibrary.h"
 
 UFlueComponentPrimitive::UFlueComponentPrimitive()
 	:proportion(0.7f)

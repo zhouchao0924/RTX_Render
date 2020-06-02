@@ -1,11 +1,11 @@
 
 
 #include "DownloadTask.h"
-#include "ResourceMgr.h"
+#include "Model/ResourceMgr.h"
 #include "HttpModule.h"
 #include "ModelFile.h"
-#include "AsyncHttpFile.h"
-#include "HttpDownloadMgr.h"
+#include "Download/AsyncHttpFile.h"
+#include "Download/HttpDownloadMgr.h"
 #include "Misc/ScopeLock.h"
 
 FDownloadAsyncTask::FDownloadAsyncTask(UResourceMgr *InResMgr, EResType InResType, const FString &InResID, const FString &InURL, const FString &InFilename, const TArray<FDownloadingRes> &DependsResources, FOnDownloadTaskCompeleted InDelegate, int32 InSvrVersion /*= 0*/)

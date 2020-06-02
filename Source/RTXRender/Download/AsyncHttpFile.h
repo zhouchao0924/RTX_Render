@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "IHttpRequest.h"
+#include "Interfaces/IHttpRequest.h"
 #include "Kismet/BlueprintAsyncActionBase.h"
 #include "AsyncHttpFile.generated.h"
 

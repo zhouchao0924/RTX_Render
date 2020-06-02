@@ -42,9 +42,9 @@ struct FResourceInfo
 	}
 
 	FResourceInfo(EResType InResType, const FString &InResID, const FString &InFilename, UResource *InResource)
-		:Resource(InResource)
+		:ResType(InResType)
 		,ResID(InResID)
-		,ResType(InResType)
+		,Resource(InResource)
 		,Filename(InFilename)
 	{
 	}

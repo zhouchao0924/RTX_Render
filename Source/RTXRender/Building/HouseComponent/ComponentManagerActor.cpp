@@ -1648,10 +1648,10 @@ void AComponentManagerActor::UpdateComponent(UWorld* MyWorld, int32 ObjectID, co
 			{
 				CompPositionWidget->ObjectID = ObjectID;
 				CompPositionWidget->TargetPosition = ComponentBase->GetLoc();
-				CompPositionWidget->Width = ComponentBase->GetWidth();
-				CompPositionWidget->Length = ComponentBase->GetWidth();
+				CompPositionWidget->mWidth = ComponentBase->GetWidth();
+				CompPositionWidget->mLength = ComponentBase->GetWidth();
 				CompPositionWidget->TPoylgon = ComponentBase->GetTPoylgon();
-				CompPositionWidget->Angle = Round(ComponentBase->GetAngleVal());
+				CompPositionWidget->mAngle = Round(ComponentBase->GetAngleVal());
 				CompPositionWidget->UpdateCompInfo();
 			}
 			return;
@@ -2115,10 +2115,10 @@ void AComponentManagerActor::UpdateComponent(UWorld* MyWorld, int32 ObjectID, co
 		{
 			CompPositionWidget->ObjectID = ObjectID;
 			CompPositionWidget->TargetPosition = ComponentBase->GetLoc();
-			CompPositionWidget->Width = ComponentBase->GetWidth();
-			CompPositionWidget->Length = ComponentBase->GetLength();
+			CompPositionWidget->mWidth = ComponentBase->GetWidth();
+			CompPositionWidget->mLength = ComponentBase->GetLength();
 			CompPositionWidget->TPoylgon = ComponentBase->GetTPoylgon();
-			CompPositionWidget->Angle = Round(ComponentBase->GetAngleVal());
+			CompPositionWidget->mAngle = Round(ComponentBase->GetAngleVal());
 			CompPositionWidget->UpdateCompInfo();
 		}
 	}
@@ -2156,8 +2156,8 @@ void AComponentManagerActor::ChangeSize(float Val)
 
 				if (CompPositionWidget)
 				{
-					CompPositionWidget->Width = BaseComponent->GetWidth();
-					CompPositionWidget->Length = BaseComponent->GetComponenetType() != EComponenetType::_Sewer ? BaseComponent->GetLength() : BaseComponent->GetWidth();
+					CompPositionWidget->mWidth = BaseComponent->GetWidth();
+					CompPositionWidget->mLength = BaseComponent->GetComponenetType() != EComponenetType::_Sewer ? BaseComponent->GetLength() : BaseComponent->GetWidth();
 				}
 			}
 		}
@@ -2232,8 +2232,8 @@ void AComponentManagerActor::ChangleWidth(float Val)
 			}
 			if (CompPositionWidget)
 			{
-				CompPositionWidget->Length = BaseComponent->GetLength();
-				CompPositionWidget->Width = BaseComponent->GetWidth();
+				CompPositionWidget->mLength = BaseComponent->GetLength();
+				CompPositionWidget->mWidth = BaseComponent->GetWidth();
 			}
 		}
 	}
@@ -2306,8 +2306,8 @@ void AComponentManagerActor::ChangleLength(float Val)
 			}
 			if (CompPositionWidget)
 			{
-				CompPositionWidget->Length = BaseComponent->GetLength();
-				CompPositionWidget->Width = BaseComponent->GetWidth();
+				CompPositionWidget->mLength = BaseComponent->GetLength();
+				CompPositionWidget->mWidth = BaseComponent->GetWidth();
 			}
 		}
 	}
@@ -3471,10 +3471,10 @@ void AComponentManagerActor::ShowComponentPositionWidget()
 	CompPositionWidget->ObjectID = ObjID;
 	CompPositionWidget->CompManager = this;
 	CompPositionWidget->TargetPosition = screenPos;
-	CompPositionWidget->Width = ComponentBase->GetWidth();
-	CompPositionWidget->Length = ComponentBase->GetComponenetType() == EComponenetType::_Sewer ? ComponentBase->GetWidth() : ComponentBase->GetLength();
+	CompPositionWidget->mWidth = ComponentBase->GetWidth();
+	CompPositionWidget->mLength = ComponentBase->GetComponenetType() == EComponenetType::_Sewer ? ComponentBase->GetWidth() : ComponentBase->GetLength();
 	CompPositionWidget->TPoylgon = ComponentBase->GetTPoylgon();
-	CompPositionWidget->Angle = Round(ComponentBase->GetAngleVal());
+	CompPositionWidget->mAngle = Round(ComponentBase->GetAngleVal());
 
 	CompPositionWidget->UpdateCompInfo();
 }

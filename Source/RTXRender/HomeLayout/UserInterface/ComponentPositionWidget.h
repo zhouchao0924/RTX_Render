@@ -50,11 +50,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (Category = "Property"))
 		FVector2D TargetPosition;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (Category = "Property"))
-		float Width;
+		float mWidth;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (Category = "Property"))
-		float Length;
+		float mLength;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (Category = "Property"))
-		float Angle;
+		float mAngle;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (Category = "Property"))
 		TArray<FVector2D> TPoylgon;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (Category = "Property"))

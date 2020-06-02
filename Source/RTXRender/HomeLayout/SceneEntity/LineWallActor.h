@@ -123,6 +123,7 @@ public:
 		void GetCraftList(int ModelId, int ClassRoomID, TArray<int> &CraftID);
 	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "GetWallResIDByModelID"))
 		FString GetWallResIDByModelID(int32 ModelID);
+
 protected:
 
 	UFUNCTION(BlueprintCallable, Category = "LineWallActor")

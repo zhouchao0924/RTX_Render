@@ -187,6 +187,7 @@ public:
 	void AutoSetWindowForward();
 	UFUNCTION(BlueprintCallable, meta = (Category = "Attributes"))
 	void IsNeedAdaptation();
+
 private:
 
 	TArray<FColor>NullVColors;

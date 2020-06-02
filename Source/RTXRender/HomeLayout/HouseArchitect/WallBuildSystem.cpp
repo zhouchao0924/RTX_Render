@@ -5681,7 +5681,7 @@ int32 UWallBuildSystem::UpdateTheWallLength(float CurrentLength)
 	{
 		if (DrawWallCmd->WallPlaneTemp)
 		{
-			LastPointIndex = DrawWallCmd->WallPlaneTemp->LastCornerID;
+			LastPointIndex = DrawWallCmd->WallPlaneTemp->mLastCornerID;
 		}
 
 		if (LastPointIndex != -1)

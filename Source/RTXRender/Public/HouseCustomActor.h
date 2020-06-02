@@ -3,6 +3,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "ResourceActor.h"
+#include "VaRestSubsystem.h"
 #include "VaRestJsonObject.h"
 #include "VaRestLibrary.h"
 #include "houseCustomTemplete.h"
@@ -190,7 +191,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void SetLoftex(FIsLoft date);
 
-	void  CreateHouseCustomActorCallback(UVaRestRequestJSON* Request);
+	void  CreateHouseCustomActorCallback(class UVaRestRequestJSON* Request);
 
 
 	FVector GetSize(int32 ID);

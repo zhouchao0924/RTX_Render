@@ -4,7 +4,6 @@
 #include "HouseFunctionLibrary.h"
 #include "IImageWrapperModule.h"
 #include "Runtime/Engine/Classes/Kismet/KismetStringLibrary.h"
-#include "Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h"
 #include "EditorGameInStance.h"
 
 bool UHouseFunctionLibrary::GetChangeImageData(UObject * WorldContextObject, TArray<FWall>& OutData1, TArray<FWall>& OutData2)

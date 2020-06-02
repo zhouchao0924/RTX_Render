@@ -1,0 +1,54 @@
+mdl 1.2;
+
+import ::tex::*;
+import ::anno::*;
+
+import ::anno::author;
+import ::anno::copyright_notice;
+import ::anno::description;
+import ::anno::display_name;
+import ::anno::unused;
+import ::base::file_texture;
+import ::base::mono_mode;
+import ::base::texture_coordinate_info;
+import ::base::texture_return;
+import ::df::diffuse_edf;
+import ::df::scatter_mode;
+import ::df::simple_glossy_bsdf;
+import ::state::normal;
+import ::state::texture_coordinate;
+import ::state::texture_tangent_u;
+import ::state::texture_tangent_v;
+import ::tex::gamma_mode;
+import ::tex::wrap_mode;
+
+export material UE4Template(
+    uniform float Emissive_coord = 0.f 
+    ,
+    uniform float intensity = 1.f 
+    ,
+    uniform color Emissive_color = color(1.f, 1.f, 1.f) 
+    ,
+    uniform texture_2d Emissive = texture_2d() 
+    )
+ = 
+    let {
+        bool tmp0 = false;
+        material_surface tmp1(
+            ::df::simple_glossy_bsdf(0.5f, 0.5f, Emissive_coord == 0.f ? Emissive_color : ::base::file_texture(Emissive, color(0.f, 0.f, 0.f), color(1.f, 1.f, 1.f), ::base::mono_alpha, ::base::texture_coordinate_info(::state::texture_coordinate(0), ::state::texture_tangent_u(0), ::state::texture_tangent_v(0)), float2(0.f, 1.f), float2(0.f, 1.f), ::tex::wrap_repeat, ::tex::wrap_repeat, false).tint, ::state::texture_tangent_u(0), ::df::scatter_reflect, ""),
+            material_emission(::df::diffuse_edf(""), (Emissive_coord == 0.f ? Emissive_color : ::base::file_texture(Emissive, color(0.f, 0.f, 0.f), color(1.f, 1.f, 1.f), ::base::mono_alpha, ::base::texture_coordinate_info(::state::texture_coordinate(0), ::state::texture_tangent_u(0), ::state::texture_tangent_v(0)), float2(0.f, 1.f), float2(0.f, 1.f), ::tex::wrap_repeat, ::tex::wrap_repeat, false).tint) * intensity, intensity_radiant_exitance));
+        material_surface tmp2 = material_surface(scattering: bsdf(), emission: material_emission(emission: edf(), intensity: color(0.f, 0.f, 0.f), mode: intensity_radiant_exitance));
+        color tmp3 = color(1.f, 1.f, 1.f);
+        material_volume tmp4 = material_volume(scattering: vdf(), absorption_coefficient: color(0.f, 0.f, 0.f), scattering_coefficient: color(0.f, 0.f, 0.f));
+        material_geometry tmp5(
+            float3(0.f),
+            1.f,
+            ::state::normal());
+    } in
+        material(
+            thin_walled: tmp0,
+            surface: tmp1,
+            backface: tmp2,
+            ior: tmp3,
+            volume: tmp4,
+            geometry: tmp5);

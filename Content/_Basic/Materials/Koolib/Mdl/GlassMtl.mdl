@@ -1,0 +1,94 @@
+mdl 1.2;
+
+import ::tex::*;
+import ::anno::*;
+
+import ::anno::author;
+import ::anno::copyright_notice;
+import ::anno::description;
+import ::anno::display_name;
+import ::anno::unused;
+import ::base::anisotropy_conversion;
+import ::base::anisotropy_return;
+import ::base::file_bump_texture;
+import ::base::file_texture;
+import ::base::mono_mode;
+import ::base::tangent_space_normal_texture;
+import ::base::texture_coordinate_info;
+import ::base::texture_return;
+import ::df::custom_curve_layer;
+import ::df::diffuse_edf;
+import ::df::diffuse_reflection_bsdf;
+import ::df::directional_factor;
+import ::df::microfacet_ggx_smith_bsdf;
+import ::df::scatter_mode;
+import ::df::weighted_layer;
+import ::math::min_value;
+import ::math::pow;
+import ::state::normal;
+import ::state::texture_coordinate;
+import ::state::texture_tangent_u;
+import ::state::texture_tangent_v;
+import ::tex::gamma_mode;
+import ::tex::wrap_mode;
+
+export material UE4Template(
+    uniform float Emissive_coord = 0.f 
+    ,
+    uniform color Metallic_color = color(1.f, 1.f, 1.f) 
+    ,
+    uniform float Diffuse_coord = 0.f 
+    ,
+    uniform color Diffuse_color = color(1.f, 1.f, 1.f) 
+    ,
+    uniform texture_2d albedo = texture_2d() 
+    ,
+    uniform color Metallic_color_1 = color(0.f, 0.f, 0.f) 
+    ,
+    uniform float Normal_coord = 0.f 
+    ,
+    uniform float RefractionGlossiness = 1.f 
+    ,
+    uniform texture_2d normal_map = texture_2d() 
+    ,
+    uniform color Emissive_color = color(0.f, 0.f, 0.f) 
+    ,
+    uniform texture_2d Emissive = texture_2d() 
+    ,
+    uniform float RefractionIOR = 1.6f [[
+        ::anno::description("Index of Refraction"),
+        ::anno::display_name("IOR"),
+        ::anno::in_group("Refraction"),
+        ::anno::soft_range(1,10),
+        ::anno::hard_range(1,100)
+    ]],
+    uniform float Opacity_map_coord = 0.f 
+    ,
+    uniform color Opacity_map_color = color(0.214041f, 0.214041f, 0.214041f) 
+    ,
+    uniform texture_2d Opacity_map = texture_2d() 
+    )
+[[
+    ::anno::author("Allegorithmic")
+]]
+ = 
+    let {
+        bool tmp0 = false;
+        material_surface tmp1(
+            ::df::weighted_layer(::math::min_value(Metallic_color), ::df::directional_factor(Diffuse_coord == 0.f ? Diffuse_color : ::base::file_texture(albedo, color(0.f, 0.f, 0.f), color(1.f, 1.f, 1.f), ::base::mono_alpha, ::base::texture_coordinate_info(::state::texture_coordinate(0), ::state::texture_tangent_u(0), ::state::texture_tangent_v(0)), float2(0.f, 1.f), float2(0.f, 1.f), ::tex::wrap_repeat, ::tex::wrap_repeat, false).tint, color(1.f, 1.f, 1.f), 3.f, ::df::microfacet_ggx_smith_bsdf(::base::anisotropy_conversion(::math::min_value(Metallic_color_1) * ::math::pow(1.f - RefractionGlossiness, 2.f), 0.f, 0.f, ::state::texture_tangent_u(0), false).roughness_u, ::base::anisotropy_conversion(::math::min_value(Metallic_color_1) * ::math::pow(1.f - RefractionGlossiness, 2.f), 0.f, 0.f, ::state::texture_tangent_u(0), false).roughness_v, color(1.f, 1.f, 1.f), ::base::anisotropy_conversion(::math::min_value(Metallic_color_1) * ::math::pow(1.f - RefractionGlossiness, 2.f), 0.f, 0.f, ::state::texture_tangent_u(0), false).tangent_u, ::df::scatter_reflect, "")), ::df::custom_curve_layer(0.04f, 1.f, 3.f, 1.f, ::df::microfacet_ggx_smith_bsdf(::base::anisotropy_conversion(::math::min_value(Metallic_color_1) * ::math::pow(1.f - RefractionGlossiness, 2.f), 0.f, 0.f, ::state::texture_tangent_u(0), false).roughness_u, ::base::anisotropy_conversion(::math::min_value(Metallic_color_1) * ::math::pow(1.f - RefractionGlossiness, 2.f), 0.f, 0.f, ::state::texture_tangent_u(0), false).roughness_v, color(1.f, 1.f, 1.f), ::base::anisotropy_conversion(::math::min_value(Metallic_color_1) * ::math::pow(1.f - RefractionGlossiness, 2.f), 0.f, 0.f, ::state::texture_tangent_u(0), false).tangent_u, ::df::scatter_reflect, ""), ::df::weighted_layer(1.f, ::df::diffuse_reflection_bsdf(Diffuse_coord == 0.f ? Diffuse_color : ::base::file_texture(albedo, color(0.f, 0.f, 0.f), color(1.f, 1.f, 1.f), ::base::mono_alpha, ::base::texture_coordinate_info(::state::texture_coordinate(0), ::state::texture_tangent_u(0), ::state::texture_tangent_v(0)), float2(0.f, 1.f), float2(0.f, 1.f), ::tex::wrap_repeat, ::tex::wrap_repeat, false).tint, 0.f, ""), bsdf(), Normal_coord == 0.f ? ::base::tangent_space_normal_texture(normal_map, 1.f, false, false, ::base::texture_coordinate_info(::state::texture_coordinate(0), ::state::texture_tangent_u(0), ::state::texture_tangent_v(0)), float2(0.f, 1.f), float2(0.f, 1.f), ::tex::wrap_repeat, ::tex::wrap_repeat, false, 1.f, 0.f) : ::base::file_bump_texture(normal_map, 1.f, ::base::mono_average, ::base::texture_coordinate_info(::state::texture_coordinate(0), ::state::texture_tangent_u(0), ::state::texture_tangent_v(0)), float2(0.f, 1.f), float2(0.f, 1.f), ::tex::wrap_repeat, ::tex::wrap_repeat, ::state::normal(), false)), Normal_coord == 0.f ? ::base::tangent_space_normal_texture(normal_map, 1.f, false, false, ::base::texture_coordinate_info(::state::texture_coordinate(0), ::state::texture_tangent_u(0), ::state::texture_tangent_v(0)), float2(0.f, 1.f), float2(0.f, 1.f), ::tex::wrap_repeat, ::tex::wrap_repeat, false, 1.f, 0.f) : ::base::file_bump_texture(normal_map, 1.f, ::base::mono_average, ::base::texture_coordinate_info(::state::texture_coordinate(0), ::state::texture_tangent_u(0), ::state::texture_tangent_v(0)), float2(0.f, 1.f), float2(0.f, 1.f), ::tex::wrap_repeat, ::tex::wrap_repeat, ::state::normal(), false)), ::state::normal()),
+            material_emission(::df::diffuse_edf(""), Emissive_coord == 0.f ? Emissive_color : ::base::file_texture(Emissive, color(0.f, 0.f, 0.f), color(1.f, 1.f, 1.f), ::base::mono_alpha, ::base::texture_coordinate_info(::state::texture_coordinate(0), ::state::texture_tangent_u(0), ::state::texture_tangent_v(0)), float2(0.f, 1.f), float2(0.f, 1.f), ::tex::wrap_repeat, ::tex::wrap_repeat, false).tint, intensity_power));
+        material_surface tmp2 = material_surface(scattering: bsdf(), emission: material_emission(emission: edf(), intensity: color(0.f, 0.f, 0.f), mode: intensity_radiant_exitance));
+        color tmp3 = RefractionIOR;
+        material_volume tmp4 = material_volume(scattering: vdf(), absorption_coefficient: color(0.f, 0.f, 0.f), scattering_coefficient: color(0.f, 0.f, 0.f));
+        material_geometry tmp5(
+            float3(0.f),
+            ::math::min_value(float3(Opacity_map_coord == 0.f ? Opacity_map_color : ::base::file_texture(Opacity_map, color(0.f, 0.f, 0.f), color(1.f, 1.f, 1.f), ::base::mono_alpha, ::base::texture_coordinate_info(::state::texture_coordinate(0), ::state::texture_tangent_u(0), ::state::texture_tangent_v(0)), float2(0.f, 1.f), float2(0.f, 1.f), ::tex::wrap_repeat, ::tex::wrap_repeat, false).tint)),
+            Normal_coord == 0.f ? ::base::tangent_space_normal_texture(normal_map, 1.f, false, false, ::base::texture_coordinate_info(::state::texture_coordinate(0), ::state::texture_tangent_u(0), ::state::texture_tangent_v(0)), float2(0.f, 1.f), float2(0.f, 1.f), ::tex::wrap_repeat, ::tex::wrap_repeat, false, 1.f, 0.f) : ::base::file_bump_texture(normal_map, 1.f, ::base::mono_average, ::base::texture_coordinate_info(::state::texture_coordinate(0), ::state::texture_tangent_u(0), ::state::texture_tangent_v(0)), float2(0.f, 1.f), float2(0.f, 1.f), ::tex::wrap_repeat, ::tex::wrap_repeat, ::state::normal(), false));
+    } in
+        material(
+            thin_walled: tmp0,
+            surface: tmp1,
+            backface: tmp2,
+            ior: tmp3,
+            volume: tmp4,
+            geometry: tmp5);

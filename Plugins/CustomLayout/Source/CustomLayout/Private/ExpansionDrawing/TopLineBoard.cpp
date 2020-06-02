@@ -1,8 +1,8 @@
 // Copyright? 2017 ihomefnt All Rights Reserved.
 
-#include "TopLineBoard.h"
+#include "ExpansionDrawing/TopLineBoard.h"
 #include "Math/LayoutMath.h"
-#include "ExpansionsDrawingStructure.h"
+#include "AataStructure/ExpansionsDrawingStructure.h"
 
 // Sets default values
 ATopLineBoard::ATopLineBoard()

@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Struct.h"
+#include "Struct/Struct.h"
 #include "GameFramework/Actor.h"
 #include "Building/DRActor.h"
 #include "Building/BuildingData.h"

@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "ExpansionsDrawingStructure.h"
+#include "AataStructure/ExpansionsDrawingStructure.h"
 #include "ExpansionDrawingFunctionLibrary.generated.h"
 
 /**

@@ -15,7 +15,7 @@ class CUSTOMLAYOUT_API CustomCabinetsObject
 public:
 	CustomCabinetsObject();
 	CustomCabinetsObject(AreaCabinetsManage* area, CustomCabinetsType type);
-	~CustomCabinetsObject();
+	virtual ~CustomCabinetsObject();
 
 protected:
 	AreaCabinetsManage* AreaManager;

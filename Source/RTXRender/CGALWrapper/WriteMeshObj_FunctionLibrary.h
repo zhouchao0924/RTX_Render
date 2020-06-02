@@ -4,9 +4,9 @@
 
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "PolygonAlg.h"
-#include "ObjFileAnsyTask.h"
+#include "Model/ObjFileAnsyTask.h"
 #include "HomeLayout/HouseArchitect/WallBuildSystem.h"
-#include "FileHelper.h"
+#include "Misc/FileHelper.h"
 #include "../Building/DRStruct.h"
 #include "WriteMeshObj_FunctionLibrary.generated.h"
 

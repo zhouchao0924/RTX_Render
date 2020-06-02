@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "ExpansionsDrawingStructure.h"
+#include "AataStructure/ExpansionsDrawingStructure.h"
 //#include "../HouseFunction/HouseFunctionLibrary.h"
 /**
  * 

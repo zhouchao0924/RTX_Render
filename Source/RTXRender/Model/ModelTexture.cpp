@@ -1,7 +1,6 @@
 ﻿
 #include "ModelTexture.h"
 #include "ResourceMgr.h"
-#include "TextureImporter.h"
 #include "Building/BuildingSystem.h"
 
 #undef UpdateResource

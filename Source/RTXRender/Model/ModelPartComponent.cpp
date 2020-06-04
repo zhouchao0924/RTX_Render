@@ -1,6 +1,5 @@
 
 #include "ModelPartComponent.h"
-#include "TextureImporter.h"
 #include "PhysicsEngine/BodySetup.h"
 
 #pragma warning(disable : 4668)

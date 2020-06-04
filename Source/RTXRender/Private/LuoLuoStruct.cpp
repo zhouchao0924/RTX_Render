@@ -15,8 +15,11 @@
 #include <CGAL/Polygon_with_holes_2.h>
 #include <CGAL/Boolean_set_operations_2.h>
 #include <CGAL/Polygon_2_algorithms.h>
-#include "FileHelper.h"
+#include "Misc/FileHelper.h"
 #include "openssl/md5.h"
+#include "Kismet/GameplayStatics.h"
+#include "Components/SceneCaptureComponent2D.h"
+#include "Engine/TextureRenderTarget2D.h"
 
 #define MIN_ORTHOZOOM				250.0					/* Limit of 2D viewport zoom in */
 #define MAX_ORTHOZOOM				MAX_FLT					/* Limit of 2D viewport zoom out */

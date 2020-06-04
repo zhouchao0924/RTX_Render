@@ -15,6 +15,7 @@
 #include "Data/Adapter/DRSolidWallAdapter.h"
 #include "Data/Adapter/DRHoleAdapter.h"
 #include "Data/Adapter/DRAreaAdapter.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values for this component's properties

@@ -10,7 +10,7 @@
 #include "ProceduralMeshComponent.h"
 #include "Kismet/KismetStringLibrary.h"
 #include "Kismet/GameplayStatics.h"
-#include "../ajdr/Building/HouseComponent/ComponentManagerActor.h"
+#include "Building/HouseComponent/ComponentManagerActor.h"
 
 
 // Sets default values for this component's properties

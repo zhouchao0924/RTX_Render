@@ -936,7 +936,7 @@ bool UCabinetSdk::LayoutResultBack(UObject* WorldContextObject, const FCabinetLa
 	data->SetStringField("functionName", "getLayoutResult");
 	data->SetStringField("inputParams", inputParams->EncodeJsonToSingleString());
 	MessageJson->SetObjectField(TEXT("data"), data);
-	return GameInstance->SocketSend(MessageJson->EncodeJsonToSingleString());
+	return true;
 }
 
 bool UCabinetSdk::OverlayResultBack(UObject* WorldContextObject, const FCabinetOverlayResult & Data)
@@ -971,7 +971,7 @@ bool UCabinetSdk::OverlayResultBack(UObject* WorldContextObject, const FCabinetO
 	data->SetStringField("functionName", "checkModelOverlayResult");
 	data->SetStringField("inputParams", inputParams->EncodeJsonToSingleString());
 	MessageJson->SetObjectField(TEXT("data"), data);
-	return GameInstance->SocketSend(MessageJson->EncodeJsonToSingleString());
+	return true;
 }
 
 bool UCabinetSdk::SelecteDwardrobeLayout(int type)

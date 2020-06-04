@@ -1,8 +1,6 @@
 
 #include "SurfaceFile.h"
 #include "DRGameMode.h"
-#include "ModelCompress.h"
-#include "ModelImporter.h"
 #include "ResourceMgr.h"
 
 void USurfaceFile::FHeader::Serialize(FArchive &Ar)

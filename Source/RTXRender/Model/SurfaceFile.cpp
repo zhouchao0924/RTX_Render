@@ -106,35 +106,6 @@ UTexture2D * USurfaceFile::SetMaterialSlotTexture(int32 TextureIndex, const FStr
 
 	if (texSlots.IsValidIndex(TextureIndex))
 	{
-		FTexSlotInfo &slotInfo = texSlots[TextureIndex];
-
-		UTextureImporter *TexImporter = ResMgr->GetTextureImporter();
-
-		if (TexImporter)
-		{
-			FTextureSourceInfo *pTexSourceInfo = TexImporter->ImportFromFile(this, GetSlotType(slotInfo.TexParamName), NewTexFile);
-			if (pTexSourceInfo)
-			{
-				FModelTexture *tex = NULL;
-
-				int32 TexIndex = m_MaterialInfo->GetTextureValue(slotInfo.TexParamName);
-				if (TexIndex != INDEX_NONE)
-				{
-					tex = m_Textures[TexIndex];
-				}
-				else
-				{
-					TexIndex = m_Textures.Num();
-					tex = new FModelTexture();
-					m_Textures.Add(tex);
-					m_MaterialInfo->SetTextureValue(slotInfo.TexParamName, TexIndex);
-				}
-
-				tex->SetData(*pTexSourceInfo);
-				Texture = tex->GetTexture();
-				MarkDirty();
-			}
-		}
 	}
 	return Texture;
 }
@@ -150,19 +121,7 @@ UTexture2D * USurfaceFile::GetSlotNTexture(int32 TextureIndex, const FString & N
 	{
 		FTexSlotInfo &slotInfo = texSlots[TextureIndex];
 
-		UTextureImporter *TexImporter = ResMgr->GetTextureImporter();
 
-		if (TexImporter)
-		{
-			FTextureSourceInfo *pTexSourceInfo = TexImporter->ImportFromFile(this, GetSlotType(slotInfo.TexParamName), NewTexFile);
-			if (pTexSourceInfo)
-			{
-				FModelTexture *tex =  new FModelTexture();
-				tex->SetData(*pTexSourceInfo);
-				Texture = tex->GetTexture();
-
-			}
-		}
 	}
 	return Texture;
 }
@@ -758,7 +717,7 @@ void USurfaceFile::CheckResource()
 		FModelTexture *tex = m_Textures[i];
 		if (tex && tex->Source.CompressedImages.Num() == 0)
 		{
-			CompressUtil::CompressTexture(tex);
+			
 		}
 	}
 	Super::CheckResource();

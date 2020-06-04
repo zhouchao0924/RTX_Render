@@ -577,7 +577,7 @@ void UResourceMgr::UploadResource(UResource *Resource, const FString &URL)
 void UResourceMgr::QueryMaterialBrandTree(int32 UserID)
 {
 	UProtocalImpl *Protocal = UProtocalImpl::GetProtocal(this);
-	UVaRestJsonObject *JsonObj;
+	UVaRestJsonObject *JsonObj = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 	if (Protocal)
 	{
 		FProtocalDelegate Delegate;

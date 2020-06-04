@@ -347,7 +347,7 @@ bool ACeilWrapper::ShowElement(bool bShow, int uEdgeID /* = -1 */, int uID /* = 
 			}
 		}
 	}
-	if ((0 == uEdgeID || uEdgeID < 0) && nullptr != mpTopLayer && bShow != mpTopLayer->bVisible)
+	if ((0 == uEdgeID || uEdgeID < 0) && nullptr != mpTopLayer && bShow != mpTopLayer->IsVisible())
 	{
 		mpTopLayer->SetVisibility(bShow, true);
 		//

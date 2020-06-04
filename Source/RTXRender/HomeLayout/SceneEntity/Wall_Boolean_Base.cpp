@@ -419,18 +419,18 @@ FVector AWall_Boolean_Base::GetVertex(float VectorAddValue , int32 Index)
 {
 	switch (Index)
 	{
-	case 0:return FVector(Left_Arrow->RelativeLocation.X - Wall_Thick_Left, Left_Arrow->RelativeLocation.Y, Left_Arrow->RelativeLocation.Z+ VectorAddValue);
+	case 0:return FVector(Left_Arrow->GetRelativeLocation().X - Wall_Thick_Left, Left_Arrow->GetRelativeLocation().Y, Left_Arrow->GetRelativeLocation().Z + VectorAddValue);
 		break;
-	case 1:return FVector(Left_Arrow->RelativeLocation.X + Wall_Thick_Right, Left_Arrow->RelativeLocation.Y, Left_Arrow->RelativeLocation.Z + VectorAddValue);
+	case 1:return FVector(Left_Arrow->GetRelativeLocation().X + Wall_Thick_Right, Left_Arrow->GetRelativeLocation().Y, Left_Arrow->GetRelativeLocation().Z + VectorAddValue);
 		break;
-	case 2:return FVector(Right_Arrow->RelativeLocation.X + Wall_Thick_Right, Right_Arrow->RelativeLocation.Y, Right_Arrow->RelativeLocation.Z + VectorAddValue);
+	case 2:return FVector(Right_Arrow->GetRelativeLocation().X + Wall_Thick_Right, Right_Arrow->GetRelativeLocation().Y, Right_Arrow->GetRelativeLocation().Z + VectorAddValue);
 		break;
-	case 3:return FVector(Right_Arrow->RelativeLocation.X - Wall_Thick_Left, Right_Arrow->RelativeLocation.Y, Right_Arrow->RelativeLocation.Z + VectorAddValue);
+	case 3:return FVector(Right_Arrow->GetRelativeLocation().X - Wall_Thick_Left, Right_Arrow->GetRelativeLocation().Y, Right_Arrow->GetRelativeLocation().Z + VectorAddValue);
 
 	default:return FVector(0, 0, 0);
 		break;
 	}
-	return FVector(0,0,0);
+	return FVector(0, 0, 0);
 }
 
 

@@ -1,9 +1,9 @@
 // Copyright© 2017 ihomefnt All Rights Reserved.
 
 #include "LuoLuoStruct.h"
-#include "WidgetLayoutLibrary.h"
-#include "WebBrowserModule.h"
-#include "IWebBrowserSingleton.h"
+#include "Blueprint/WidgetLayoutLibrary.h"
+#include "WebBrowser/Public/WebBrowserModule.h"
+#include "WebBrowser/Public/IWebBrowserSingleton.h"
 #include "CGAL/Exact_predicates_exact_constructions_kernel.h"
 #include "CGAL/intersections.h"
 #include "Kismet/KismetMathLibrary.h"

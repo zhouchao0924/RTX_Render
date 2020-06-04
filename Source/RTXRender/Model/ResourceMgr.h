@@ -134,8 +134,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "DR|Resource")
 	bool RequestSkuid(FString &OutSkuid);
 
-	UFUNCTION(BlueprintCallable, Category = "DR|Resource")
-	UTextureImporter *GetTextureImporter();
 
 	UFUNCTION(BlueprintCallable, Category = "DR|Resource")
 	void ReleaseAll();
@@ -193,7 +191,7 @@ public:
 	UResource *Preload(const FString &Filename, bool bNeedHeader, bool bNotify);
 
 protected:
-	UModelImporter *GetImporter();
+
 	bool IsPreloadResFromFileSystem();
 	UResource *CreateResByType(EResType ResType);
 	void LoadRes(UResource *InResource);
@@ -217,8 +215,6 @@ public:
 	FOnResourceListChanged					ResourceListChanged;
 	UPROPERTY(Transient)
 	bool									bImportPreloadResource;
-	UPROPERTY(Transient)
-	UModelImporter							*Importer;
 	
 	bool												bTickable;	
 	FCriticalSection									CriticalSection;

@@ -13,15 +13,9 @@
 #include "Audio.h"
 #include "Developer/TargetPlatform/Public/Interfaces/IAudioFormat.h"
 #include "VorbisAudioInfo.h"
-
-#include "Widgets/Colors/SColorPicker.h"
-
 #include "ImageUtils.h"
-//#include "ImageWrapper.h"
 #include "IImageWrapper.h"
-
 #include "Blueprint/UserWidget.h"
-
 #include "ProceduralMeshComponent.h"
 #include "PeExtendedToolKitBPLibrary.generated.h"
 

@@ -1,8 +1,6 @@
-
 #include "ResourceMgr.h"
 #include "ModelFile.h"
 #include "SurfaceFile.h"
-#include "ModelImporter.h"
 #include "AsyncTask/ImportTask.h"
 #include "AsyncTask/LoadTask.h"
 #include "AsyncTask/ProtocalTask.h"
@@ -12,9 +10,9 @@
 #include "AsyncTask/UploadLoadTask.h"
 #include "AsyncTask/CookTask.h"
 #include "UpdateFileSystemTask.h"
-#include "IrayGameMode.h"
 #include "Model/CompoundModelFile.h"
 #include "ResourceMgrComponent.h"
+#include <VaRestSubsystem.h>
 
 DEFINE_LOG_CATEGORY(LogResMgr);
 
@@ -22,7 +20,6 @@ UResourceMgr * UResourceMgr::s_Instance = NULL;
 
 UResourceMgr::UResourceMgr(const FObjectInitializer &ObjectInitializer)
 	: Super(ObjectInitializer)
-	, Importer(NULL)
 	, bTickable(false)
 	, UpdateFileSystemTask(nullptr)
 {
@@ -179,41 +176,11 @@ USurfaceFile * UResourceMgr::NewSurfaceByName(const FString & EnglishName)
 	return Surface;
 }
 
-UModelImporter *UResourceMgr::GetImporter()
-{
-	if (!Importer)
-	{
-		Importer = NewObject<UModelImporter>();
-
-		if (!Importer->Initialize())
-		{
-			Importer->ConditionalBeginDestroy();
-			Importer = NULL;
-		}
-	}
-
-	return Importer;
-}
 
 UModelFile *UResourceMgr::AsyncLoadFBX(UModelFile *InUpdateModel, const FString &InFilename, UObject *WorldContextObject)
 {
 	UModelFile *ModelFile = NULL;
 	UResourceMgr *ResMgr = UResourceMgr::Instance(WorldContextObject);
-	UModelImporter *Importer = ResMgr? ResMgr->GetImporter() : NULL;
-
-	if (Importer)
-	{
-		bool bTransient = InUpdateModel != NULL;
-		ModelFile = ResMgr->NewModel(bTransient);
-		if (bTransient)
-		{
-			ModelFile->SetResID(InUpdateModel->GetResID());
-		}
-		if (ModelFile)
-		{
-			FDRAsyncTaskManager::Get().QueueTask(new FAsyncTask<FImportAsyncTask>(ModelFile, InUpdateModel, Importer, InFilename));
-		}
-	}
 
 	return InUpdateModel? InUpdateModel : ModelFile;
 }
@@ -223,16 +190,6 @@ UCompoundModelFile *UResourceMgr::AsyncLoadCompoundFBX(UCompoundModelFile *InUpd
 	UCompoundModelFile *CompoundFile = NULL;
 
 	UResourceMgr *ResMgr = UResourceMgr::Instance(WorldContextObject);
-	UModelImporter *Importer = ResMgr? ResMgr->GetImporter() : NULL;
-
-	if (Importer)
-	{
-		CompoundFile = ResMgr->NewCompoundModel();
-		if (CompoundFile)
-		{
-			FDRAsyncTaskManager::Get().QueueTask(new FAsyncTask<FImportAsyncTask>(CompoundFile, InUpdateModel, Importer, InFilename));
-		}
-	}
 
 	return CompoundFile;
 }
@@ -509,7 +466,7 @@ USurfaceFile * UResourceMgr::CreateSurface(const FMaterialListItem &item, const 
 		}
 		
 	}
-	pNewSurface->DRInfo = UVaRestJsonObject::ConstructJsonObject(this);
+	pNewSurface->DRInfo = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 	pNewSurface->DRInfo->SetStringField("ChineseName", ChineseName.Name);
 	return pNewSurface;
 }
@@ -620,7 +577,7 @@ void UResourceMgr::UploadResource(UResource *Resource, const FString &URL)
 void UResourceMgr::QueryMaterialBrandTree(int32 UserID)
 {
 	UProtocalImpl *Protocal = UProtocalImpl::GetProtocal(this);
-	UVaRestJsonObject *JsonObj = UVaRestJsonObject::ConstructJsonObject(this);
+	UVaRestJsonObject *JsonObj;
 	if (Protocal)
 	{
 		FProtocalDelegate Delegate;
@@ -632,7 +589,7 @@ void UResourceMgr::QueryMaterialBrandTree(int32 UserID)
 void UResourceMgr::QueryMaterialById(int32 MaterialId)
 {
 	UProtocalImpl *Protocal = UProtocalImpl::GetProtocal(this);
-	UVaRestJsonObject *JsonObj = UVaRestJsonObject::ConstructJsonObject(this);
+	UVaRestJsonObject *JsonObj = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 	if (Protocal)
 	{
 		FProtocalDelegate Delegate;
@@ -644,7 +601,7 @@ void UResourceMgr::QueryMaterialById(int32 MaterialId)
 void UResourceMgr::QueryMaterialByPage(int32 PageIndex, int32 PageSize, const FString &OrderBy, int32 BrandId, const FString &Name, int32 UserId)
 {
 	UProtocalImpl *Protocal = UProtocalImpl::GetProtocal(this);
-	UVaRestJsonObject *JsonObj = UVaRestJsonObject::ConstructJsonObject(this);
+	UVaRestJsonObject *JsonObj = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 	if (Protocal)
 	{
 		FProtocalDelegate Delegate;
@@ -656,7 +613,7 @@ void UResourceMgr::QueryMaterialByPage(int32 PageIndex, int32 PageSize, const FS
 void UResourceMgr::RemoveMaterialById(int32 MaterialId)
 {
 	UProtocalImpl *Protocal = UProtocalImpl::GetProtocal(this);
-	UVaRestJsonObject *JsonObj = UVaRestJsonObject::ConstructJsonObject(this);
+	UVaRestJsonObject *JsonObj = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 	if (Protocal)
 	{
 		FProtocalDelegate Delegate;
@@ -747,7 +704,7 @@ void  UResourceMgr::LoadHeader(UResource *Resource)
 	if (Resource && !Resource->bHeadLoaded)
 	{
 
-		Reader = IFileManager::Get().CreateFileReader(*Resource->Filename);
+		FArchive *Reader = IFileManager::Get().CreateFileReader(*Resource->Filename);
 		UE_LOG(LogTemp, Log, TEXT("LoadHeader use mx file[%s]"), *Resource->Filename);
 
 		if (Reader)
@@ -771,7 +728,7 @@ UResource *UResourceMgr::Preload(const FString &Filename, bool bNeedHeader, bool
 	UResource *Resource = NULL;
 	UE_LOG(LogTemp, Log, TEXT("begin to ReadFile"));
 
-	Reader = IFileManager::Get().CreateFileReader(*Filename);
+	FArchive *Reader = IFileManager::Get().CreateFileReader(*Filename);
 	UE_LOG(LogTemp, Log, TEXT("use mx file[%s]"), *Filename);
 
 	UE_LOG(LogTemp, Log, TEXT("end to ReadFile"));
@@ -817,22 +774,6 @@ UResource *UResourceMgr::Preload(const FString &Filename, bool bNeedHeader, bool
 	return Resource;
 }
 
-UTextureImporter *UResourceMgr::GetTextureImporter()
-{
-	UTextureImporter *Tex = NULL;
-
-	if (!Importer)
-	{
-		Importer = NewObject<UModelImporter>();
-	}
-
-	if (Importer)
-	{
-		Tex = Importer->GetTextureImporter();
-	}
-
-	return Tex;
-}
 
 void UResourceMgr::UpdateModelsByCategory(const FName &Level1, const FName &Level2, const FName &Level3, TArray<int32> &Resources)
 {

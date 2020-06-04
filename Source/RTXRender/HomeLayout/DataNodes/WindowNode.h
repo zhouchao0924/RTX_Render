@@ -4,5 +4,3 @@
 
 
 #include "BaseNode.h"
-
-#include "WindowNode.generated.h"

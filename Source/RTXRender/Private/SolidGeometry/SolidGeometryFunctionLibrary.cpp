@@ -8,6 +8,7 @@
 #include "ProcMeshFunctionLibrary.h"
 #include "KismetProceduralMeshLibrary.h"
 #include "HomeLayout/DataNodes/NodeTypes.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 
 void USolidGeometryFunctionLibrary::TwoLineMinDistance(UObject* WorldContextObject,FVector Line1Point, FVector Line1Direction, FVector Line2Point, FVector Line2Direction, FVector &out_PointOfIntersection, FVector &out_1To2Direction, float &out_Distance,bool Debug)

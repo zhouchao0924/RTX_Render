@@ -22,6 +22,8 @@
 #pragma once
 
 #pragma warning(disable : 4668)
+#pragma warning(disable : 4456)
+#pragma warning(disable : 4458)
 
 #include "Modules/ModuleManager.h"
 

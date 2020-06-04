@@ -14,6 +14,7 @@
 #include "HouseFunction/ManageObjectC.h"
 #include "HouseFunction/HouseFunctionLibrary.h"
 #include "ModelFile.h"
+#include "Subsystems/SubsystemBlueprintLibrary.h"
 
 
 
@@ -1354,7 +1355,7 @@ void AHouseCustomActor::ReplaceSurfaceByCategoryId(int32 CategoryId, const FStri
 
 UVaRestJsonObject * AHouseCustomActor::getCalculatejson()
 {
-	UVaRestJsonObject* calculatejsonjson = UVaRestJsonObject::ConstructJsonObject(this);
+	UVaRestJsonObject* calculatejsonjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 	TArray<UVaRestJsonObject*>componentList;
 	FString templateSize = TempleteJson->GetStringField("categoryName");
 	FVector size;
@@ -1414,7 +1415,7 @@ UVaRestJsonObject * AHouseCustomActor::getCalculatejson()
 }
 UVaRestJsonObject * AHouseCustomActor::CalculateMaterialByArray(TArray<UhouseCustomTemplete*> componts, FVector scale, FVector size)
 {
-			UVaRestJsonObject* tempjson = UVaRestJsonObject::ConstructJsonObject(this);
+			UVaRestJsonObject* tempjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 			float quantity = 0.0f;
 			float length = 0.0f;
 			float width = 0.0f;
@@ -1519,7 +1520,7 @@ UVaRestJsonObject * AHouseCustomActor::CalculateMaterialByArray(TArray<UhouseCus
 			//jingdu 2 wei
 			FBigDecimal bigquantity = ULuoLuoBlueprintFunctionLibrary::ConstructBigDecimalWithFloat(quantity);
 			FString quantitystr = ULuoLuoBlueprintFunctionLibrary::ConverToStringWithPrecisionControl(bigquantity, 2, true);
-			UVaRestJsonObject* attrJson = UVaRestJsonObject::ConstructJsonObject(this);
+			UVaRestJsonObject* attrJson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 			bool hascolor = false;
 			if (componts[0]->CurrentColorData.Contains("mesh_color1")|| componts[0]->CurrentColorData.Contains("")) {
 				hascolor = true;
@@ -1527,10 +1528,10 @@ UVaRestJsonObject * AHouseCustomActor::CalculateMaterialByArray(TArray<UhouseCus
 				if (!colorstruct) {
 					colorstruct = componts[0]->CurrentColorData.Find("");
 				}
-				UVaRestJsonObject* colorjson = UVaRestJsonObject::ConstructJsonObject(this);
+				UVaRestJsonObject* colorjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 				colorjson->SetNumberField("propertyId", colorstruct->propertyId);
 				TArray<UVaRestJsonObject*>colorInArray;
-				UVaRestJsonObject* colorpropertyjson = UVaRestJsonObject::ConstructJsonObject(this);
+				UVaRestJsonObject* colorpropertyjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 				colorpropertyjson->SetNumberField("propertyValueCode", (float)colorstruct->propertyValueCode);
 				colorInArray.Add(colorpropertyjson);
 				colorjson->SetObjectArrayField("propertyValueList", colorInArray);
@@ -1539,10 +1540,10 @@ UVaRestJsonObject * AHouseCustomActor::CalculateMaterialByArray(TArray<UhouseCus
 			if (componts[0]->CurrentColorData.Contains("mesh_door2")) {
 				hascolor = true;
 				FMaterialColorData *coreColorstruct = componts[0]->CurrentColorData.Find("mesh_door2");
-				UVaRestJsonObject* coreColorjson = UVaRestJsonObject::ConstructJsonObject(this);
+				UVaRestJsonObject* coreColorjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 				coreColorjson->SetNumberField("propertyId", coreColorstruct->propertyId);
 				TArray<UVaRestJsonObject*>coreColorjsonInArray;
-				UVaRestJsonObject* coreColorpropertyjson = UVaRestJsonObject::ConstructJsonObject(this);
+				UVaRestJsonObject* coreColorpropertyjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 				coreColorpropertyjson->SetNumberField("propertyValueCode", (float)coreColorstruct->propertyValueCode);
 				coreColorjsonInArray.Add(coreColorpropertyjson);
 				coreColorjson->SetObjectArrayField("propertyValueList", coreColorjsonInArray);
@@ -1551,10 +1552,10 @@ UVaRestJsonObject * AHouseCustomActor::CalculateMaterialByArray(TArray<UhouseCus
 			if (componts[0]->CurrentColorData.Contains("mesh_door1")) {
 				hascolor = true;
 				FMaterialColorData *doorFrameColorstruct = componts[0]->CurrentColorData.Find("mesh_door1");
-				UVaRestJsonObject* doorFrameColorjson = UVaRestJsonObject::ConstructJsonObject(this);
+				UVaRestJsonObject* doorFrameColorjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 				doorFrameColorjson->SetNumberField("propertyId", doorFrameColorstruct->propertyId);
 				TArray<UVaRestJsonObject*>doorFrameColorInArray;
-				UVaRestJsonObject* doorFrameColorpropertyjson = UVaRestJsonObject::ConstructJsonObject(this);
+				UVaRestJsonObject* doorFrameColorpropertyjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 				doorFrameColorpropertyjson->SetNumberField("propertyValueCode", (float)doorFrameColorstruct->propertyValueCode);
 				doorFrameColorInArray.Add(doorFrameColorpropertyjson);
 				doorFrameColorjson->SetObjectArrayField("propertyValueList", doorFrameColorInArray);
@@ -1822,13 +1823,13 @@ UhouseCustomTemplete* AHouseCustomActor::FindCutomTemplate(const FString& meshNa
 
 void AHouseCustomActor::CreateHouseCustomActorByTemplateId(UObject* WorldContextObject, int32 ID, const FString& URL)
 {
-	UVaRestJsonObject *jsonObj = UVaRestJsonObject::ConstructJsonObject(WorldContextObject);
+	UVaRestJsonObject *jsonObj = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 	if (jsonObj)
 	{
-		//CallBack = FVaRestCallDelegate::CreateUObject(this, &AHouseCustomActor::CreateHouseCustomActorCallback);
 		CallBack.BindDynamic(this,&AHouseCustomActor::CreateHouseCustomActorCallback);
 		jsonObj->SetNumberField("id", ID);
-		UVaRestLibrary::CallURL(WorldContextObject,URL, ERequestVerb::GET, ERequestContentType::json, ETimeOutHandleType::DefaultHandle, jsonObj, CallBack, "");
+		auto SelfSystem = CastChecked<UVaRestSubsystem>(USubsystemBlueprintLibrary::GetEngineSubsystem(UVaRestSubsystem::StaticClass()), ECastCheckedType::NullChecked);
+		SelfSystem->CallURL(URL, EVaRestRequestVerb::GET, EVaRestRequestContentType::json,jsonObj, CallBack);
 	}
 }
 
@@ -1904,10 +1905,10 @@ void AHouseCustomActor::GetFinishColorJson(UhouseCustomTemplete* component, UVaR
 	component->CurrentColorData.GenerateValueArray(colorproperty);
 	for (int32 i = 0; i < colorname.Num(); ++i)
 	{
-		UVaRestJsonObject* colorprorpertyjson = UVaRestJsonObject::ConstructJsonObject(this);
+		UVaRestJsonObject* colorprorpertyjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 		colorprorpertyjson->SetNumberField("propertyId", colorproperty[i].propertyId);
 
-		UVaRestJsonObject* Tempcolorjson = UVaRestJsonObject::ConstructJsonObject(this);
+		UVaRestJsonObject* Tempcolorjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 		Tempcolorjson->SetNumberField("propertyValueId", colorproperty[i].propertyValueId);
 		Tempcolorjson->SetNumberField("propertyValueCode", colorproperty[i].propertyValueCode);
 		Tempcolorjson->SetStringField("mxFileMD5", colorproperty[i].MD5);

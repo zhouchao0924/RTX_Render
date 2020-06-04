@@ -61,7 +61,6 @@ void AHousePluginActor::ChangePillarSurf()
 		}
 		else
 		{
-			UMaterial* NewWallMaterial(LoadObject<UMaterial>(nullptr, TEXT("Material'/Game/GameEditor/EditorPrograms/MapWallSystem/Material/DefaultWallMaterial.DefaultWallMaterial'")));
 			UMaterialInstanceDynamic* MatInst = GroupComponent->CreateDynamicMaterialInstance(0, NewWallMaterial);
 			GroupComponent->SetMaterial(0, MatInst);
 		}

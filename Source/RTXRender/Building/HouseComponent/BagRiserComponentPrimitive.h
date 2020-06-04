@@ -11,7 +11,7 @@ class UBagRiserComponentPrimitive :public UComponentBasePrimitive
 public:
 	UBagRiserComponentPrimitive();
 	virtual void Draw(FPaintContext& InContext) const;
-	virtual void PrimitiveVertexDataGenerate(UWorld* MyWorld ,const FVector2D& mousePos);
+	virtual void PrimitiveVertexDataGenerate(UWorld* InMyWorld ,const FVector2D& mousePos);
 public:
 	UPROPERTY()
 	FLinearColor FrameColor;

@@ -165,9 +165,9 @@ void UhouseCustomTemplete::InitDataByJson(UVaRestJsonObject* componentListObject
 			SetColorData("mesh_color1", ColorJson);
 		else
 		{
-			auto ColorJson = AttrJson->GetObjectField("coreColor");
-			if(ColorJson)
-				SetColorData("mesh_door2", ColorJson);
+			auto Json = AttrJson->GetObjectField("coreColor");
+			if(Json)
+				SetColorData("mesh_door2", Json);
 
 			auto doorFrameColorJson = AttrJson->GetObjectField("doorFrameColor");
 			if(doorFrameColorJson)
@@ -200,7 +200,7 @@ void UhouseCustomTemplete::SetElementID(int32 id)
 
 UVaRestJsonObject * UhouseCustomTemplete::getquantitiesjson(FVector scale, float deflength, float defwidth, float defhight)
 {
-	UVaRestJsonObject* tempjson = UVaRestJsonObject::ConstructJsonObject(this);
+	UVaRestJsonObject* tempjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 	float quantity = 0.0f;
 	float length = 10*Defaultsize.Y;
 	float width=10*Defaultsize.X;
@@ -248,15 +248,15 @@ UVaRestJsonObject * UhouseCustomTemplete::getquantitiesjson(FVector scale, float
 	}
 	FBigDecimal bigquantity = ULuoLuoBlueprintFunctionLibrary::ConstructBigDecimalWithFloat(quantity);
 	FString quantitystr = ULuoLuoBlueprintFunctionLibrary::ConverToStringWithPrecisionControl(bigquantity, 2, true);
-	UVaRestJsonObject* attrJson = UVaRestJsonObject::ConstructJsonObject(this);
+	UVaRestJsonObject* attrJson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 	bool hascolor = false;
 	if (CurrentColorData.Contains("mesh_color1")) {
 		hascolor = true;
 		FMaterialColorData *colorstruct = CurrentColorData.Find("mesh_color1");
-		UVaRestJsonObject* colorjson = UVaRestJsonObject::ConstructJsonObject(this);
+		UVaRestJsonObject* colorjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 		colorjson->SetNumberField("propertyId", colorstruct->propertyId);
 		TArray<UVaRestJsonObject*>colorInArray;
-		UVaRestJsonObject* colorpropertyjson = UVaRestJsonObject::ConstructJsonObject(this);
+		UVaRestJsonObject* colorpropertyjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 		//colorpropertyjson->SetNumberField("propertyValueCode", 34);
 		colorpropertyjson->SetNumberField("propertyValueCode", (float)colorstruct->propertyValueCode);
 		colorInArray.Add(colorpropertyjson);
@@ -266,10 +266,10 @@ UVaRestJsonObject * UhouseCustomTemplete::getquantitiesjson(FVector scale, float
 	if (CurrentColorData.Contains("mesh_door2")) {
 		hascolor = true;
 		FMaterialColorData *coreColorstruct = CurrentColorData.Find("mesh_door2");
-		UVaRestJsonObject* coreColorjson = UVaRestJsonObject::ConstructJsonObject(this);
+		UVaRestJsonObject* coreColorjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 		coreColorjson->SetNumberField("propertyId", coreColorstruct->propertyId);
 		TArray<UVaRestJsonObject*>coreColorjsonInArray;
-		UVaRestJsonObject* coreColorpropertyjson = UVaRestJsonObject::ConstructJsonObject(this);
+		UVaRestJsonObject* coreColorpropertyjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 		//coreColorpropertyjson->SetNumberField("propertyValueCode", 34);
 		coreColorpropertyjson->SetNumberField("propertyValueCode", (float)coreColorstruct->propertyValueCode);
 		coreColorjsonInArray.Add(coreColorpropertyjson);
@@ -279,10 +279,10 @@ UVaRestJsonObject * UhouseCustomTemplete::getquantitiesjson(FVector scale, float
 	if (CurrentColorData.Contains("mesh_door1")) {
 		hascolor = true;
 		FMaterialColorData *doorFrameColorstruct = CurrentColorData.Find("mesh_door1");
-		UVaRestJsonObject* doorFrameColorjson = UVaRestJsonObject::ConstructJsonObject(this);
+		UVaRestJsonObject* doorFrameColorjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 		doorFrameColorjson->SetNumberField("propertyId", doorFrameColorstruct->propertyId);
 		TArray<UVaRestJsonObject*>doorFrameColorInArray;
-		UVaRestJsonObject* doorFrameColorpropertyjson = UVaRestJsonObject::ConstructJsonObject(this);
+		UVaRestJsonObject* doorFrameColorpropertyjson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 		//doorFrameColorpropertyjson->SetNumberField("propertyValueCode", 34);
 		doorFrameColorpropertyjson->SetNumberField("propertyValueCode", (float)doorFrameColorstruct->propertyValueCode);
 		doorFrameColorInArray.Add(doorFrameColorpropertyjson);

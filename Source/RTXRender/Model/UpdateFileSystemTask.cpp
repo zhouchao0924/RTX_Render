@@ -12,18 +12,12 @@ void FUpdateFileSystemAsyncTask::DoWork()
 	{
 		TArray<FString> FoundDirectories;
 
-		FoundDirectories.Add(FPaths::GameContentDir() + TEXT("_Basic/Materials/BaseSx/"));
-		FoundDirectories.Add(FPaths::GameContentDir() + TEXT("Geometry/"));
+		FoundDirectories.Add(FPaths::ProjectContentDir() + TEXT("_Basic/Materials/BaseSx/"));
+		FoundDirectories.Add(FPaths::ProjectContentDir() + TEXT("Geometry/"));
 #if	!(BUILD_WEBSERVER && UE_SERVER)
-		FoundDirectories.Add(FPaths::GameSavedDir() + TEXT("Download/Resources/"));
+		FoundDirectories.Add(FPaths::ProjectSavedDir() + TEXT("Download/Resources/"));
 #endif
-		FoundDirectories.Add(FPaths::GameSavedDir() + TEXT("Resources/Local/"));
-
-		/*FString MXExternDir;
-		if (GConfig->GetString(TEXT("Iray"), TEXT("IrayMXDir"), MXExternDir, GGameIni))
-		{
-			FoundDirectories.Add(MXExternDir);
-		}*/
+		FoundDirectories.Add(FPaths::ProjectSavedDir() + TEXT("Resources/Local/"));
 
 		for (int32 dirIndex = 0; dirIndex < FoundDirectories.Num(); ++dirIndex)
 		{

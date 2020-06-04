@@ -2,7 +2,6 @@
 #include "ImportTask.h"
 #include "HttpModule.h"
 #include "ModelFile.h"
-#include "ModelImporter.h"
 #include "Interfaces/IHttpRequest.h"
 
 //////////////////////////////////////////////////////////////////////////
@@ -34,14 +33,6 @@ void FImportAsyncTask::DoWork()
 {
 	if (Importer)
 	{
-		if (ModelFile)
-		{
-			Importer->Import(ModelFile, Filename);
-		}
-		//else if(CompoundModelFile)
-		{
-			//Importer->ImportCompoundModel(CompoundModelFile, Filename);
-		}
 	}
 }
 
@@ -49,17 +40,6 @@ void FImportAsyncTask::ExecuteDone()
 {
 	UResource *ImportRes = ModelFile;
 	UResource *UpdateRes = UpdateModelFile;
-
-	if (!ImportRes)
-	{
-//		ImportRes = CompoundModelFile;
-// 		UpdateRes = UpdateCompoundModelFile;
-	}
-
-	if (Importer && ModelFile)
-	{
-		Importer->RedirectMaterialPath(ModelFile);
-	}
 	
 	if (ImportRes)
 	{
@@ -85,16 +65,6 @@ void FImportAsyncTask::ExecuteDone()
 
 void FImportAsyncTask::AddReferencedObjects(FReferenceCollector& Collector)
 {
-// 	if (CompoundModelFile)
-// 	{
-// 		Collector.AddReferencedObject(CompoundModelFile);
-// 	}
-
-// 	if (UpdateCompoundModelFile)
-// 	{
-// 		Collector.AddReferencedObject(UpdateCompoundModelFile);
-// 	}
-
 	if (ModelFile)
 	{
 		Collector.AddReferencedObject(ModelFile);

@@ -1322,9 +1322,9 @@ void UDrawWallCmd::CheckAndAddCornerWall(FVector2D MouseSnapPos, int32& NewPoint
 							{
 								IValue & _Value = WallObject->GetPropertyValue("Holes");
 								const int num = _Value.GetArrayCount();
-								for (int i = 0; i < num; ++i)
+								for (int index = 0; index < num; ++index)
 								{
-									IValue & _Hole = _Value.GetField(i);
+									IValue & _Hole = _Value.GetField(index);
 									IValue & _CValue = _Hole.GetField("HoleID");
 									int _ID = _CValue.IntValue();
 									UBuildingData* HoleData = BuildingSystem->GetData(_ID);

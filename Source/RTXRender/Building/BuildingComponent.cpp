@@ -11,6 +11,7 @@
 #include "Runtime/UMG/Public/Components/WidgetComponent.h"
 #include "Runtime/UMG/Public/Slate/SObjectWidget.h"
 #include "Building/BuildingConfig.h"
+#include "BuildingSDK.h"
 
 UBuildingComponent::UBuildingComponent(const FObjectInitializer &ObjectInitializer)
 	:Super(ObjectInitializer)

@@ -17,7 +17,6 @@
 #include "BuildingComponent.h"
 #include <vector>
 #include "BuildingActorFactory.h"
-#include "SceneViewport.h"
 #include "DRComponentModel.h"
 #include "EditorGameInstance.h"
 #include "HomeLayout/SceneEntity/FurnitureModelActor.h"
@@ -38,6 +37,9 @@
 #include "Data/Adapter/DRModelInstanceAdapter.h"
 #include "Data/Adapter/DRVirtualWallAdapter.h"
 #include "Data/FunctionLibrary/DROperationHouseFunctionLibrary.h"
+#include "EngineUtils.h"
+#include "Kismet/GameplayStatics.h"
+#include "Slate/SceneViewport.h"
 IBuildingSDK *UBuildingSystem::BuildingSDK = nullptr;
 
 IBuildingSDK *UBuildingSystem::GetBuildingSDK()
@@ -485,9 +487,9 @@ void UBuildingSystem::OnUpdateObject(IObject *RawObj, unsigned int ChannelMask)
 						//set transform value
 						TArray<AActor*> OutActor;
 						UGameplayStatics::GetAllActorsOfClass(this, AComponentManagerActor::StaticClass(), OutActor);
-						for (int i = 0; i < OutActor.Num(); ++i)
+						for (int index = 0; index < OutActor.Num(); ++index)
 						{
-							AComponentManagerActor* ComponentManager = Cast<AComponentManagerActor>(OutActor[i]);
+							AComponentManagerActor* ComponentManager = Cast<AComponentManagerActor>(OutActor[index]);
 							if (ComponentManager)
 							{
 								if (Actor->HousePluginID == ComponentManager->GetHouseComponentInfo().DRActorID)
@@ -518,8 +520,8 @@ void UBuildingSystem::OnUpdateObject(IObject *RawObj, unsigned int ChannelMask)
 				UWallBuildSystem *WallSystem = GetWallBuildSystem();
 				if (WallSystem)
 				{
-					int32 ObjID = RawObj->GetID();
-					WallSystem->UpdateVirtualWallUMG(ObjID);
+					int32 ID = RawObj->GetID();
+					WallSystem->UpdateVirtualWallUMG(ID);
 				}
 			}
 			if (RawObj->GetType() == EObjectType::EModelInstance)

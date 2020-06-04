@@ -633,19 +633,19 @@ bool UPlaneHousePicture::CalculateRegionCenters(UObject* WorldContextObject, UVa
 			int32 NextI = 0;
 			float MinL = 0.0;
 			TMap<float, FVector2D> LengthMapDir;
-			for (int32 I = 0; I < WallPolygonPs.Num(); I++)
+			for (int32 index = 0; index < WallPolygonPs.Num(); index++)
 			{
-				if (I == WallPolygonPs.Num() - 1)
+				if (index == WallPolygonPs.Num() - 1)
 				{
 					NextI = 0;
 				}
 				else
 				{
-					NextI = I + 1;
+					NextI = index + 1;
 				}
-				FVector2D TempTryDir = WallPolygonPs[NextI] - WallPolygonPs[I];
+				FVector2D TempTryDir = WallPolygonPs[NextI] - WallPolygonPs[index];
 				TempTryDir.Normalize();
-				float TempDis = FVector2D::Distance(WallPolygonPs[I], WallPolygonPs[NextI]);
+				float TempDis = FVector2D::Distance(WallPolygonPs[index], WallPolygonPs[NextI]);
 				LengthMapDir.Add(TempDis, TempTryDir);
 				if ((MinL == 0.0) || (MinL >= TempDis))
 				{
@@ -659,23 +659,23 @@ bool UPlaneHousePicture::CalculateRegionCenters(UObject* WorldContextObject, UVa
 		if (!CleanRoomPolygon.has_on_bounded_side(Point_2(CameraLocations[CleanRoomIndex].X, CameraLocations[CleanRoomIndex].Y)))
 		{
 			float MinX = 0.0, MinY = 0.0, MaxX = 0.0, MaxY = 0.0;
-			for (int32 I = 0; I < CleanRoomPoints.Num(); I++)
+			for (int32 j = 0; j < CleanRoomPoints.Num(); j++)
 			{
-				if ((MinX == 0) || (MinX > CleanRoomPoints[I].X))
+				if ((MinX == 0) || (MinX > CleanRoomPoints[j].X))
 				{
-					MinX = CleanRoomPoints[I].X;
+					MinX = CleanRoomPoints[j].X;
 				}
-				if ((MaxX == 0.0) || (MaxX < CleanRoomPoints[I].X))
+				if ((MaxX == 0.0) || (MaxX < CleanRoomPoints[j].X))
 				{
-					MaxX = CleanRoomPoints[I].X;
+					MaxX = CleanRoomPoints[j].X;
 				}
-				if ((MinY == 0.0) || (MinY > CleanRoomPoints[I].Y))
+				if ((MinY == 0.0) || (MinY > CleanRoomPoints[j].Y))
 				{
-					MinY = CleanRoomPoints[I].Y;
+					MinY = CleanRoomPoints[j].Y;
 				}
-				if ((MaxY == 0.0) || (MaxY < CleanRoomPoints[I].Y))
+				if ((MaxY == 0.0) || (MaxY < CleanRoomPoints[j].Y))
 				{
-					MaxY = CleanRoomPoints[I].Y;
+					MaxY = CleanRoomPoints[j].Y;
 				}
 			}
 			FVector2D Corner1 = FVector2D(MinX, MaxY);

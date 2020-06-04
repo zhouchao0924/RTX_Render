@@ -3,6 +3,7 @@
 #include "CustomProductUtils.h"
 #include "CompundResourceMeshComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
 
 bool UCustomProductUtils::HasAnyParent(const FElementInfo& Target)
 {

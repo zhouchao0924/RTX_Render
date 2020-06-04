@@ -1,12 +1,9 @@
 
-
 #include "ModelFile.h"
-#include "ModelCompress.h"
-#include "ModelImporter.h"
 #include "ResourceMgr.h"
-#include "Editor/EditorUtils.h"
-#include "DateTime.h"
-#include "Timespan.h"
+#include "Misc/DateTime.h"
+#include "Misc/Timespan.h"
+#include <VaRestSubsystem.h>
 
 
 FMaterialSlot::FMaterialSlot()
@@ -342,13 +339,7 @@ void  UModelFile::Compress()
 {
 	if (!m_Header.bCompressed)
 	{
-		for (int32 i = 0; i < m_Models.Num(); ++i)
-		{
-			FModel *model = m_Models[i];
-			check(model != NULL);
-			CompressUtil::CompressModel(model);
-		}
-		m_Header.bCompressed = 1;
+		m_Header.bCompressed = 0;
 	}
 }
 
@@ -382,7 +373,7 @@ USurfaceFile *UModelFile::ExtractSurface(int32 iSurface, const FSurfaceInfo &Chi
 		if (Surface != NULL)
 		{
 			Surface->SetSurface(Material, m_Textures);
-			Surface->DRInfo = UVaRestJsonObject::ConstructJsonObject(this);
+			Surface->DRInfo = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 			Surface->DRInfo->SetStringField("ChineseName", ChineseName.Name);
 
 			/* ExtractSurface 只需要将现有材质提取出来 并不需要修改和关联现有模型的材质;
@@ -460,7 +451,7 @@ void UModelFile::CheckResource()
 		FModelTexture *tex = m_Textures[i];
 		if (tex && tex->Source.CompressedImages.Num() == 0)
 		{
-			CompressUtil::CompressTexture(tex);
+			
 		}
 	}
 }
@@ -598,8 +589,7 @@ FString UModelFile::GetMaterialName(int32 MaterialIndex)
 			}
 			else if (material->GetType() == EMaterialUE4)
 			{
-				UStandardMaterialCollection *MaterialCollection = UEditorUtils::GetMaterialCollection(this);
-				return material->GetName(MaterialCollection);
+				
 			}
 		}
 		else
@@ -674,8 +664,7 @@ UTexture *UModelFile::GetMaterialPreviewImage(int32 MaterialIndex, int32 SizeX, 
 				UMaterialInstanceDynamic *dynMtrl = UMaterialInstanceDynamic::Create(ue4Mtrl, NULL);
 				if (dynMtrl)
 				{
-					mtrl->UpdateParameters(dynMtrl, m_Textures);
-					MtrlPreviewImage = UEditorUtils::GetMaterialPreviewTexture(this, SizeX, SizeY, dynMtrl);
+					mtrl->UpdateParameters(dynMtrl, m_Textures);					
 				}
 			}
 		}
@@ -866,35 +855,7 @@ UTexture2D *UModelFile::SetMaterialSlotTexture(int32 MaterialIndex, int32 Textur
 
 		if (texSlots.IsValidIndex(TextureIndex))
 		{
-			FTexSlotInfo &slotInfo = texSlots[TextureIndex];
-
-			UTextureImporter *TexImporter = ResMgr->GetTextureImporter();
-
-			if (TexImporter)
-			{
-				FTextureSourceInfo *pTexSourceInfo = TexImporter->ImportFromFile(this, GetSlotType(slotInfo.TexParamName), NewTexFile);
-				if (pTexSourceInfo)
-				{
-					FModelTexture *tex = NULL;
-
-					int32 TexIndex = material->GetTextureValue(slotInfo.TexParamName);
-					if (TexIndex != INDEX_NONE)
-					{
-						tex = m_Textures[TexIndex];
-					}
-					else
-					{
-						TexIndex = m_Textures.Num();
-						tex = NewTexture();
-						material->SetTextureValue(slotInfo.TexParamName, TexIndex);
-					}
-
-					tex->SetData(*pTexSourceInfo);
-					Texture = tex->GetTexture();
-
-					MarkDirty();
-				}
-			}
+			FTexSlotInfo &slotInfo = texSlots[TextureIndex];			
 		}
 	}
 
@@ -958,8 +919,7 @@ void UModelFile::GetPreviewCamera(FVector &OutEyeLoc, FVector &OutFocusLoc)
 
 void UModelFile::SetPreviewImageData(int32 SizeX, int32 SizeY, const TArray<uint8> &ImageData)
 {
-	UEditorUtils::SaveImage(this, SizeX, SizeY, ImageData.GetData());
-	NotifyPreviewImageChanged();
+
 }
 
 EMaterialType UModelFile::GetMaterialType(int32 MaterialIndex)

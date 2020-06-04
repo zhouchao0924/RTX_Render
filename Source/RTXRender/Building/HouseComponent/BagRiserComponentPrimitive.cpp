@@ -1,6 +1,6 @@
 
 #include "BagRiserComponentPrimitive.h"
-#include "WidgetBlueprintLibrary.h"
+#include "BluePrint/WidgetBlueprintLibrary.h"
 
 UBagRiserComponentPrimitive::UBagRiserComponentPrimitive()
 	:FrameColor(FLinearColor(0.40724f, 0.40724f, 0.40724f,0.5f))
@@ -39,15 +39,15 @@ void UBagRiserComponentPrimitive::Draw(FPaintContext& InContext) const
 	}
 }
 
-void UBagRiserComponentPrimitive::PrimitiveVertexDataGenerate(UWorld* MyWorld ,const FVector2D& mousePos)
+void UBagRiserComponentPrimitive::PrimitiveVertexDataGenerate(UWorld* InMyWorld ,const FVector2D& mousePos)
 {
 	ComponenetInfo.Loc = mousePos;
-	FramePrimitive=WorldLocationToScreen(MyWorld, mousePos, ComponenetInfo.Length, ComponenetInfo.Width);
+	FramePrimitive=WorldLocationToScreen(InMyWorld, mousePos, ComponenetInfo.Length, ComponenetInfo.Width);
 	//GetOtherPos(FramePrimitive.LeftTopPos, FramePrimitive.RightBottomPos, FramePrimitive.RightTopPos, FramePrimitive.LeftBottomPos);
 	//CenterPos = (FramePrimitive.LeftTopPos + FramePrimitive.RightBottomPos) / 2.0f;
 	//HitPrimitive = WorldLocationToScreen(MyWorld, mousePos, ComponenetInfo.Length + 3, ComponenetInfo.Width + 3);
-	if (MyWorld)
+	if (InMyWorld)
 	{
-		MyWorld->GetFirstPlayerController()->ProjectWorldLocationToScreen(FVector(ComponenetInfo.Loc, 280), CenterPos);
+		InMyWorld->GetFirstPlayerController()->ProjectWorldLocationToScreen(FVector(ComponenetInfo.Loc, 280), CenterPos);
 	}
 }

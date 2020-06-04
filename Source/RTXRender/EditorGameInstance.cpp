@@ -10,13 +10,9 @@
 #include "../Data/FunctionLibrary/DROperationHouseFunctionLibrary.h"
 
 UCEditorGameInstance::UCEditorGameInstance(const FObjectInitializer &ObjectInitializer)
-	: Super(ObjectInitializer)
-	, IrayInterface(NULL)
+	: Super(ObjectInitializer)	
 	, SkirtingSystem(nullptr)
-	, DRMaterialScene(nullptr)
-	, bSocketSuccess(false)
 	, DrawHouse_Type(EDrawHouseType::NormalDrawType)
-	, CurVersionNumber(0)
 	, IsCanAutoSaveByDemolition(true)
 	, bIsFirstOpenFile(true)
 {

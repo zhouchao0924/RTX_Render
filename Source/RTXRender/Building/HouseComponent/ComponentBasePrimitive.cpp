@@ -1,6 +1,6 @@
 
 #include "ComponentBasePrimitive.h"
-#include "WidgetBlueprintLibrary.h"
+#include "BluePrint/WidgetBlueprintLibrary.h"
 #include "DrawElements.h"
 
 

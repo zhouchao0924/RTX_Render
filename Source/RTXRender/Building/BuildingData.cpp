@@ -3,7 +3,6 @@
 #include "IClass.h"
 #include "Math/kBox.h"
 #include "DRGameMode.h"
-#include "IrayGameMode.h"
 #include "Building/BuildingSystem.h"
 
 UBuildingData::UBuildingData(const FObjectInitializer &ObjectIntializer)
@@ -382,11 +381,6 @@ FBuildingConfig *UBuildingData::GetConfig()
 	if (MyGame)
 	{
 		return MyGame->GetConfig();
-	}
-	AIrayGameMode *MyIrayGame = Cast<AIrayGameMode>(GetWorld()->GetAuthGameMode());
-	if (MyIrayGame)
-	{
-		return MyIrayGame->GetConfig();
 	}
 	return nullptr;
 }

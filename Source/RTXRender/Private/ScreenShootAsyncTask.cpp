@@ -2,6 +2,7 @@
 
 #include "ScreenShootAsyncTask.h"
 #include "IImageWrapperModule.h"
+#include "Engine/GameEngine.h"
 
 
 UScreenShootAsyncTask::UScreenShootAsyncTask(const FObjectInitializer& ObjectInitializer)
@@ -93,7 +94,7 @@ void UScreenShootAsyncTask::OnScreenShootComplete(int32 Width, int32 Height, con
 		TSharedPtr<IImageWrapper> ImageWrapper;
 		ImageWrapper = ImageWrapperModule.CreateImageWrapper(EImageFormat::JPEG);
 		ImageWrapper->SetRaw(Bitmap.GetData(), Bitmap.GetAllocatedSize(), Width, Height, ERGBFormat::BGRA, 8);
-		const TArray<uint8>& JPEGData = ImageWrapper->GetCompressed(ImageQuality);
+		const TArray64<uint8>& JPEGData = ImageWrapper->GetCompressed(ImageQuality);
 
 		fileName += ".jpg";
 		SaveImageSuccess = FFileHelper::SaveArrayToFile(JPEGData, *fileName);

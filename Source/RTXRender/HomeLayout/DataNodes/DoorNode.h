@@ -3,5 +3,3 @@
 #pragma once
 
 #include "BaseNode.h"
-
-#include "DoorNode.generated.h"

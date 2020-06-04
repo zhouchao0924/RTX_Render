@@ -5,6 +5,7 @@
 #include "../Model/ResourceMgr.h"
 #include "BuildingSystem.h"
 #include "GeometryFunctionLibrary.h"
+#include "DrawDebugHelpers.h"
 #pragma optimize( "", off )
 
 // Sets default values

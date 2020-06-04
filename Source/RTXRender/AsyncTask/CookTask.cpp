@@ -2,7 +2,6 @@
 #include "CookTask.h"
 #include "HttpModule.h"
 #include "ModelFile.h"
-#include "ModelImporter.h"
 #include "Interfaces/IHttpRequest.h"
 #include "ConvexHullPhysicBody.h"
 

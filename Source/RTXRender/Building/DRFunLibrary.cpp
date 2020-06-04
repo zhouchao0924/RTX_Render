@@ -1,6 +1,6 @@
 
 #include "DRFunLibrary.h"
-#include "ajdr/EditorGameInstance.h"
+#include "EditorGameInstance.h"
 #include "DRGameMode.h"
 #include "DRModelFactory.h"
 #include "DRComponentModel.h"
@@ -533,9 +533,9 @@ TArray<FRoomBindInfo> UDRFunLibrary::GetRoomBindInfo(const UObject* WorldContext
 			
 			TArray<AActor*> WallRes;
 			UGameplayStatics::GetAllActorsOfClass(WorldContextObject, ALineWallActor::StaticClass(), WallRes);
-			for (int i = 0; i < WallRes.Num(); ++i)
+			for (int index = 0; index < WallRes.Num(); ++index)
 			{
-				ALineWallActor * _Wall = Cast<ALineWallActor>(WallRes[i]);
+				ALineWallActor * _Wall = Cast<ALineWallActor>(WallRes[index]);
 				if (_Wall)
 				{
 					FWallBindInfo _WallInfo;

@@ -4,7 +4,6 @@
 #include "ResourceMgr.h"
 #include "HttpModule.h"
 #include "ModelFile.h"
-#include "ModelImporter.h"
 #include "Interfaces/IHttpRequest.h"
 
 FResLoadAsyncTask::FResLoadAsyncTask(UResource *Resource)

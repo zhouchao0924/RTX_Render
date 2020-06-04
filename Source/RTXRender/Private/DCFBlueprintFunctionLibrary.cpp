@@ -2,11 +2,12 @@
 
 #include "DCFBlueprintFunctionLibrary.h"
 #include <DXGI.h>
-#include "Regex.h"
-#include "AllowWindowsPlatformTypes.h"
+#include "Internationalization/Regex.h"
+#include "Windows/AllowWindowsPlatformTypes.h"
 #include <windows.h>
-#include "HideWindowsPlatformTypes.h"
+#include "Windows/HideWindowsPlatformTypes.h"
 #include<tchar.h>
+#include "Engine/GameEngine.h"
 
 //#include "Windows/WindowsPlatformProcess.h"
 

@@ -8,14 +8,13 @@
 #include "CGALWrapper/CgDataConvUtility.h"
 #include "CGALWrapper/PolygonAlg.h"
 #include "CGALWrapper/LinearEntityAlg.h"
-#include "ajdr/HomeLayout/SceneEntity/RoomActor.h"
+#include "HomeLayout/SceneEntity/RoomActor.h"
 #include "Algo/Reverse.h"
-#include "ajdr/HomeLayout/HouseArchitect/PlaneHousePicture.h"
+#include "HomeLayout/HouseArchitect/PlaneHousePicture.h"
 #include "Data/DRProjData.h"
 #include "Data/Adapter/DRSolidWallAdapter.h"
 #include "Data/Adapter/DRHoleAdapter.h"
 #include "Data/Adapter/DRAreaAdapter.h"
-#include "LogMacros.h"
 
 
 // Sets default values for this component's properties

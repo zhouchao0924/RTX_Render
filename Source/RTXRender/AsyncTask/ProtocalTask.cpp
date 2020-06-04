@@ -5,6 +5,8 @@
 #include "ResourceMgr.h"
 #include "Interfaces/IHttpResponse.h"
 #include "Interfaces/IHttpRequest.h"
+#include <VaRestSubsystem.h>
+#include <VaRestJsonObject.h>
 
 FProtocalTask::FProtocalTask(UResource *Resource, UVaRestJsonObject *JsonObj, FProtocalDelegate &InDelegate)
 {
@@ -83,7 +85,7 @@ void FProtocalTask::OnResponseReceived(FHttpRequestPtr HttpRequest, FHttpRespons
 			if (bRetSuccess)
 			{
 				bSucceeded = true;
-				UVaRestJsonObject *VaJson = UVaRestJsonObject::ConstructJsonObject(NULL);
+				UVaRestJsonObject *VaJson = UVaRestSubsystem::StaticConstructVaRestJsonObject();
 				VaJson->SetRootObject(JsonData);
 				Delegate.Response.ExecuteIfBound(Resource, true, VaJson);
 			}

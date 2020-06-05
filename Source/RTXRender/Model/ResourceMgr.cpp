@@ -878,10 +878,6 @@ int32 UResourceMgr::GetNumberOfStandardMaterials()
 	return 0;
 }
 
-FStdMaterialInfo GetStandardMaterial(int32 MaterialIndex)
-{
-	return FStdMaterialInfo();
-}
 
 void UResourceMgr::BeginCook(UResource *Resource, const FCookArgs &InArgs/*= FCookArgs()*/)
 {

@@ -37,7 +37,12 @@ public class RTXRender : ModuleRules
             "UMG",
             "Slate",
             "RenderCore",
-            "HTTP"
+            "HTTP",
+            "WebBrowser",
+            "Json",
+            "SlateCore",
+            "ProceduralMeshComponent",
+            "VHACD",
         });
 
 		PublicDependencyModuleNames.AddRange(new string[] {

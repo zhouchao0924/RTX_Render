@@ -18,8 +18,7 @@ USTRUCT(BlueprintType)
 struct FMaterialListItem
 {
 	GENERATED_BODY()
-	FMaterialListItem();
-	~FMaterialListItem();
+
 	UPROPERTY(Transient, BlueprintReadOnly)
 	int32				Index;
 	UPROPERTY(Transient, BlueprintReadOnly)
@@ -144,8 +143,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "DR|Resource")
 	int32 GetNumberOfStandardMaterials();
 
-	UFUNCTION(BlueprintCallable, Category = "DR|Resource")
-	FStdMaterialInfo GetStandardMaterial(int32 MaterialIndex);
 	UWorld *GetWorld() const override;
 
 	//////////////////////////////////////////////////////////////////////////

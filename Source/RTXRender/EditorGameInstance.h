@@ -40,14 +40,6 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	FString FindResIDByModelID(int ModelID);
 
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Handle Application Actived"), Category = "Application")
-	void HandleOnWindowActived();
-	void OnRequestWindowActived();
-
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Handle Application Deactived"), Category = "Application")
-	void HandleOnWindowDeactived();
-	
-	void OnRequestWindowDeactived();
 	UFUNCTION(BlueprintCallable, Category = "SubSystem", meta = (DisplayName = "GetBuildingSystem"))
 	UBuildingSystem *GetBuildingSystemInstance();
 

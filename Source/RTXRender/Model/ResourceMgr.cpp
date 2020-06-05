@@ -878,7 +878,7 @@ int32 UResourceMgr::GetNumberOfStandardMaterials()
 	return 0;
 }
 
-FStdMaterialInfo &UResourceMgr::GetStandardMaterial(int32 MaterialIndex)
+FStdMaterialInfo GetStandardMaterial(int32 MaterialIndex)
 {
 	return FStdMaterialInfo();
 }

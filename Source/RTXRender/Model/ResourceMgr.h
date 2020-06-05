@@ -145,7 +145,7 @@ public:
 	int32 GetNumberOfStandardMaterials();
 
 	UFUNCTION(BlueprintCallable, Category = "DR|Resource")
-	FStdMaterialInfo &GetStandardMaterial(int32 MaterialIndex);
+	FStdMaterialInfo GetStandardMaterial(int32 MaterialIndex);
 	UWorld *GetWorld() const override;
 
 	//////////////////////////////////////////////////////////////////////////

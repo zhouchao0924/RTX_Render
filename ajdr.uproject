@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{9541FC7C-43FA-BA6D-2C41-BBB5F3C024D7}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "ajdr",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}

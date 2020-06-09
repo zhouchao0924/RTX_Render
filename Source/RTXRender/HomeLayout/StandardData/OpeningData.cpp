@@ -1,2 +1,0 @@
-
-#include "OpeningData.h"

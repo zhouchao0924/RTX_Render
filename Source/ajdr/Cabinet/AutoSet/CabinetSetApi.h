@@ -1,0 +1,27 @@
+﻿#pragma once
+#include "CoreMinimal.h"
+
+#include "AutoSetBayWindowCabinet.h"
+#include "AutoSetBedCabinet.h"
+#include "AutoSetBookcase.h"
+#include "AutoSetCabinet.h"
+#include "AutoSetCoatroom.h"
+#include "AutoSetCookFloor.h"
+#include "AutoSetDesk.h"
+#include "AutoSetHangCabinet.h"
+#include "AutoSetPorchArk.h"
+#include "AutoSetSideboard.h"
+#include "AutoSetStoreCabinet.h"
+#include "AutoSetTatami.h"
+#include "AutoSetTelevision.h"
+#include "AutoSetToilet.h"
+#include "AutoSetWardrobe.h"
+#include "AutoSetWashCabinet.h"
+#include "AutoSetCookHang.h"
+#include "AutoSetTakeInCabinet.h"
+#include "AutoSetLaminate.h"
+#include "AutoSetBedside.h"
+#include "AutoSetWardrobeHang.h"
+#include "AutoSetToiletHang.h"
+
+FAutoSetBase* NewAutoSet(eAutoSetType eType);

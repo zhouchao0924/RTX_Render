@@ -225,9 +225,5 @@ public:
 	UPROPERTY(Transient)
 	TArray<int32>							UnusedResource;
 	FThreadSafeCounter						FinishUpdateFileSystemCouter;
-	FAutoDeleteAsyncTask<FUpdateFileSystemAsyncTask>	*UpdateFileSystemTask;
-
-	int										RunModeid;//ÐÂ×ÊÔ´µ÷¶È¹²Ïí×ÊÔ´
-	FString								    IrayMXDir;//资源共享盘目录
 };
 

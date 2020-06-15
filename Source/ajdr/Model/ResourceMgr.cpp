@@ -9,7 +9,6 @@
 #include "EditorGameInstance.h"
 #include "AsyncTask/UploadLoadTask.h"
 #include "AsyncTask/CookTask.h"
-#include "UpdateFileSystemTask.h"
 #include "Model/CompoundModelFile.h"
 #include "ResourceMgrComponent.h"
 #include <VaRestSubsystem.h>
@@ -21,7 +20,6 @@ UResourceMgr * UResourceMgr::s_Instance = NULL;
 UResourceMgr::UResourceMgr(const FObjectInitializer &ObjectInitializer)
 	: Super(ObjectInitializer)
 	, bTickable(false)
-	, UpdateFileSystemTask(nullptr)
 {
 }
 
@@ -508,18 +506,6 @@ UResource *UResourceMgr::FindRes(const FString &InResID, bool bNeedHeader, int m
 {
 	UResource *FoundRes = NULL;
 	FString Temp = InResID;
-#if BUILD_WEBSERVER
-	if (InResID.Contains(TEXT("_")))
-	{
-		FString LeftS;
-		FString RightS;
-		bool success = InResID.Split(TEXT("_"), &LeftS, &RightS);
-		if (success && RightS.IsNumeric())
-		{
-			Temp = LeftS;
-		}
-	}
-#endif
 	if (true)
 	{
 		FScopeLock Scope(&CriticalSection);
@@ -530,16 +516,6 @@ UResource *UResourceMgr::FindRes(const FString &InResID, bool bNeedHeader, int m
 		}
 	}
 
-	if(!FoundRes && !IsPreloadResFromFileSystem())
-	{
-		UE_LOG(LogTemp, Log, TEXT("Begin to LoadByID"));
-		FoundRes = FUpdateFileSystemAsyncTask::LoadByID(this, Temp, modelid);
-		UE_LOG(LogTemp, Log, TEXT("End to LoadByID"));
-	}
-	if (!FoundRes)
-	{
-		FoundRes = FUpdateFileSystemAsyncTask::LoadByID(this, InResID,modelid);
-	}
 	return FoundRes;
 }
 
@@ -555,11 +531,6 @@ UResource *UResourceMgr::FindResByFilename(const FString &Filename, bool bNeedHe
 		{
 			FoundRes = GetSlot(*SlotIndex, bNeedHeader);
 		}
-	}
-
-	if(!FoundRes && !IsPreloadResFromFileSystem())
-	{
-		FoundRes = FUpdateFileSystemAsyncTask::LoadByFilename(this, Filename, bNeedHeader);
 	}
 
 	return FoundRes;
@@ -653,12 +624,7 @@ bool UResourceMgr::RequestSkuid(FString &OutSkuid)
 
 void UResourceMgr::UpdateFromFileSystem()
 {
-	if (!UpdateFileSystemTask)
-	{
-		bTickable = true;
-		UpdateFileSystemTask = new FAutoDeleteAsyncTask<FUpdateFileSystemAsyncTask>(this);
-		UpdateFileSystemTask->StartBackgroundTask();
-	}
+
 }
 
 void UResourceMgr::StopDownload()
@@ -806,7 +772,6 @@ void UResourceMgr::SaveAll()
 void UResourceMgr::FinishUpdateFile()
 { 
 	FinishUpdateFileSystemCouter.Increment(); 
-	UpdateFileSystemTask = NULL;
 #if BUILD_WEBSERVER && UE_SERVER
 	AIrayGameMode *MyGame = Cast<AIrayGameMode>(GetWorld()->GetAuthGameMode());
 	if (MyGame)
@@ -820,7 +785,6 @@ void UResourceMgr::FinishUpdateFile()
 void UResourceMgr::AbandonUpdateFile()
 {
 	FinishUpdateFileSystemCouter.Decrement();
-	UpdateFileSystemTask = NULL;
 }
 
 bool UResourceMgr::IsAbandonUpdateFile()

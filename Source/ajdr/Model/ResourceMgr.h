@@ -4,6 +4,7 @@
 #include "Engine/EngineTypes.h"
 #include "ResourceItem.h"
 #include "StandardMaterialCollection.h"
+#include "Misc/ScopeLock.h"
 #include "ResourceMgr.generated.h"
 
 class UModelFile;
@@ -70,7 +71,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "DR|Resource", meta = (DisplayName = "GetResourceManager", WorldContext = "WorldContextObject"))
 	static UResourceMgr *GetResourceMgr();
 
-	UFUNCTION(BlueprintCallable, Category = "DR|Resource", meta=(DisplayName="GetResourceManager", WorldContext = "WorldContextObject"))
+	UFUNCTION(BlueprintCallable, Category = "DR|Resource", meta=(DisplayName="GetResourceManager (Instance)", WorldContext = "WorldContextObject"))
 	static UResourceMgr *Instance(UObject *WorldContextObject);
 
 	UFUNCTION(BlueprintCallable, Category = "DR|Resource", meta = (WorldContext = "WorldContextObject"))
@@ -214,7 +215,7 @@ public:
 	bool									bImportPreloadResource;
 	
 	bool												bTickable;	
-	FCriticalSection									CriticalSection;
+	static FCriticalSection									CriticalSection;
 
 	UPROPERTY(Transient)
 	TMap<FString, int32>					ResidResMap;

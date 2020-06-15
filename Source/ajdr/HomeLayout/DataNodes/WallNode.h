@@ -8,7 +8,7 @@
 #include "WallNode.generated.h"
 
 // Material UV
-USTRUCT(Blueprintable)
+USTRUCT(Blueprintable, BlueprintType)
 struct FMatUVNode
 {
 	GENERATED_BODY()
@@ -23,7 +23,7 @@ public:
 };
 
 // Corner
-USTRUCT(Blueprintable)
+USTRUCT(Blueprintable, BlueprintType)
 struct FCornerNode
 {
 	GENERATED_BODY()
@@ -49,7 +49,7 @@ public:
 };
 
 // wall config
-USTRUCT(Blueprintable)
+USTRUCT(Blueprintable, BlueprintType)
 struct FWallNode
 {
 	GENERATED_BODY()

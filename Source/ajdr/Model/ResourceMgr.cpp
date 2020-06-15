@@ -16,6 +16,7 @@
 DEFINE_LOG_CATEGORY(LogResMgr);
 
 UResourceMgr * UResourceMgr::s_Instance = NULL;
+FCriticalSection UResourceMgr::CriticalSection;
 
 UResourceMgr::UResourceMgr(const FObjectInitializer &ObjectInitializer)
 	: Super(ObjectInitializer)

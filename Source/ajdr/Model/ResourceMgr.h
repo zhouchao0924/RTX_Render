@@ -95,6 +95,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "DR|Resource", meta = (WorldContext = "WorldContextObject"))
 	static bool IsInLocalHas(const FString &filename);
 
+	UFUNCTION(BlueprintCallable)
+		void LoadAllSXResources();
+
 	UFUNCTION(BlueprintCallable, Category = "DR|Resource")
 	USurfaceFile *ExtractSurface(UModelFile *Model, int32 SurfaceIndex, const FSurfaceInfo &ChineseName, const FSurfaceInfo &EnglishName);
 
@@ -186,6 +189,8 @@ public:
 
 	void GetMaterialList(TArray<FMaterialListItem> &MaterialList, const FString &CategoryName, const FString &SeachName, bool bOther, bool bAll ,bool isbasesx=true);
 	void GetResourceList(TArray<UResource *> &ResourceList);
+
+	UFUNCTION(BlueprintCallable)
 	UResource *Preload(const FString &Filename, bool bNeedHeader, bool bNotify);
 
 protected:

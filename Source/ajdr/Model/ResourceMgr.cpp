@@ -11,6 +11,7 @@
 #include "AsyncTask/CookTask.h"
 #include "Model/CompoundModelFile.h"
 #include "ResourceMgrComponent.h"
+#include "HAL/FileManager.h"
 #include <VaRestSubsystem.h>
 
 DEFINE_LOG_CATEGORY(LogResMgr);
@@ -249,6 +250,20 @@ bool UResourceMgr::IsInLocalHas(const FString &filename)
 	FString p2 = savepath + "Download/Resources/" + filename;
 	return IFileManager::Get().FileExists(*p1)|| IFileManager::Get().FileExists(*p2);
 		
+}
+
+void UResourceMgr::LoadAllSXResources()
+{
+	TArray<FString> sxFilePaths;
+	FString extensionFilter(FPaths::ProjectContentDir() / TEXT("_Basic/Materials/BaseSx/*.sx"));
+	IFileManager::Get().FindFiles(sxFilePaths, *extensionFilter, true, false);
+
+	FString fullPath = FPaths::ConvertRelativePathToFull(FPaths::ProjectContentDir() / TEXT("_Basic/Materials/BaseSx/"));
+
+	for (const FString& sxFile : sxFilePaths)
+	{
+		Preload(fullPath / sxFile, true, false);
+	}
 }
 
 void UResourceMgr::DownloadRes(const FString &Filename, const FString &Resid, EResType ResType, const FString &URL, const TArray<FDownloadingRes> &DependsResources, FOnDownloadTaskCompeleted Delegate, int32 SrvVersion)
@@ -693,12 +708,9 @@ void  UResourceMgr::LoadHeader(UResource *Resource)
 UResource *UResourceMgr::Preload(const FString &Filename, bool bNeedHeader, bool bNotify)
 {
 	UResource *Resource = NULL;
-	UE_LOG(LogTemp, Log, TEXT("begin to ReadFile"));
 
 	FArchive *Reader = IFileManager::Get().CreateFileReader(*Filename);
-	UE_LOG(LogTemp, Log, TEXT("use mx file[%s]"), *Filename);
 
-	UE_LOG(LogTemp, Log, TEXT("end to ReadFile"));
 	if (Reader)
 	{
 		TEnumAsByte<EResType> ResType;

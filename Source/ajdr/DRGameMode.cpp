@@ -50,6 +50,8 @@ void ADRGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)
 		CabinetMgr->UnInit();
 	}
 
+	UResourceMgr::Destroy();
+
 	ABuildingSDKSystem::DestroyInstance();
 
 	Super::EndPlay(EndPlayReason);	

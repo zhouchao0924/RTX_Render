@@ -772,25 +772,15 @@ void UResourceMgr::SaveAll()
 
 void UResourceMgr::FinishUpdateFile()
 { 
-	FinishUpdateFileSystemCouter.Increment(); 
-#if BUILD_WEBSERVER && UE_SERVER
-	AIrayGameMode *MyGame = Cast<AIrayGameMode>(GetWorld()->GetAuthGameMode());
-	if (MyGame)
-	{
-		//MyGame->BuildLogToServer("",104,0,TEXT("加载共享资源成功"),true);
-		MyGame->OnUpdateFileEnd();
-	}
-#endif
 }
 
 void UResourceMgr::AbandonUpdateFile()
 {
-	FinishUpdateFileSystemCouter.Decrement();
 }
 
 bool UResourceMgr::IsAbandonUpdateFile()
 {
-	return FinishUpdateFileSystemCouter.GetValue() < 0;
+	return false;
 }
 
 void UResourceMgr::ReleaseAll()
@@ -800,22 +790,13 @@ void UResourceMgr::ReleaseAll()
 	for (int32 i = 0; i < PooledResource.Num(); ++i)
 	{
 		FResourceInfo &Info = PooledResource[i];
-#if UE_SERVER
+
 		if (Info.Resource != nullptr && Info.Resource->IsValidLowLevel())
-#else
-		if (Info.Resource && Info.Resource->IsDirty())
-#endif
 		{
 			Info.Resource->ConditionalBeginDestroy();
 			Info.Resource = NULL;
 		}
 	}
-// 	PooledResource.Empty();
-// 	ResidResMap.Empty();
-// 	FilenameResMap.Empty();
-// 	UnusedResource.Empty();
-
-	AbandonUpdateFile();
 }
 
 void UResourceMgr::ReleaseResource(UResource * InResource)
@@ -825,17 +806,13 @@ void UResourceMgr::ReleaseResource(UResource * InResource)
 	for (int32 i = 0; i < PooledResource.Num(); ++i)
 	{
 		FResourceInfo &Info = PooledResource[i];
-#if UE_SERVER
+
 		if (Info.Resource != nullptr && Info.Resource->IsValidLowLevel())
-#else
-		if (Info.Resource && Info.Resource==InResource)
-#endif
 		{
 			Info.Resource->ConditionalBeginDestroy();
 			Info.Resource = NULL;
 		}
 	}
-	AbandonUpdateFile();
 }
 
 int32 UResourceMgr::GetNumberOfStandardMaterials()

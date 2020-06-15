@@ -22,9 +22,6 @@ void UCEditorGameInstance::Init()
 {
 	Super::Init();
 	UDROperationHouseFunctionLibrary::SetGameInstance(this);
-	IBuildingSDK *buildSdk = UBuildingSystem::GetBuildingSDK();
-	UResourceMgr::Create(this);
-	
 	SkirtingSystem = nullptr;
 }
 

@@ -14,8 +14,21 @@ ADRGameMode::ADRGameMode(const FObjectInitializer &ObjectInitializer)
 }
 void ADRGameMode::BeginPlay()
 {
+	Super::BeginPlay();
+}
+
+void ADRGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);	
+}
+
+void ADRGameMode::InitAllSubsystem()
+{
+	IBuildingSDK *buildSdk = UBuildingSystem::GetBuildingSDK();
+	UResourceMgr::Create(this);
+
 	ABuildingSDKSystem::CreateInstance(this);
-	
+
 	if (!MyGameInstance)
 	{
 		MyGameInstance = Cast<UCEditorGameInstance>(GetWorld()->GetGameInstance());
@@ -24,18 +37,16 @@ void ADRGameMode::BeginPlay()
 	{
 		MyGameInstance->GetBuildingSystemInstance()->LoadingConfig(GetConfig());
 		MyGameInstance->GetBuildingSystemInstance()->AddToWorld(GetWorld());
-		
+
 	}
 	UCabinetMgr *CabinetMgr = UCabinetMgr::CreateInstance(this);
 	if (CabinetMgr)
 	{
 		CabinetMgr->Init();
 	}
-
-	Super::BeginPlay();
 }
 
-void ADRGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)
+void ADRGameMode::ShutdownAllSubsystem()
 {
 	UBuildingSystem *BuildingSystem = MyGameInstance ? MyGameInstance->GetBuildingSystemInstance() : nullptr;
 	if (BuildingSystem)
@@ -53,8 +64,5 @@ void ADRGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	UResourceMgr::Destroy();
 
 	ABuildingSDKSystem::DestroyInstance();
-
-	Super::EndPlay(EndPlayReason);	
 }
-
 

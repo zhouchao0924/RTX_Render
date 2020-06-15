@@ -16,6 +16,11 @@ public:
 	void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	FBuildingConfig *GetConfig() { return &BuildingConfig; }
 
+	UFUNCTION(BlueprintCallable)
+		void InitAllSubsystem();
+
+	UFUNCTION(BlueprintCallable)
+		void ShutdownAllSubsystem();
 public:
 
 	UPROPERTY(GlobalConfig, BlueprintReadOnly)

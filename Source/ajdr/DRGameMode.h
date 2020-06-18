@@ -17,17 +17,29 @@ public:
 	FBuildingConfig *GetConfig() { return &BuildingConfig; }
 
 	UFUNCTION(BlueprintCallable)
-		void InitAllSubsystem();
+	void InitAllSubsystem();
 
 	UFUNCTION(BlueprintCallable)
-		void ShutdownAllSubsystem();
+	void ShutdownAllSubsystem();
 public:
+	UPROPERTY(GlobalConfig, BlueprintReadOnly)
+	FString mExtendedResourcePath;
 
 	UPROPERTY(GlobalConfig, BlueprintReadOnly)
-		FString mExtendedResourcePath;
+	FString Host;
+
+	UPROPERTY(GlobalConfig, BlueprintReadOnly)
+	FString PopSolutionJob;
+
+	UPROPERTY(GlobalConfig, BlueprintReadOnly)
+	FString RTXVideoResult;
+
+	UPROPERTY(GlobalConfig, BlueprintReadOnly)
+	FString UploadUrl;
 
 private:
 	UPROPERTY(EditAnywhere)
-		FBuildingConfig	BuildingConfig;
+	FBuildingConfig	BuildingConfig;
+
 	class UCEditorGameInstance *MyGameInstance;
 };

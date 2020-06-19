@@ -6,3 +6,4 @@ DerivedDataCache/
 Plugins/BuildingSDK/Source/ThirdParty/BuildingSDKLibrary/Thridparty/FBX/lib/x64/debug/libfbxsdk-md.lib
 Plugins/BuildingSDK/Source/ThirdParty/BuildingSDKLibrary/Thridparty/FBX/lib/x64/debug/libfbxsdk-mt.lib
 Saved/
+Build/

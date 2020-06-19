@@ -39,7 +39,7 @@ FPrimitiveViewRelevance FCustomRenderSceneProxy::GetViewRelevance(const FSceneVi
 	ViewRelevance.bDisableOffscreenRendering = false;
 	ViewRelevance.bDynamicRelevance = true;
 	// ideally the TranslucencyRelevance should be filled out by the material, here we do it conservative
-	ViewRelevance.bSeparateTranslucencyRelevance = ViewRelevance.bNormalTranslucencyRelevance = true;
+	//ViewRelevance.bSeparateTranslucencyRelevance = ViewRelevance.bNormalTranslucencyRelevance = true;
 	return ViewRelevance;
 }
 

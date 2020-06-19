@@ -685,7 +685,7 @@ bool UPeExtendedToolKitBPLibrary::GetPixelFromT2D(UTexture2D* T2D, int32 X, int3
 		return false;
 	}
 
-	FColor* RawColorArray = static_cast<FColor*>(RawImageData->Lock(LOCK_READ_ONLY));
+	FColor* RawColorArray = reinterpret_cast<FColor*>(RawImageData->Lock(LOCK_READ_ONLY));
 
 	//Safety check!
 	if (X >= TextureWidth || Y >= TextureHeight)
@@ -727,7 +727,7 @@ bool UPeExtendedToolKitBPLibrary::GetPixelsArrayFromT2D(UTexture2D* T2D, int32& 
 		return false;
 	}
 
-	FColor* RawColorArray = static_cast<FColor*>(RawImageData->Lock(LOCK_READ_ONLY));
+	FColor* RawColorArray = reinterpret_cast<FColor*>(RawImageData->Lock(LOCK_READ_ONLY));
 
 	for (int32 x = 0; x < TextureWidth; x++)
 	{

@@ -43,6 +43,7 @@ public class ajdr : ModuleRules
             "SlateCore",
             "ProceduralMeshComponent",
             "VHACD",
+            "Sockets",
         });
 
 		PublicDependencyModuleNames.AddRange(new string[] {

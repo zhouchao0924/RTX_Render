@@ -133,6 +133,10 @@ public:
 		static void GetBoundPointsByBoxExtent(const FVector& BoxExtent, const FTransform& Center, TArray<FVector>& BoundPoints);
 	UFUNCTION(BlueprintPure, Category = "BoundPoints")
 		static void GetBoundPointsByBoxBound(const FVector& Min, const FVector& Max, const FTransform& Center, TArray<FVector>& BoundPoints);
+
+	UFUNCTION(BlueprintPure)
+		static FString GetCurrentPCIPAddress();
+
 private:
 	static bool LaunchRay(UObject * WorldContextObject, FVector& HitPos, const FVector InActorOrigin, const FVector InDirection, const FRotator InOrientation, const FVector InHalfSize, const TArray<AActor*>& ActorsToIgnore);
 	static bool MultiLaunchRay(UObject * WorldContextObject, TArray<FHitResult>& OutHits, const FVector InActorOrigin, const FVector InDirection, const FRotator InOrientation, const FVector InHalfSize, const TArray<AActor*>& ActorsToIgnore);

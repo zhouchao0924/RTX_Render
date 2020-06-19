@@ -12,6 +12,7 @@
 #include "Building/BuildingComponent.h"
 #include "Kismet/KismetStringLibrary.h"
 #include "../Plugins/PeExtendedToolKit/Source/PeExtendedToolKit/Public/PeExtendedToolKitBPLibrary.h"
+#include "SocketSubsystem.h"
 
 using namespace std;
 
@@ -285,6 +286,19 @@ void UAJBlueprintFunctionLibrary::GetBoundPointsByBoxBound(const FVector& Min, c
 	BoxExtent.Y = FMath::Abs(BoxExtent.Y);
 	BoxExtent.Z = FMath::Abs(BoxExtent.Z);
 	GetBoundPointsByBoxExtent(BoxExtent, Center, BoundPoints);
+}
+
+FString UAJBlueprintFunctionLibrary::GetCurrentPCIPAddress()
+{
+	ISocketSubsystem* socketSubsystem = ISocketSubsystem::Get(NAME_None);
+	if (socketSubsystem == nullptr) {
+		return TEXT("127.0.0.1");
+	}
+
+	bool bCanBindAll = false;
+	TSharedRef<FInternetAddr> addrInfo = socketSubsystem->GetLocalHostAddr(*GLog, bCanBindAll);
+
+	return addrInfo->ToString(false);
 }
 
 bool UAJBlueprintFunctionLibrary::AssignMeshComponent(UActorComponent *Component, int32 FaceIndex, UMaterialInterface *NewMaterial)

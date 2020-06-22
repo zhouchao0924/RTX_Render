@@ -10,6 +10,7 @@
 #include "Data/DRProjData.h"
 #include "Data/Adapter/DRDoorHoleAdapter.h"
 #include "Data/Adapter/DRWindowHoleAdapter.h"
+#include "Kismet/GameplayStatics.h"
 
 
 AFurnitureModelActor::AFurnitureModelActor()
@@ -140,11 +141,6 @@ void AFurnitureModelActor::BeginPlay()
 
 void AFurnitureModelActor::Destroyed()
 {
-	UCEditorGameInstance *GameInst = Cast<UCEditorGameInstance>(GetWorld()->GetGameInstance());
-	if (GameInst)
-	{
-		GameInst->ModelSystem->OnModelActorDestroyed(this);
-	}
 	Super::Destroyed();
 }
 

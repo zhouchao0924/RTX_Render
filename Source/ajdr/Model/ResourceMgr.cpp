@@ -663,14 +663,17 @@ UResource * UResourceMgr::CreateResByType(EResType ResType)
 	if (ResType == EResModel)
 	{
 		Resource = NewObject<UModelFile>();
+		Resource->AddToRoot();
 	}
 	else if (ResType==EResSurface)
 	{
 		Resource = NewObject<USurfaceFile>();
+		Resource->AddToRoot();
 	}
 	else if (ResType == EResCompoundModel)
 	{
 		Resource = NewObject<UCompoundModelFile>();
+		Resource->AddToRoot();
 	}
 
 	if (Resource)
@@ -803,10 +806,12 @@ void UResourceMgr::ReleaseAll()
 	{
 		FResourceInfo &Info = PooledResource[i];
 
-		if (Info.Resource != nullptr && Info.Resource->IsValidLowLevel())
+		if (Info.Resource != nullptr/* && Info.Resource->IsValidLowLevel()*/)
 		{
+			Info.Resource->RemoveFromRoot();
+			Info.Resource->ResMgr = nullptr;
 			Info.Resource->ConditionalBeginDestroy();
-			Info.Resource = NULL;
+			Info.Resource = nullptr;
 		}
 	}
 }
